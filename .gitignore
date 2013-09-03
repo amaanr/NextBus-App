@@ -33,3 +33,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 
+# Ignore all DS.Store mac directories
+app/assets/.DS_Store
+app/assets/images/.DS_Store
+
