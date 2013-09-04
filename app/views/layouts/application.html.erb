@@ -9,6 +9,7 @@
 
 <!-- Le javascript ================================================== -->
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1cvBrNQdGDTZAFbF6pMG4zK0iTQtAnFs&sensor=true&libraries=places"></script>
+
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
@@ -20,9 +21,9 @@
 	  <div class="navbar-inner">
 	    <div class="container">
 	        <%= link_to image_tag("logo@2X.png", alt: "Home", class: "brand logo"),home_index_path %>
-	      <ul class="nav">
-	        <li><%= link_to "Nearby", nearby_index_path %></li>
-	      </ul>
+	      <div class="nav pull-right">
+        	<%= link_to_function "Nearby", "moveVehicles(['95'],'95_1_95');", :class=>"btn btn-primary" %>
+	      </div>
 	    </div>
 	  </div>
 	</div><!-- /.navbar -->
