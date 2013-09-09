@@ -7,14 +7,16 @@ var timeInterval;
 
 // main function: takes routesList (array of routes)
 // e.g. moveVehicles(['95'],'95_1_95')
-function moveVehicles(routeList, direction) {
+function moveVehicles() {
+        
+        // routeList, direction
         mvRoutes = routeList;
         mvDirectionTag = direction;
         mapVehicles(mvRoutes);
         // run mapVehicles every 10 seconds
         setInterval(function() {
             mapVehicles(mvRoutes);
-        }, 10000);
+        }, 5000);
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 // add markers for vehicles on the routes in parameter routeList 

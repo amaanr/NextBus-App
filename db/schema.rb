@@ -11,9 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20130909201802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "stops", force: true do |t|
+    t.string   "stop_id"
+    t.string   "stop_code"
+    t.string   "stop_name"
+    t.string   "stop_desc"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.string   "zone_id"
+    t.string   "stop_url"
+    t.string   "location_type"
+    t.string   "parent_station"
+    t.string   "parent_boarding"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

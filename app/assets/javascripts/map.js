@@ -8,6 +8,8 @@ var markerArray = [];
 var predictions;
 var nearbys;
 
+var home = new google.maps.LatLng(43.7571855, -79.33758584);
+
 function initialize() {
 
   // Instantiate a directions service.
@@ -18,7 +20,7 @@ function initialize() {
 
   // Create a map and center it on home.
   var mapOptions = {
-    center: new google.maps.LatLng(43.7571855, -79.33758584),
+    center: home,
     disableDefaultUI: true,
     zoom: 10,
     mapTypeId: google.maps.MapTypeId.TERRAIN
