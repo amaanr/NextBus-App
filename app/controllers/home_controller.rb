@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   end
 
   def nearby_stops
-  	debugger
+  	stops = Stop.near([params[:latitude],params[:longitude]],10, :order => "distance").limit(4)
+  	render json: stops
   end
 end

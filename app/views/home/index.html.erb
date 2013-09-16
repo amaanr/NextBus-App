@@ -20,14 +20,12 @@ function showPosition(position) {
   x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
 
   return $.ajax ({
-      type: "GET",
+      type: "POST",
       url: "/nearby_stops",
       data: {
-        latitude: latitude,
-        longitude: longitude
-      },
-      dataType: 'json',
-      async: true
+        "latitude": latitude,
+        "longitude": longitude
+      }
       // success: function(stops) {
         // return Gmaps.map.replaceMarkers(stops);
       // }
