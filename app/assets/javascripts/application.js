@@ -15,6 +15,7 @@
 //= require jquery.xml2json
 //= require bootstrap
 //= require turbolinks
+//= require geo
 //= require map
 //= require mapVehicles
 //= require_tree .
