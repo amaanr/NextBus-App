@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20130909201802) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "stops", force: true do |t|
     t.string   "stop_id"
     t.string   "stop_code"
