@@ -5,9 +5,7 @@ class HomeController < ApplicationController
    @longitude = request.location.longitude
   end
 
-	def current
-	@latitude = request.location.latitude
-	@longitude = request.location.longitude
-	end
-
+  def nearby_stops
+  	debugger
+  end
 end
