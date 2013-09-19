@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
+</head>
 <body>
 <p id="demo">Click the button to get your coordinates:</p>
 <button onclick="getLocation()">Try It</button>
-<script>
 
-var x = document.getElementById("demo");
+<script>var x = document.getElementById("demo");
 
 function getLocation() {
   if (navigator.geolocation) {
@@ -31,7 +32,9 @@ function showPosition(position) {
       // }
   });  
 }
-
 </script>
+
+<div id="map-canvas"></div>
+
 </body>
 </html>
