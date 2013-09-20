@@ -1,6 +1,7 @@
 var map;
 
 function initialize() {
+  var myLatlng = new google.maps.LatLng(43.757673,-79.338092);
   var mapOptions = {
     zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -33,6 +34,12 @@ function initialize() {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
+
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Hello World!'
+  });
 }
 
 function handleNoGeolocation(errorFlag) {
@@ -58,21 +65,5 @@ var locations = [
   ['44 Valley Woods Rd', 43.755176, -79.333417, 3],
   ['Opposite 44 Valley Woods Rd', 43.755207, -79.333319, 4]
 ];
-
-var marker, i;
-
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
 
 google.maps.event.addDomListener(window, 'load', initialize);
