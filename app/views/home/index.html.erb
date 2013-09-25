@@ -3,36 +3,6 @@
 <head>
 </head>
 <body>
-<p id="demo">Click the button to get your coordinates:</p>
-<button onclick="getLocation()">Try It</button>
-
-<script>var x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(showPosition);
-  }
-  else { x.innerHTML = "Geolocation is not supported by this browser."; }
-}
-
-function showPosition(position) {
-  latitude = position.coords.latitude;
-  longitude = position.coords.longitude;
-  x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-
-  return $.ajax ({
-      type: "POST",
-      url: "/nearby_stops",
-      data: {
-        "latitude": latitude,
-        "longitude": longitude
-      }
-      // success: function(stops) {
-        // return Gmaps.map.replaceMarkers(stops);
-      // }
-  });  
-}
-</script>
 
 <div id="map-canvas"></div>
 

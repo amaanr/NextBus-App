@@ -1,7 +1,9 @@
+// Enable the visual refresh
+google.maps.visualRefresh = true;
+
 var map;
 
 function initialize() {
-  var myLatlng = new google.maps.LatLng(43.757673,-79.338092);
   var mapOptions = {
     zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -13,8 +15,9 @@ function initialize() {
   var transitLayer = new google.maps.TransitLayer();
   transitLayer.setMap(map);
 
-  // Try HTML5 geolocation
+  // HTML5 geolocation
   if(navigator.geolocation) {
+    navigator.geolocation.watchPosition(showTransit),
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = new google.maps.LatLng(position.coords.latitude,
                                        position.coords.longitude);
@@ -35,12 +38,30 @@ function initialize() {
     handleNoGeolocation(false);
   }
 
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: 'Hello World!'
-  });
-}
+  // Gets nearby transit stops
+  function showTransit(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    // var marker = new google.maps.Marker({
+    //   position: new google.maps.LatLng(0.latitude, 0.longitude),
+    //   map: map
+    // });
+
+    return $.ajax ({
+        type: "POST",
+        url: "/nearby_stops",
+        data: {
+          "latitude": latitude,
+          "longitude": longitude
+        }
+        // success: function(stops) {
+          // return Gmaps.map.replaceMarkers(stops);
+        // }
+    });
+  }
+
+} // ends initialize function
 
 function handleNoGeolocation(errorFlag) {
   if (errorFlag) {
@@ -58,12 +79,5 @@ function handleNoGeolocation(errorFlag) {
   var infowindow = new google.maps.InfoWindow(options);
   map.setCenter(options.position);
 }
-
-var locations = [
-  ['York Mills Rd at Laurentide Dr', 43.757673, -79.338092, 1],
-  ['York Mills Rd at Lochinvar Cres', 43.757594, -79.339251, 2],
-  ['44 Valley Woods Rd', 43.755176, -79.333417, 3],
-  ['Opposite 44 Valley Woods Rd', 43.755207, -79.333319, 4]
-];
 
 google.maps.event.addDomListener(window, 'load', initialize);
