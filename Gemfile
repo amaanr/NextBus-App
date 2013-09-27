@@ -1,3 +1,4 @@
+ruby '2.0.0'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -46,3 +47,6 @@ gem 'debugger', group: [:development, :test]
 
 # Use RubyGeocoder
 gem 'geocoder'
+
+# Use for heroku platform features
+gem 'rails_12factor'
