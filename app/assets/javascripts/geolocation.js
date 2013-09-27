@@ -47,19 +47,27 @@ function initialize() {
     //   position: new google.maps.LatLng(0.latitude, 0.longitude),
     //   map: map
     // });
-
+    
+    // Sends nearby transit stops
     return $.ajax ({
         type: "POST",
         url: "/nearby_stops",
         data: {
           "latitude": latitude,
           "longitude": longitude
+        },
+        success: function(response) {
+          console.log(response)
+        },
+        error: function(err) {
+          alert("Something went wrong");
+          console.error(err);
         }
-        // success: function(stops) {
-          // return Gmaps.map.replaceMarkers(stops);
-        // }
     });
   }
+
+  // Fetches the nearby stops and puts them on map as markers
+  // fetchStops();
 
 } // ends initialize function
 
@@ -81,3 +89,44 @@ function handleNoGeolocation(errorFlag) {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+// Fetch transit stops JSON from nearby_stops
+// Loop through and population the map with markers
+// var fetchStops = function() {
+  
+//   var infowindow = new google.maps.InfoWindow({
+//     content: ''
+//   });
+
+//   $.ajax({
+//     url: '/nearby_stops',
+//     type: 'JSON',
+//     success: function(response) {
+//       if (response.status == 'OK') {
+//         stops = response.stops;
+
+//         // Loop through stops and add markers
+//         for (s in stops) {
+//           // Create gmap LatLng obj
+//           var tmpLatLng = new google.maps.LatLng(stops[s].latitude[0], stops[s].longitude[0]);
+
+//           // Make and place map marker
+//           var marker = new google.maps.Marker({
+//             map: map,
+//             position: tmpLatLng,
+//             title: stops[s].stop_name
+//           });
+//           bindInfoWindow(marker, map, infowindow, '<b>'+stops[s].stop_name);
+//         }
+//       }
+//     }
+//   })
+// // };
+
+// Binds a map marker and infoWindow together on click
+// var bindInfoWindow = function(marker, map, infowindow, html) {
+  // google.maps.event.addListener(marker, 'click', function() {
+    // infowindow.setContent(html);
+    // infowindow.open(map, marker);
+  // });
+// }
