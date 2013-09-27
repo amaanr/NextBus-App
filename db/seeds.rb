@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
-require 'debugger'
+# require 'debugger'
 CSV.foreach("db/stops.csv") do |row|
 	Stop.new(
 		stop_id: row[0],
