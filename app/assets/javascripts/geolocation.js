@@ -45,6 +45,10 @@ function initialize() {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
     
+    var infowindow = new google.maps.InfoWindow({
+      content: ''
+    });
+
     // Sends nearby transit stops
     return $.ajax ({
         type: "POST",
@@ -54,17 +58,27 @@ function initialize() {
           "longitude": longitude
         },
         success: function(response) {
-          console.log(response)
-        },
-        error: function(err) {
-          alert("Something went wrong");
-          console.error(err);
+          // console.log(response)
+
+            // Loop through stops and add markers
+            
+            for (var i = 0; i < response.length; i++) { 
+              // console.log(response[i].latitude)
+
+              // Create gmap LatLng obj
+              var tmpLatLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
+
+              // Make and place map marker
+              var marker = new google.maps.Marker({
+                map: map,
+                position: tmpLatLng,
+                title: response[i].stop_name
+              });
+              bindInfoWindow(marker, map, infowindow, '<b>'+response[i].stop_name);
+            }
         }
     });
   }
-
-  // Fetches the nearby stops and puts them on map as markers
-  fetchStops();
 
 } // ends initialize function
 
@@ -86,39 +100,6 @@ function handleNoGeolocation(errorFlag) {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
-// Fetch transit stops JSON from nearby_stops
-// Loop through and populate the map with markers
-var fetchStops = function() {
-  
-  var infowindow = new google.maps.InfoWindow({
-    content: ''
-  });
-
-  $.ajax({
-    url: '/nearby_stops',
-    dataType: 'JSON',
-    success: function(response) {
-      if (response.status == 'OK') {
-        stops = response.stops;
-
-        // Loop through stops and add markers
-        for (s in stops) {
-          // Create gmap LatLng obj
-          var tmpLatLng = new google.maps.LatLng(stops[s].latitude[0], stops[s].longitude[0]);
-
-          // Make and place map marker
-          var marker = new google.maps.Marker({
-            map: map,
-            position: tmpLatLng,
-            title: stops[s].stop_name
-          });
-          bindInfoWindow(marker, map, infowindow, '<b>'+stops[s].stop_name);
-        }
-      }
-    }
-  })
-};
 
 // Binds a map marker and infoWindow together on click
 var bindInfoWindow = function(marker, map, infowindow, html) {
