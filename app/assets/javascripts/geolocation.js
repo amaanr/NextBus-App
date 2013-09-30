@@ -2,6 +2,8 @@
 google.maps.visualRefresh = true;
 
 var map;
+var stops;
+var markers = [];
 
 function initialize() {
   var mapOptions = {
@@ -42,11 +44,6 @@ function initialize() {
   function showTransit(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
-
-    // var marker = new google.maps.Marker({
-    //   position: new google.maps.LatLng(0.latitude, 0.longitude),
-    //   map: map
-    // });
     
     // Sends nearby transit stops
     return $.ajax ({
@@ -67,7 +64,7 @@ function initialize() {
   }
 
   // Fetches the nearby stops and puts them on map as markers
-  // fetchStops();
+  fetchStops();
 
 } // ends initialize function
 
@@ -91,42 +88,42 @@ function handleNoGeolocation(errorFlag) {
 google.maps.event.addDomListener(window, 'load', initialize);
 
 // Fetch transit stops JSON from nearby_stops
-// Loop through and population the map with markers
-// var fetchStops = function() {
+// Loop through and populate the map with markers
+var fetchStops = function() {
   
-//   var infowindow = new google.maps.InfoWindow({
-//     content: ''
-//   });
+  var infowindow = new google.maps.InfoWindow({
+    content: ''
+  });
 
-//   $.ajax({
-//     url: '/nearby_stops',
-//     type: 'JSON',
-//     success: function(response) {
-//       if (response.status == 'OK') {
-//         stops = response.stops;
+  $.ajax({
+    url: '/nearby_stops',
+    dataType: 'JSON',
+    success: function(response) {
+      if (response.status == 'OK') {
+        stops = response.stops;
 
-//         // Loop through stops and add markers
-//         for (s in stops) {
-//           // Create gmap LatLng obj
-//           var tmpLatLng = new google.maps.LatLng(stops[s].latitude[0], stops[s].longitude[0]);
+        // Loop through stops and add markers
+        for (s in stops) {
+          // Create gmap LatLng obj
+          var tmpLatLng = new google.maps.LatLng(stops[s].latitude[0], stops[s].longitude[0]);
 
-//           // Make and place map marker
-//           var marker = new google.maps.Marker({
-//             map: map,
-//             position: tmpLatLng,
-//             title: stops[s].stop_name
-//           });
-//           bindInfoWindow(marker, map, infowindow, '<b>'+stops[s].stop_name);
-//         }
-//       }
-//     }
-//   })
-// // };
+          // Make and place map marker
+          var marker = new google.maps.Marker({
+            map: map,
+            position: tmpLatLng,
+            title: stops[s].stop_name
+          });
+          bindInfoWindow(marker, map, infowindow, '<b>'+stops[s].stop_name);
+        }
+      }
+    }
+  })
+};
 
 // Binds a map marker and infoWindow together on click
-// var bindInfoWindow = function(marker, map, infowindow, html) {
-  // google.maps.event.addListener(marker, 'click', function() {
-    // infowindow.setContent(html);
-    // infowindow.open(map, marker);
-  // });
-// }
+var bindInfoWindow = function(marker, map, infowindow, html) {
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(html);
+    infowindow.open(map, marker);
+  });
+}

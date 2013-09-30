@@ -4,6 +4,7 @@ Sameboat::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
   post "/nearby_stops"=>"home#nearby_stops"
+  get "/nearby_stops"=>"home#nearby_stops"
   root 'home#index'
 
   # Example of regular route:
