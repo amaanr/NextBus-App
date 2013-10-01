@@ -21,11 +21,11 @@
 	    			<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
 				<% end -%>
               </div>
-              <div class="pull-right m-t-mini"><small><%= render "devise/shared/links" %></small></div>
+              <small><%= link_to('Forgot your password?', new_user_password_path, :class => "pull-right m-t-mini") %></small>
               <%= f.submit "Sign in", :class => "btn btn-info" %>
               <div class="line line-dashed"></div>
               <p class="text-muted text-center"><small>Do not have an account?</small></p>
-              <a href="signup.html" class="btn btn-white btn-block">Create an account</a>
+              <%= link_to('Sign up', new_user_registration_path, :class => "btn btn-white btn-block")  %>
           	<% end %>
             </div>
           </section>
