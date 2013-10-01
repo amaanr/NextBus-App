@@ -12,9 +12,7 @@
  *= require bootstrap
  *= require font-awesome.min
  *= require font
- *= require landing
- *= require map
- *= require plugin
  *= require style
+ *= require map
  *= require_tree .
  */
