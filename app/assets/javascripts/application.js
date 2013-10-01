@@ -15,6 +15,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.xml2json
+//= require bootstrap.min
 //= require bootstrap
 //= require geolocation
 //= require turbolinks
