@@ -53,3 +53,6 @@ gem 'geocoder'
 
 # Use for heroku platform features
 gem 'rails_12factor'
+
+# Use font-awesome-rails
+gem 'font-awesome-rails'
