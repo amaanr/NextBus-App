@@ -15,8 +15,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.xml2json
-//= require bootstrap.min
 //= require bootstrap
+
+//= require js/app
+//= require js/app.data
+//= require js/app.plugin
+
 //= require geolocation
 //= require turbolinks
 //= require_tree .
