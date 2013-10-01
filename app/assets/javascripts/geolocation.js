@@ -51,35 +51,45 @@ function initialize() {
 
     // Sends nearby transit stops
     return $.ajax ({
-        type: "POST",
-        url: "/nearby_stops",
-        data: {
-          "latitude": latitude,
-          "longitude": longitude
-        },
-        success: function(response) {
-          // console.log(response)
-
-            // Loop through stops and add markers
-            
-            for (var i = 0; i < response.length; i++) { 
-              // console.log(response[i].latitude)
-
-              // Create gmap LatLng obj
-              var tmpLatLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
-
-              // Make and place map marker
-              var marker = new google.maps.Marker({
-                map: map,
-                position: tmpLatLng,
-                title: response[i].stop_name
-              });
-              bindInfoWindow(marker, map, infowindow, '<b>'+response[i].stop_name);
-            }
+      type: "POST",
+      url: "/nearby_stops",
+      data: {
+        "latitude": latitude,
+        "longitude": longitude
+      },
+      success: function(response) {
+        // Loop through stops and add markers
+        for (var i = 0; i < response.length; i++) { 
+          // Creates LatLng obj
+          var tmpLatLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
+          // Make and place map marker
+          var marker = new google.maps.Marker({
+            map: map,
+            position: tmpLatLng,
+            title: response[i].stop_name
+          });
+          // Adds stop name to markers when clicked  
+          bindInfoWindow(marker, map, infowindow, '<b>'+response[i].stop_name);
         }
-    });
-  }
+      }
+    }); // ends ajax post request
 
+    // Gets NextBus transit predictions
+    return $.ajax ({
+      type: 'GET',
+      url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=" + response[i].stop_code,
+      dataType: 'XML',
+      success: function(xml) {
+        $(xml).find('direction').each(function(){
+          var transitTitle = $(this).find("title").text();
+          var timeInSeconds = $(this).find("seconds").text();
+          alert("Title: " + transitTitle + "Arrives in: " + timeInSeconds);
+          console.log(xml)
+        });
+      }
+    }); // ends nextbus get request
+
+  } // ends showTransit function
 } // ends initialize function
 
 function handleNoGeolocation(errorFlag) {
