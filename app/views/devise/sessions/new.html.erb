@@ -1,5 +1,38 @@
-<h2>Sign in</h2>
-
+  <section id="content">
+    <div class="main padder">
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-4 m-t-large">
+          <section class="panel">
+            <header class="panel-heading text-center">
+              Sign in
+            </header>
+            <form class="panel-body">
+            <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+              <div class="block">
+                <label class="control-label"><%= f.label :email %></label>
+                <%= f.email_field :email, :class => "form-control", :placeholder => "email@address.com", :autofocus => true %>
+              </div>
+              <div class="block">
+                <label class="control-label"><%= f.label :password %></label>
+                <%= f.password_field :password, :id => "inputPassword", :placeholder => "Password", :class => "form-control" %>
+              </div>
+              <div class="checkbox">
+	            <% if devise_mapping.rememberable? -%>
+	    			<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+				<% end -%>
+              </div>
+              <a href="#" class="pull-right m-t-mini"><small>Forgot password?</small></a>
+              <%= f.submit "Sign in", :class => "btn btn-info" %>
+              <div class="line line-dashed"></div>
+              <p class="text-muted text-center"><small>Do not have an account?</small></p>
+              <a href="signup.html" class="btn btn-white btn-block">Create an account</a>
+          	<% end %>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
