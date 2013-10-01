@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 
   # Default distance set to 10 km
   def nearby_stops
-  	stops = Stop.near([params[:latitude],params[:longitude]],10, :order => "distance").limit(4)
+  	stops = Stop.near([params[:latitude],params[:longitude]],10, :order => "distance").limit(10)
   	render json: stops
   end
 end
