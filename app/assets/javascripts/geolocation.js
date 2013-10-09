@@ -73,29 +73,13 @@ function initialize() {
         }
       }
     }); // ends ajax post request
-
-    // Gets NextBus transit predictions
-    // $.ajax ({
-    //   type: 'GET',
-    //   url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=" + response[i].stop_code,
-    //   dataType: 'XML',
-    //   success: function(xml) {
-    //     $(xml).find('predictions').each(function(){
-    //       $(this).find('routeTitle').each(function(){
-    //         var name = $(this).text();
-    //         console.log(name)
-    //       });
-    //     });
-        // $(xml).find('direction').each(function(){
-        //   var transitTitle = $(this).find("title").text();
-        //   var timeInSeconds = $(this).find("seconds").text();
-        //   alert("Title: " + transitTitle + "Arrives in: " + timeInSeconds);
-        //   console.log(xml)
-        // });
-      // }
-    // }); // ends nextbus get request
-
   } // ends showTransit function
+
+  // Instantiate the autocomplete method for search box
+  var input = document.getElementById('target');
+  var searchBox = new google.maps.places.Autocomplete(input);
+
+  searchBox.bindTo('bounds', map);
 } // ends initialize function
 
 function handleNoGeolocation(errorFlag) {
