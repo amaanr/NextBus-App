@@ -21,6 +21,7 @@
 //= require js/app.data
 //= require js/app.plugin
 
+//= require directions
 //= require geolocation
 //= require turbolinks
 //= require_tree .

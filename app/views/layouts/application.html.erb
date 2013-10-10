@@ -93,8 +93,11 @@
       </ul>
       <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
         <i class="icon-search text-muted"></i>
-        <input type="text" input id="target" class="input-sm form-control" placeholder="Where are you going?">
+        <input type="text" input id="target" class="input-sm form-control" placeholder="Where to boss?">
       </form>
+      <ul class="nav navbar-nav hidden-xs">
+        <li><div class="m-t-small"><%= link_to_function "Go", "calcRoute();", :class=>"btn btn-sm btn-success" %></div></li>
+      </ul>
   	</header>
     <!-- / header -->
 

@@ -78,8 +78,8 @@ function initialize() {
   // Instantiate the autocomplete method for search box
   var input = document.getElementById('target');
   var searchBox = new google.maps.places.Autocomplete(input);
-
   searchBox.bindTo('bounds', map);
+  
 } // ends initialize function
 
 function handleNoGeolocation(errorFlag) {
