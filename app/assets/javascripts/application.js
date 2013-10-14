@@ -21,6 +21,10 @@
 //= require js/app.data
 //= require js/app.plugin
 
+// nextBusser Library
+//= require nextbusser
+
+//= require sameboat
 //= require directions
 //= require geolocation
 //= require turbolinks
