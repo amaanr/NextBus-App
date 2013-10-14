@@ -23,7 +23,7 @@
       <ul class="nav navbar-nav navbar-avatar pull-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
-              <span class="hidden-xs-only"><%= current_user.email %></span>
+              <span class="hidden-xs-only"><%= current_user.first_name %> <%= current_user.last_name %></span>
               <span class="thumb-small avatar inline"><%= image_tag "avatar.jpg", :class=>"img-circle" %></span>
               <b class="caret hidden-xs-only"></b>
             </a>
