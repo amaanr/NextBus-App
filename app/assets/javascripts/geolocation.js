@@ -49,32 +49,7 @@ function initialize() {
       content: ''
     });
 
-    // Adds nearby transit stops as markers
-    return $.ajax ({
-      type: "POST",
-      url: "/nearby_stops",
-      data: {
-        "latitude": latitude,
-        "longitude": longitude
-      },
-      success: function(response) {
-        // Loop through stops and add markers
-        for (var i = 0; i < response.length; i++) { 
-          // Creates LatLng obj
-          var tmpLatLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
-          // Make and place map marker
-          var marker = new google.maps.Marker({
-            map: map,
-            position: tmpLatLng,
-            title: response[i].stop_name
-          });
-          // Adds stop name to markers when clicked  
-          bindInfoWindow(marker, map, infowindow, '<b>'+response[i].stop_name);
-        }
-      }
-    }); // ends ajax post request
-
-    // Gets NextBus arrivalTimes
+    // Finds nearby stops from OpenData CSV
     var seconds = '';
     return $.ajax ({
       type: "POST",
@@ -85,22 +60,33 @@ function initialize() {
       },
       success: function(response) {
         for (var i = 0; i < response.length; i++) {
+          // Creates LatLng obj
+          var tmpLatLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
+          // Make and place nearby stops on map as markers
+          var marker = new google.maps.Marker({
+            map: map,
+            position: tmpLatLng,
+            title: response[i].stop_name
+          });
+          // Adds stop name to markers when clicked  
+          bindInfoWindow(marker, map, infowindow, '<b>'+response[i].stop_name);
+          // Gets NextBus arrivalTimes
           $.ajax ({
             async: false,
             cache: false,
             type: "GET",
-            url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
+            url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId="+response[i].stop_id,
             dataType: "xml",
             success: function(xml) {
               $(xml).find('direction').each(function() {
                 seconds = $(this).find('prediction').first().attr('seconds');
-              }
+              });
+              console.log(xml)
             }
           });
         }
       }
-    });
-
+    }); // ends main post ajax request to /nearby_stops
   } // ends showTransit function
 
   // Instantiate the autocomplete method for search box
