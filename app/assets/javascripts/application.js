@@ -23,7 +23,6 @@
 
 //= require directions
 //= require geolocation
-//= require sameboat
 
 //= require turbolinks
 //= require_tree .
