@@ -62,30 +62,48 @@ function initialize() {
         for (var i = 0; i < response.length; i++) {
           // Creates LatLng obj
           var tmpLatLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
-          // Make and place nearby stops on map as markers
-          var marker = new google.maps.Marker({
-            map: map,
-            position: tmpLatLng,
-            title: response[i].stop_name
-          });
-          // Adds stop name to markers when clicked  
-          bindInfoWindow(marker, map, infowindow, '<b>'+response[i].stop_name);
+          // stopName only needed if NextBus stopTitle fails
+          var stopName = response[i].stop_name;
+          
           // Gets NextBus arrivalTimes
           $.ajax ({
             async: false,
             cache: false,
             type: "GET",
-            url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId="+response[i].stop_id,
+            url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
             dataType: "xml",
             success: function(xml) {
-              $(xml).find('direction').each(function() {
-                seconds = $(this).find('prediction').first().attr('seconds');
+              $(xml).find('body').each(function() {
+                var timeInSeconds = $(this).find('predictions').find('direction').find('prediction').attr('seconds');
+                var timeInMinutes = $(this).find('predictions').find('direction').find('prediction').attr('minutes');
+                var directionTitle = $(this).find('predictions').find('direction').attr('title');
+                var stopTitle = $(this).find('predictions').attr('stopTitle');
+
+                // Make and place nearby stops on map as markers
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: tmpLatLng,
+                  title: stopTitle
+                });
+                // Adds stop name to markers when clicked  
+                bindInfoWindow(marker, map, infowindow, '<div id="content">'+
+                  '<div id="siteNotice">'+
+                  '</div>'+
+                  '<h3 id="firstHeading" class="firstHeading">'+stopTitle+'</h3>'+
+                  '<div id="bodyContent">'+
+                  '<p><b>'+directionTitle+'</b> will arrive in <b>'+timeInSeconds+' seconds ' +
+                  '('+timeInMinutes+' minutes</b>).'+
+                  '<p>Source: NextBus, <a href="http://www.nextbus.com">'+
+                  'http://nextbus.com</a></p>'+
+                  '</div>'+
+                  '</div>'
+                );
               });
-              console.log(xml)
+              // console.log(xml)
             }
-          });
-        }
-      }
+          }); // ends nextbus ajax request
+        } // ends for loop
+      } // ends success handler
     }); // ends main post ajax request to /nearby_stops
   } // ends showTransit function
 
@@ -96,6 +114,7 @@ function initialize() {
   
 } // ends initialize function
 
+// If browser/device doesn't support geolocation, do this
 function handleNoGeolocation(errorFlag) {
   if (errorFlag) {
     var content = 'Error: The Geolocation service failed.';
