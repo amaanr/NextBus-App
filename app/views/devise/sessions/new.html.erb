@@ -24,6 +24,9 @@
               <small><%= link_to('Forgot your password?', new_user_password_path, :class => "pull-right m-t-mini") %></small>
               <%= f.submit "Sign in", :class => "btn btn-info" %>
               <div class="line line-dashed"></div>
+              <%= link_to user_omniauth_authorize_path(:facebook) do %>
+                <div class="btn btn-facebook btn-block m-b-small"><i class="icon-facebook pull-left"></i> Sign in with Facebook</div>
+              <% end %> 
               <p class="text-muted text-center"><small>Do not have an account?</small></p>
               <%= link_to('Sign up', new_user_registration_path, :class => "btn btn-white btn-block")  %>
           	<% end %>
