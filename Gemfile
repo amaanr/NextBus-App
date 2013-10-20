@@ -56,3 +56,8 @@ gem 'rails_12factor'
 
 # Use font-awesome-rails
 gem 'font-awesome-rails'
+
+# Use OmniAuth for Facebook & Twitter login/register
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'oauth2'
