@@ -36,6 +36,9 @@
               </div>
               <%= f.submit "Sign up", :class => "btn btn-info" %>
               <div class="line line-dashed"></div>
+                <%= link_to user_omniauth_authorize_path(:facebook) do %>
+                  <div class="btn btn-facebook btn-block m-b-small"><i class="icon-facebook pull-left"></i> Sign in with Facebook</div>
+                <% end %> 
               <p class="text-muted text-center"><small>Already have an account?</small></p>
               <%= link_to('Sign in', new_user_session_path, :class => "btn btn-white btn-block")  %>
               <% end -%>
