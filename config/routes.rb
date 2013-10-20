@@ -9,6 +9,8 @@ Sameboat::Application.routes.draw do
   get "/nearby_stops"=>"home#nearby_stops"
   root 'home#index'
 
+  resources :users
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
