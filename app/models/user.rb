@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable, :recoverable, :rememberable, :trackable, :validatable
 
+  mount_uploader :avatar, AvatarUploader
+
   # for forem to display user's first name
   def to_s
     first_name
