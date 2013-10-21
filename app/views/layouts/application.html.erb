@@ -24,15 +24,15 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
               <span class="hidden-xs-only"><%= current_user.first_name %> <%= current_user.last_name %></span>
-              <span class="thumb-small avatar inline"><%= image_tag "avatar.jpg", :class=>"img-circle" %></span>
+              <span class="thumb-small avatar inline"><%= forem_avatar(current_user, :class=>"img-circle") %></span>
               <b class="caret hidden-xs-only"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to('Settings', edit_user_registration_path) %></li>
-              <li><%= link_to('Profile', user_path(current_user)) %></li>
+              <li><%= link_to('Settings', main_app.edit_user_registration_path) %></li>
+              <li><%= link_to('Profile', main_app.user_path(current_user)) %></li>
               <li><a href="#"><span class="badge bg-danger pull-right">3</span>Notifications</a></li>
               <li class="divider"></li>
-              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+              <li><%= link_to('Logout', main_app.destroy_user_session_path, :method => :delete) %></li>
             </ul>
           </li>
       </ul>
@@ -70,7 +70,8 @@
             </section>
           </div>
         </li>
-        <li><div class="m-t-small"><a class="btn btn-sm btn-info" data-toggle="modal" href="#modal"><i class="icon-plus"></i> POST</a></div></li>
+        <li>
+          <div class="m-t-small"><a class="btn btn-sm btn-info" data-toggle="modal" href="/posts"><i class="icon-plus"></i> POST</a></div></li>
         <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret hidden-sm-only"></b></a>
           <ul class="dropdown-menu">
