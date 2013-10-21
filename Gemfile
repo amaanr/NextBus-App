@@ -61,3 +61,9 @@ gem 'font-awesome-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
+
+# Use forem to handle posts
+gem 'forem', :github => "radar/forem", :branch => "rails4"
+gem 'friendly_id', github: "FriendlyId/friendly_id"
+gem 'cancan', git: "https://github.com/nukturnal/cancan.git"
+gem 'will_paginate', '3.0.4'
