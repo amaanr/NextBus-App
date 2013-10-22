@@ -5,9 +5,16 @@
     <div class="form-group">
       <label class="col-lg-3 control-label">Photo</label>
       <div class="col-lg-9 media">
-        <div class="bg-light pull-left text-center media-large thumb-large"><i class="icon-user inline icon-light icon-3x m-t-large m-b-large"></i></div>
+        <div class="bg-light pull-left text-center media-large thumb-large">
+          <% if current_user.avatar %>
+            <%= image_tag(current_user.avatar.url) %>
+          <% else %>
+            <i class="icon-user inline icon-light icon-3x m-t-large m-b-large"></i>
+          <% end %>
+        </div>
         <div class="media-body">
-          <input type="file" name="file" title="Change" class="btn btn-sm btn-info m-b-small"><br>
+          <%= f.file_field(:avatar)%>
+          <!-- <input type="file" name="file" title="Change" class="btn btn-sm btn-info m-b-small"><br> -->
           <button class="btn btn-sm btn-default">Delete</button>
         </div>
       </div>
