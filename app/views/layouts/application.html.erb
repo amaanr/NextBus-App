@@ -14,7 +14,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
 </head>
-<body>
+<body style class="navbar-fixed">
 
 <% if user_signed_in? %>
 
@@ -41,7 +41,7 @@
         <i class="icon-reorder icon-xlarge text-default"></i>
       </button>
       <ul class="nav navbar-nav hidden-xs">
-        <li>
+        <!-- <li>
           <div class="m-t m-b-small" id="panel-notifications">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-comment-alt icon-xlarge text-default"></i><b class="badge badge-notes bg-danger count-n">2</b></a>
             <section class="dropdown-menu m-l-small m-t-mini">
@@ -69,10 +69,18 @@
               </section>
             </section>
           </div>
+        </li> -->
+<!--         <li>
+          <div class="m-t-small"><a class="btn btn-sm btn-info" data-toggle="modal" href="/posts"><i class="icon-plus"></i> POST</a></div>
         </li>
-        <li>
-          <div class="m-t-small"><a class="btn btn-sm btn-info" data-toggle="modal" href="/posts"><i class="icon-plus"></i> POST</a></div></li>
-        <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
+ -->        <li>
+          <div class="m-t-small">
+            <%= link_to main_app.plan_index_path do %>
+              <div class="btn btn-primary btn-block m-t-mini"><i class="icon-map-marker pull-left"></i> Plan a trip</div>
+            <% end %> 
+          </div>
+        </li>
+        <!-- <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret hidden-sm-only"></b></a>
           <ul class="dropdown-menu">
             <li>
@@ -90,18 +98,63 @@
               <a href="#">School</a>
             </li>
           </ul>
-        </li>
+        </li> -->
       </ul>
-      <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
+      <!-- <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
         <i class="icon-search text-muted"></i>
         <input type="text" input id="target" class="input-sm form-control" placeholder="Where to boss?">
       </form>
       <ul class="nav navbar-nav hidden-xs">
         <li><div class="m-t-small"><%= link_to_function "Go", "calcRoute();", :class=>"btn btn-sm btn-success" %></div></li>
-      </ul>
+      </ul> -->
   	</header>
     <!-- / header -->
-
+  <!-- nav -->
+  <nav id="nav" class="nav-primary hidden-xs nav-vertical">
+    <ul class="nav" data-spy="affix" data-offset-top="50">
+      <li>
+        <%= link_to main_app.user_path(current_user) do %>
+          <i class="icon-user icon-xlarge"></i><span>Profile</span>
+        <% end -%>
+      </li>
+      <li class="dropdown-submenu">
+        <%= link_to forem.root_path do %>
+          <i class="icon-plus icon-xlarge"></i><span>Post</span>
+        <% end -%>
+        <ul class="dropdown-menu">
+          <li><a href="#">Post a Delay</a></li>
+          <li><a href="#">Report an Incident</a></li>
+          <li><a href="#">Report Vandalism</a></li>
+          <li><a href="#"><b class="badge pull-right">48</b>Feed</a></li>            
+          <li><a href="#">Search</a></li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to main_app.plan_index_path do %>
+          <i class="icon-map-marker icon-xlarge"></i><span>Plan a Trip</span>
+        <% end -%>
+      </li>
+      <li class="dropdown-submenu">
+        <a href="#"><i class="icon-group icon-xlarge"></i><span>Friends</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="buttons.html">Search</a></li>
+          <li><a href="icons.html"><b class="badge pull-right">23</b>Messages</a></li>            
+          <li><a href="grid.html">Add a Friend</a></li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to main_app.edit_user_registration_path do %>
+          <i class="icon-gear icon-xlarge"></i><span>Settings</span>
+        <% end -%>
+      </li>
+      <li>
+        <%= link_to main_app.destroy_user_session_path, :method => :delete do %>
+          <i class="icon-signout icon-xlarge"></i><span>Log out</span>
+        <% end -%>
+      </li>
+    </ul>
+  </nav>
+  <!-- / nav -->
 <% else %>
 
   <!-- header -->

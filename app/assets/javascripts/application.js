@@ -20,6 +20,7 @@
 //= require js/app
 //= require js/app.data
 //= require js/app.plugin
+//= require js/jquery.countdown
 
 //= require directions
 //= require geolocation
