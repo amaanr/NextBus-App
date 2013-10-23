@@ -14,102 +14,103 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
 </head>
-<body style class="navbar-fixed">
+<body style class="navbar-fixed navbar-side-fixed">
 
 <% if user_signed_in? %>
 
   <!-- header -->
-  	<header id="header" class="navbar">
-      <ul class="nav navbar-nav navbar-avatar pull-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
-              <span class="hidden-xs-only"><%= current_user.first_name %> <%= current_user.last_name %></span>
-                <% if current_user.avatar %>
-                  <span class="thumb-small avatar inline"><%= image_tag(current_user.avatar.url, :class => "img-circle", :style => "max-height:36px;") %></span>
-                <% end %>
-              <b class="caret hidden-xs-only"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to('Settings', main_app.edit_user_registration_path) %></li>
-              <li><%= link_to('Profile', main_app.user_path(current_user)) %></li>
-              <li><a href="#"><span class="badge bg-danger pull-right">3</span>Notifications</a></li>
-              <li class="divider"></li>
-              <li><%= link_to('Logout', main_app.destroy_user_session_path, :method => :delete) %></li>
-            </ul>
-          </li>
-      </ul>
-      <%= link_to image_tag("sameboat_black.png", :class => "thumb-mini", :style => "max-width:15px;"), root_path, :class => "navbar-brand" %>
-      <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
-        <i class="icon-reorder icon-xlarge text-default"></i>
-      </button>
-      <ul class="nav navbar-nav hidden-xs">
-        <!-- <li>
-          <div class="m-t m-b-small" id="panel-notifications">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-comment-alt icon-xlarge text-default"></i><b class="badge badge-notes bg-danger count-n">2</b></a>
-            <section class="dropdown-menu m-l-small m-t-mini">
-              <section class="panel panel-large arrow arrow-top">
-                <header class="panel-heading bg-white"><span class="h5"><strong>You have <span class="count-n">2</span> notifications</strong></span></header>
-                <div class="list-group">
-                  <a href="#" class="media list-group-item">
-                    <span class="pull-left thumb-small"><%= image_tag "avatar.jpg", :class=>"img-circle" %></span>
-                    <span class="media-body block m-b-none">
-                      6 minute delay to Work today<br>
-                      <small class="text-muted">Now</small>
-                    </span>
-                  </a>
-                  <a href="#" class="media list-group-item">
-                    <span class="media-body block m-b-none">
-                      Messages from Aly<br>
-                      <small class="text-muted">Yesterday</small>
-                    </span>
-                  </a>
-                </div>
-                <footer class="panel-footer text-small">
-                  <a href="#" class="pull-right"><i class="icon-cog"></i></a>
-                  <a href="#">See all the notifications</a>
-                </footer>
-              </section>
+	<header id="header" class="navbar">
+    <ul class="nav navbar-nav navbar-avatar pull-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
+          <span class="hidden-xs-only"><%= current_user.first_name %> <%= current_user.last_name %></span>
+            <% if current_user.avatar %>
+              <span class="thumb-small avatar inline"><%= image_tag(current_user.avatar.url, :class => "img-circle", :style => "max-height:36px;") %></span>
+            <% end %>
+          <b class="caret hidden-xs-only"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to('Settings', main_app.edit_user_registration_path) %></li>
+          <li><%= link_to('Profile', main_app.user_path(current_user)) %></li>
+          <li><a href="#"><span class="badge bg-danger pull-right">3</span>Notifications</a></li>
+          <li class="divider"></li>
+          <li><%= link_to('Logout', main_app.destroy_user_session_path, :method => :delete) %></li>
+        </ul>
+      </li>
+    </ul>
+    <%= link_to image_tag("sameboat_black.png", :class => "thumb-mini", :style => "max-width:15px;"), root_path, :class => "navbar-brand" %>
+    <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+      <i class="icon-reorder icon-xlarge text-default"></i>
+    </button>
+    <ul class="nav navbar-nav hidden-xs">
+      <!-- <li>
+        <div class="m-t m-b-small" id="panel-notifications">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-comment-alt icon-xlarge text-default"></i><b class="badge badge-notes bg-danger count-n">2</b></a>
+          <section class="dropdown-menu m-l-small m-t-mini">
+            <section class="panel panel-large arrow arrow-top">
+              <header class="panel-heading bg-white"><span class="h5"><strong>You have <span class="count-n">2</span> notifications</strong></span></header>
+              <div class="list-group">
+                <a href="#" class="media list-group-item">
+                  <span class="pull-left thumb-small"><%= image_tag "avatar.jpg", :class=>"img-circle" %></span>
+                  <span class="media-body block m-b-none">
+                    6 minute delay to Work today<br>
+                    <small class="text-muted">Now</small>
+                  </span>
+                </a>
+                <a href="#" class="media list-group-item">
+                  <span class="media-body block m-b-none">
+                    Messages from Aly<br>
+                    <small class="text-muted">Yesterday</small>
+                  </span>
+                </a>
+              </div>
+              <footer class="panel-footer text-small">
+                <a href="#" class="pull-right"><i class="icon-cog"></i></a>
+                <a href="#">See all the notifications</a>
+              </footer>
             </section>
-          </div>
-        </li> -->
+          </section>
+        </div>
+      </li> -->
 <!--         <li>
-          <div class="m-t-small"><a class="btn btn-sm btn-info" data-toggle="modal" href="/posts"><i class="icon-plus"></i> POST</a></div>
-        </li>
- -->        <li>
-          <div class="m-t-small">
-            <%= link_to main_app.plan_index_path do %>
-              <div class="btn btn-primary btn-block m-t-mini"><i class="icon-map-marker pull-left"></i> Plan a trip</div>
-            <% end %> 
-          </div>
-        </li>
-        <!-- <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret hidden-sm-only"></b></a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#">Plan a trip</a>
-            </li>
-            <li>
-              <a href="#">Reminders</a>
-            </li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Favourites</li>
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">School</a>
-            </li>
-          </ul>
-        </li> -->
-      </ul>
-      <!-- <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
-        <i class="icon-search text-muted"></i>
-        <input type="text" input id="target" class="input-sm form-control" placeholder="Where to boss?">
-      </form>
-      <ul class="nav navbar-nav hidden-xs">
-        <li><div class="m-t-small"><%= link_to_function "Go", "calcRoute();", :class=>"btn btn-sm btn-success" %></div></li>
-      </ul> -->
-  	</header>
+        <div class="m-t-small"><a class="btn btn-sm btn-info" data-toggle="modal" href="/posts"><i class="icon-plus"></i> POST</a></div>
+      </li>
+-->        
+      <li>
+        <div class="m-t-small">
+          <%= link_to main_app.plan_index_path do %>
+            <div class="btn btn-primary btn-block m-t-mini"><i class="icon-map-marker pull-left"></i> Plan a trip</div>
+          <% end %> 
+        </div>
+      </li>
+      <!-- <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret hidden-sm-only"></b></a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#">Plan a trip</a>
+          </li>
+          <li>
+            <a href="#">Reminders</a>
+          </li>
+          <li class="divider"></li>
+          <li class="dropdown-header">Favourites</li>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">School</a>
+          </li>
+        </ul>
+      </li> -->
+    </ul>
+    <!-- <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
+      <i class="icon-search text-muted"></i>
+      <input type="text" input id="target" class="input-sm form-control" placeholder="Where to boss?">
+    </form>
+    <ul class="nav navbar-nav hidden-xs">
+      <li><div class="m-t-small"><%= link_to_function "Go", "calcRoute();", :class=>"btn btn-sm btn-success" %></div></li>
+    </ul> -->
+	</header>
     <!-- / header -->
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
@@ -157,6 +158,7 @@
     </ul>
   </nav>
   <!-- / nav -->
+
 <% else %>
 
   <!-- header -->

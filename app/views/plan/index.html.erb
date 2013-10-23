@@ -1,1 +1,15 @@
+<section id="content">
+  <form>
+    <input type="text" id="start-from" placeholder="starting address" class="input-xlarge search-query">
+    <input type="text" id="end-to" placeholder="destination" class="input-xlarge search-query">
+    <%= link_to_function "Go", "calcRoute();", :class=>"btn btn-success" %>
+  </form><!-- END DIRECTIONS FORM -->
+
+    <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
+      <i class="icon-search text-muted"></i>
+      <input type="text" input id="target" class="input-sm form-control" placeholder="Where to boss?">
+    </form>
+
+</section>
+
 <div id="map-directions"></div>

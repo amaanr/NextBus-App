@@ -22,7 +22,7 @@
 //= require js/app.plugin
 //= require js/jquery.countdown
 
-//= require directions
+//= require direction_service
 //= require geolocation
 
 //= require turbolinks

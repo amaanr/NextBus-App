@@ -1,3 +1,5 @@
+/*geolocation map*/
+
 html, body {
   height: 100%;
   max-width: 100%;
@@ -6,7 +8,10 @@ html, body {
 }
 
 #map-canvas, #map_canvas {
-  height: 74%;
+  /*height: 100%;*/
+  height: 80%;
+  left: 7%;
+  width: 93%;
   border-width: 2px;
   border-bottom-width: 4px;
   border-bottom-color: grey;
@@ -22,3 +27,54 @@ html, body {
     height: 550px;
   }
 }
+
+/*directions map*/
+
+#panel {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -180px;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
+#directions-panel {
+  height: 100%;
+  float: right;
+  width: 390px;
+  overflow: auto;
+}
+
+#map-directions {
+  height: 80%;
+  left: 7%;
+  margin-right: 400px;
+}
+
+#control {
+  background: #fff;
+  padding: 5px;
+  font-size: 14px;
+  font-family: Arial;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+  display: none;
+}
+
+@media print {
+  #map-directions {
+    height: 500px;
+    margin: 0;
+  }
+
+  #directions-panel {
+    float: none;
+    width: auto;
+  }
+
+  #nav + #map-directions{padding-left: 150px;}
+
+    #nav + #map-canvas{padding-left: 150px;}
+
