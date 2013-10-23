@@ -32,7 +32,7 @@ html, body {
 
 #panel {
   position: absolute;
-  top: 5px;
+  top: 0px;
   left: 50%;
   margin-left: -180px;
   z-index: 5;
@@ -43,14 +43,18 @@ html, body {
 #directions-panel {
   height: 100%;
   float: right;
-  width: 390px;
+  width: 250px;
   overflow: auto;
 }
 
 #map-directions {
   height: 80%;
   left: 7%;
-  margin-right: 400px;
+  margin-right: 340px;
+  border-width: 2px;
+  border-bottom-width: 4px;
+  border-bottom-color: grey;
+  border-bottom-style: solid;
 }
 
 #control {
@@ -65,7 +69,7 @@ html, body {
 
 @media print {
   #map-directions {
-    height: 500px;
+    /*height: 500px;*/
     margin: 0;
   }
 
@@ -73,8 +77,3 @@ html, body {
     float: none;
     width: auto;
   }
-
-  #nav + #map-directions{padding-left: 150px;}
-
-    #nav + #map-canvas{padding-left: 150px;}
-

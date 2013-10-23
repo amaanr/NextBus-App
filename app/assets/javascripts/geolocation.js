@@ -14,8 +14,8 @@ function initialize() {
       mapOptions);
 
   // Adds transit layer to map
-  var transitLayer = new google.maps.TransitLayer();
-  transitLayer.setMap(map);
+  // var transitLayer = new google.maps.TransitLayer();
+  // transitLayer.setMap(map);
 
   // HTML5 geolocation
   if(navigator.geolocation) {
