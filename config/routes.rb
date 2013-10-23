@@ -1,5 +1,5 @@
 Sameboat::Application.routes.draw do
-  get "plan/index"
+
   # This line mounts Forem's routes at /forums by default.
   # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.
   # If you would like to change where this extension is mounted, simply change the :at option to something different.
@@ -7,11 +7,10 @@ Sameboat::Application.routes.draw do
   # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
   mount Forem::Engine, :at => '/posts'
 
+
+  get "plan/index"
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"}
   get "home/index"
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-  # You can have the root of your site routed with "root"
   post "/nearby_stops"=>"home#nearby_stops"
   get "/nearby_stops"=>"home#nearby_stops"
   root 'home#index'

@@ -38,7 +38,7 @@
         </ul>
       </li>
     </ul>
-    <%= link_to image_tag("sameboat_black.png", :class => "thumb-mini", :style => "max-width:15px;"), root_path, :class => "navbar-brand" %>
+    <%= link_to image_tag("sameboat_black.png", :class => "thumb-mini", :style => "max-width:15px;"), main_app.root_path, :class => "navbar-brand" %>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
       <i class="icon-reorder icon-xlarge text-default"></i>
     </button>
@@ -131,6 +131,11 @@
           <li><a href="#"><b class="badge pull-right">48</b>Feed</a></li>            
           <li><a href="#">Search</a></li>
         </ul>
+      </li>
+      <li>
+        <%= link_to main_app.root_path do %>
+          <i class="icon-location-arrow icon-xlarge"></i><span>Nearby</span>
+        <% end -%>
       </li>
       <li>
         <%= link_to main_app.plan_index_path do %>
