@@ -2,7 +2,7 @@
     <!-- .sidebar -->
     <aside class="sidebar bg-lighter sidebar">
       <div class="text-center clearfix bg-white">
-        <%= forem_avatar(current_user) %>
+        <%= image_tag(current_user.avatar.url, :style => "max-width:100%") %>
       </div>
       <div class="bg-light padder padder-v">
         <span class="h4"><%= @user.first_name %> <%= @user.last_name %></span>
