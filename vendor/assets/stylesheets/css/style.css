@@ -11,10 +11,7 @@ a:hover, a:focus{text-decoration:none;}
   -webkit-box-shadow: none;
           box-shadow: none;
 }
-
-/* this break google maps css so i commented it out */
-/*img{max-width: 100%}*/
-
+img{max-width: 100%}
 /*primary nav*/
 .nav-primary:before, .nav-primary:after {display: table;content: " ";}
 .nav-primary:after {clear: both;}
