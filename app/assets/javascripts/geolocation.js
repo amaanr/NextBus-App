@@ -152,6 +152,7 @@ function handleNoGeolocation(errorFlag) {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'page:load', initialize);
 
 // Binds a map marker and infoWindow together on click
 var bindInfoWindow = function(marker, map, infowindow, html) {

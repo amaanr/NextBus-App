@@ -42,19 +42,20 @@ html, body {
 
 #directions-panel {
   height: 100%;
-  float: right;
-  width: 250px;
+  /*float: right;*/
+  /*width: 250px;*/
   overflow: auto;
 }
 
 #map-directions {
-  height: 80%;
-  left: 7%;
-  margin-right: 340px;
-  border-width: 2px;
-  border-bottom-width: 4px;
-  border-bottom-color: grey;
-  border-bottom-style: solid;
+  /*height: 80%;*/
+  height: 100%;
+  /*left: 7%;*/
+  /*margin-right: 340px;*/
+  /*border-width: 2px;*/
+  /*border-bottom-width: 4px;*/
+  /*border-bottom-color: grey;*/
+  /*border-bottom-style: solid;*/
 }
 
 #control {
