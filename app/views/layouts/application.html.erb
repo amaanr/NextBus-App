@@ -25,7 +25,8 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
           <span class="hidden-xs-only"><%= current_user.first_name %> <%= current_user.last_name %></span>
             <% if current_user.avatar %>
-              <span class="thumb-small avatar inline"><%= image_tag(current_user.avatar.url, :class => "img-circle", :style => "max-height:36px;") %></span>
+              <!-- <span class="thumb-small avatar inline"><%= image_tag(current_user.avatar.url, :class => "img-circle", :style => "max-height:36px;") %></span> -->
+              <span class="thumb-small avatar inline"><%= image_tag("cmf-avatar.jpg", :class => "img-circle", :style => "max-height:36px;") %></span>
             <% end %>
           <b class="caret hidden-xs-only"></b>
         </a>

@@ -2,11 +2,12 @@
     <!-- .sidebar -->
     <aside class="sidebar bg-lighter sidebar">
       <div class="text-center clearfix bg-white">
-        <%= image_tag(current_user.avatar.url, :style => "max-width:100%") %>
+        <!-- <%= image_tag(current_user.avatar.url, :style => "max-width:100%") %> -->
+        <%= image_tag("cmf-avatar.jpg", :style => "max-width:100%") %>
       </div>
       <div class="bg-light padder padder-v">
         <span class="h4"><%= @user.first_name %> <%= @user.last_name %></span>
-        <small class="block m-t-mini">Freelancer</small>
+        <small class="block m-t-mini">Toronto, ON</small>
         <button class="btn btn-primary btn-sm active" data-toggle="button">
           <span class="text">
             <i class="icon-eye-open"></i> Follow
