@@ -8,13 +8,14 @@ html, body {
 }
 
 #map-canvas, #map_canvas {
-  height: 80%;
-  left: 7%;
-  width: 93%;
-  border-width: 2px;
-  border-bottom-width: 4px;
-  border-bottom-color: grey;
-  border-bottom-style: solid;
+  height: 100%;
+  /*height: 80%;*/
+  /*left: 7%;*/
+  /*width: 93%;*/
+  /*border-width: 2px;*/
+  /*border-bottom-width: 4px;*/
+  /*border-bottom-color: grey;*/
+  /*border-bottom-style: solid;*/
 }
 
 @media print {
