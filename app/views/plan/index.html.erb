@@ -1,35 +1,50 @@
-<div id="control">
-	<strong>Start:</strong>
-		<select id="start" onchange="calcRoute();">
-		<option value="100 Queens Park Toronto, ON">The ROM</option>
-		<option value="301 Front St W Toronto, ON">CN Tower</option>
-		<option value="1 Blue Jays Way Toronto, ON">Rogers Centre</option>
-		<option value="27 King's College Circle, Toronto, ON">U of T (St. George)</option>
-		<option value="350 Victoria St Toronto, ON">Ryerson University</option>
-		<option value="770 Don Mills Rd Toronto, ON">Ontario Science Centre</option>
-		<option value="3401 Dufferin St Toronto, ON">Yorkdale Mall</option>
-		<option value="1800 Sheppard Ave E Toronto, ON">Fairview Mall</option>
-		<option value="200 Elizabeth St Toronto, ON">Toronto General Hospital</option>
-		<option value="789 Yonge St Toronto, ON">Toronto Reference Library</option>
-		<option value="101 College St Toronto, ON">MaRS Discovery District</option>
-		<option value="	40 Bay St Toronto, ON">Air Canada Centre</option>
-	</select>
-	<strong>End:</strong>
-	<select id="end" onchange="calcRoute();">
-		<option value="100 Queens Park Toronto, ON">The ROM</option>
-		<option value="301 Front St W Toronto, ON">CN Tower</option>
-		<option value="1 Blue Jays Way Toronto, ON">Rogers Centre</option>
-		<option value="27 King's College Circle, Toronto, ON">U of T (St. George)</option>
-		<option value="350 Victoria St Toronto, ON">Ryerson University</option>
-		<option value="770 Don Mills Rd Toronto, ON">Ontario Science Centre</option>
-		<option value="3401 Dufferin St Toronto, ON">Yorkdale Mall</option>
-		<option value="1800 Sheppard Ave E Toronto, ON">Fairview Mall</option>
-		<option value="200 Elizabeth St Toronto, ON">Toronto General Hospital</option>
-		<option value="789 Yonge St Toronto, ON">Toronto Reference Library</option>
-		<option value="101 College St Toronto, ON">MaRS Discovery District</option>
-		<option value="	40 Bay St Toronto, ON">Air Canada Centre</option>
-	</select>
-</div>
-
-<div id="directions-panel"></div>
-<div id="map-directions"></div>
+<section id="content">
+	<section class="main">
+	  <div class="padder m-t">
+	    <div class="row">
+	      <div class="col-md-8">
+	        <section class="panel">
+	          <header class="panel-heading">
+                <form class="m-b-none">
+                  <div class="input-group-btn">                  
+                    <input type="text" id="start-from" class="input-sm form-control" placeholder="Search">
+<!--                         <span class="input-group-btn">
+                        	<button class="btn btn-sm btn-white">
+                        		<%= link_to main_app.root_path do %>
+                      				<i class="icon-location-arrow"></i>
+                    	    	<% end -%>
+                    	    </button>
+                    	</span>
+ -->                  </div>
+                  <div style="padding:5px;"></div>              
+                  <div class="input-group">                  
+                    <input type="text" id="end-to" class="input-sm form-control" placeholder="Search">
+                    <span class="input-group-btn">
+                    	<button class="btn btn-sm btn-white" type="submit">
+                    		<%= link_to_function "Go", "calcRoute();" %>
+                	    </button>
+                	</span>
+                  </div>
+                </form>
+	          </header>
+	          <div class="panel-body">
+	            <div id="map-directions" style="height:350px">
+	            </div>
+	          </div>
+	        </section>
+	      </div>
+  	      <div class="col-md-4">
+	        <section class="panel">
+	          <header class="panel-heading">Directions</header>
+	          <div class="panel-body">
+	            <div id="directions-panel" style="height:402px">
+	            </div>
+	          </div>
+	        </section>
+	      </div>
+	      <div class="col-md-6">
+	      </div>
+	    </div>
+	  </div>
+	</section>
+</section>
