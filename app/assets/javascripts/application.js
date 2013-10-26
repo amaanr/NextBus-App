@@ -20,10 +20,10 @@
 //= require js/app
 //= require js/app.data
 //= require js/app.plugin
-//= require js/jquery.countdown
 
-//= require direction_service
+//= require map
 //= require geolocation
+//= require sameboat
 
 //= require turbolinks
 //= require_tree .

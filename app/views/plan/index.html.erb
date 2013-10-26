@@ -28,7 +28,7 @@
                 </form>
 	          </header>
 	          <div class="panel-body">
-	            <div id="map-directions" style="height:350px">
+	            <div id="map-canvas" style="height:350px">
 	            </div>
 	          </div>
 	        </section>
@@ -48,3 +48,9 @@
 	  </div>
 	</section>
 </section>
+
+<script>
+  $( document ).ready(function() {
+    $(geolocation);
+  });
+</script>
