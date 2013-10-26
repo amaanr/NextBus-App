@@ -1,10 +1,10 @@
 // Gets nearby transit stops
 function showTransit(position) {
-  // var latitude = position.coords.latitude;
-  // var longitude = position.coords.longitude;
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
 
-  var latitude = 43.757192;
-  var longitude = -79.337571;
+  // var latitude = 43.757192;
+  // var longitude = -79.337571;
   
   var infowindow = new google.maps.InfoWindow({
     content: ''
