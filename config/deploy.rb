@@ -1,7 +1,7 @@
 require "rvm/capistrano"
 require "bundler/capistrano"
 
-
+set :rvm_type, :system
 set :application, "Sameboat"
 set :user, "sameboat"
 
