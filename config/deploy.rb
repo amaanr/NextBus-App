@@ -1,7 +1,7 @@
-require "rvm/capistrano"
+# require "rvm/capistrano"
 require "bundler/capistrano"
 
-set :rvm_ruby_string, 'ruby-2.0.0-p247'
+# set :rvm_ruby_string, 'ruby-2.0.0-p247'
 
 set :application, "Sameboat"
 set :user, "sameboat"
