@@ -1,6 +1,9 @@
 require "rvm/capistrano"
 require "bundler/capistrano"
 
+# Add RVM's lib directory to the load path.
+# $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+set :rvm_ruby_string, 'ruby-2.0.0-p247'
 set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
 
 set :application, "Sameboat"
