@@ -1,29 +1,24 @@
-require "rvm/capistrano"
-require "bundler/capistrano"
+set :application, 'Sameboat'
+set :user, 'sameboat'
+set :repo_url, 'git@github.com:amaanr/Sameboat.git'
 
-# Add RVM's lib directory to the load path.
-# $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-set :rvm_ruby_string, 'ruby-2.0.0-p247'
-set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
-
-set :application, "Sameboat"
-set :user, "sameboat"
-
-
-set :scm, :git
-set :repository, "git@github.com:amaanr/Sameboat.git"
-set :branch, "master"
-set :use_sudo, true
-
-
-server "sameboat.cloudapp.net", :web, :app, :db, primary: true
-
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 set :deploy_to, "/home/#{user}/apps/#{application}"
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
-ssh_options[:port] = 22
+ssh_options[:port] = SSHPort
+set :scm, :git
 
+# set :format, :pretty
+# set :log_level, :debug
+# set :pty, true
+
+# set :linked_files, %w{config/database.yml}
+# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+# set :keep_releases, 5
 
 namespace :deploy do
   desc "Fix permissions"

@@ -45,8 +45,9 @@ end
 gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano'
-gem 'rvm-capistrano'
+gem 'capistrano', '~> 3.0', require: false, group: :development
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
 
 # Use debugger
 gem 'debugger', group: [:development, :test]
