@@ -1,5 +1,9 @@
 require "bundler/capistrano"
+# Load RVM's capistrano plugin.
+require 'rvm/capistrano'
 
+# Add RVM's lib directory to the load path.
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
 set :application, "sameboat"
 set :user, "sameboat"
@@ -18,11 +22,6 @@ set :deploy_to, "/home/#{user}/apps/#{application}"
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 ssh_options[:port] = 22
-
-set :default_environment, {
-      'PATH' => "/opt/ruby-enterprise/bin/:$PATH"
-    }
-
 
 namespace :deploy do
   desc "Fix permissions"
