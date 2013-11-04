@@ -19,6 +19,10 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 ssh_options[:port] = 22
 
+set :default_environment, {
+      'PATH' => "/opt/ruby-enterprise/bin/:$PATH"
+    }
+
 
 namespace :deploy do
   desc "Fix permissions"
