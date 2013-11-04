@@ -46,7 +46,7 @@ gem 'unicorn'
 
 # Use Capistrano for deployment
 gem 'capistrano'
-gem 'rvm-capistrano'
+gem 'capistrano-rvm'
 gem 'capistrano-bundler'
 
 # Use debugger
