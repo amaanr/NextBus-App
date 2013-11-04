@@ -55,7 +55,7 @@ GEM
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
-    capistrano (2.6.0)
+    capistrano (2.13.5)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -216,7 +216,7 @@ PLATFORMS
 
 DEPENDENCIES
   cancan!
-  capistrano (= 2.6.0)
+  capistrano (= 2.13.5)
   carrierwave
   coffee-rails (~> 4.0.0)
   debugger
