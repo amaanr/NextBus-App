@@ -6,7 +6,7 @@ set :user, "sameboat"
 
 
 set :scm, :git
-set :repository, "git@github.com:amaanr/sameboat.git"
+set :repository, "git@github.com:amaanr/Sameboat.git"
 set :branch, "master"
 set :use_sudo, true
 
