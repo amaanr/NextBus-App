@@ -1,22 +1,29 @@
-set :application, 'sameboat'
-set :user, 'sameboat'
-set :repo_url, 'git@github.com:amaanr/sameboat.git'
+#Add RVM's lib directory to the load path.
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+#Load RVM's capistrano plugin.    
+require "rvm/capistrano"
+require 'bundler/capistrano'
 
-set :deploy_to, "/home/#{user}/apps/#{application}"
+set :rvm_ruby_string, '2.0.0-p247'                                            #This is current version of ruby which is uses by RVM. To get version print: $ rvm list 
+set :rvm_type, :root
+
+set :application, "sameboat"
+set :user, "sameboat"
+set :rails_env, "production"
+ 
 set :scm, :git
-
-# set :format, :pretty
-# set :log_level, :debug
-# set :pty, true
-
-# set :linked_files, %w{config/database.yml}
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-# set :keep_releases, 5
-
+set :repository, "git@github.com:amaanr/sameboat.git"
+set :branch, "master"
+set :deploy_via, :remote_cache
+set :use_sudo, true
+ 
+server "137.117.37.79", :web, :app, :db, primary: true
+ 
+set :deploy_to, "/home/#{user}/apps/#{application}"
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+ 
 namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
