@@ -5,7 +5,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
+# gem 'pg'
+
+# Use sqlite3 for Azure
+gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -45,7 +48,7 @@ end
 gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano', '2.9.0'
+gem 'capistrano', '~> 2.15'
 
 # Use debugger
 gem 'debugger', group: [:development, :test]
