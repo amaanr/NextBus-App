@@ -80,7 +80,7 @@
       <li>
         <div class="m-t-small">
           <%= link_to main_app.plan_index_path, 'data-no-turbolink' => true do %>
-            <div class="btn btn-primary btn-block m-t-mini"><i class="icon-map-marker pull-left"></i> Plan a trip</div>
+            <div class="btn btn-primary btn-block m-t-mini"><i class="fa fa-map-marker pull-left"></i> Plan a trip</div>
           <% end %> 
         </div>
       </li>
@@ -125,12 +125,12 @@
     <ul class="nav" data-spy="affix" data-offset-top="50">
       <li>
         <%= link_to main_app.user_path(current_user) do %>
-          <i class="icon-user icon-xlarge"></i><span>Profile</span>
+          <i class="fa fa-user icon-xlarge"></i><span>Profile</span>
         <% end -%>
       </li>
       <li class="dropdown-submenu">
         <%= link_to forem.root_path do %>
-          <i class="icon-plus icon-xlarge"></i><span>Post</span>
+          <i class="fa fa-plus icon-xlarge"></i><span>Post</span>
         <% end -%>
         <ul class="dropdown-menu">
           <li><a href="#">Post a Delay</a></li>
@@ -142,16 +142,16 @@
       </li>
       <li>
         <%= link_to main_app.root_path, 'data-no-turbolink' => true do %>
-          <i class="icon-location-arrow icon-xlarge"></i><span>Nearby</span>
+          <i class="fa fa-location-arrow icon-xlarge"></i><span>Nearby</span>
         <% end -%>
       </li>
       <li>
         <%= link_to main_app.plan_index_path, 'data-no-turbolink' => true do %>
-          <i class="icon-map-marker icon-xlarge"></i><span>Plan a Trip</span>
+          <i class="fa fa-map-marker icon-xlarge"></i><span>Plan a Trip</span>
         <% end -%>
       </li>
       <li class="dropdown-submenu">
-        <a href="#"><i class="icon-group icon-xlarge"></i><span>Friends</span></a>
+        <a href="#"><i class="fa fa-group icon-xlarge"></i><span>Friends</span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Search</a></li>
           <li><a href="#"><b class="badge pull-right">23</b>Messages</a></li>            
@@ -160,12 +160,12 @@
       </li>
       <li>
         <%= link_to main_app.edit_user_registration_path do %>
-          <i class="icon-gear icon-xlarge"></i><span>Settings</span>
+          <i class="fa fa-gear icon-xlarge"></i><span>Settings</span>
         <% end -%>
       </li>
       <li>
         <%= link_to main_app.destroy_user_session_path, :method => :delete do %>
-          <i class="icon-signout icon-xlarge"></i><span>Log out</span>
+          <i class="fa fa-sign-out icon-xlarge"></i><span>Log out</span>
         <% end -%>
       </li>
     </ul>
@@ -176,7 +176,7 @@
 
   <!-- header -->
   <header id="header" class="navbar bg bg-black">
-    <a href="docs.html" class="btn btn-link pull-right m-t-mini"><i class="icon-question icon-xlarge text-default"></i></a>
+    <a href="docs.html" class="btn btn-link pull-right m-t-mini"><i class="fa fa-question icon-xlarge text-default"></i></a>
     <%= link_to image_tag("sameboat_white.png", :class => "thumb-small", :style => "max-width:20px;"), root_path, :class => "navbar-brand" %>
   </header>
 
@@ -189,9 +189,9 @@
     <div class="text-center padder clearfix">
       <p>
         <small>&copy; Copyright Sameboat 2013, a product of How Pigs Fly Inc.</small><br><br>
-        <a href="http://www.twitter.com/sameboatco" target="_blank" class="btn btn-xs btn-circle btn-twitter"><i class="icon-twitter"></i></a>
-        <a href="http://www.facebook.com/sameboat" target="_blank" class="btn btn-xs btn-circle btn-facebook"><i class="icon-facebook"></i></a>
-        <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="icon-google-plus"></i></a>
+        <a href="http://www.twitter.com/sameboatco" target="_blank" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
+        <a href="http://www.facebook.com/sameboat" target="_blank" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="fa fa-google-plus"></i></a>
       </p>
     </div>
   </footer>

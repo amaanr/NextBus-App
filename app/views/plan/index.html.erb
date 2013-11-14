@@ -7,18 +7,11 @@
 	          <header class="panel-heading">
                 <form class="m-b-none">
                   <div class="input-group-btn">                  
-                    <input type="text" id="start-from" class="input-sm form-control" placeholder="Search">
-<!--                         <span class="input-group-btn">
-                        	<button class="btn btn-sm btn-white">
-                        		<%= link_to main_app.root_path do %>
-                      				<i class="icon-location-arrow"></i>
-                    	    	<% end -%>
-                    	    </button>
-                    	</span>
- -->                  </div>
+                    <input type="text" id="start-from" class="input-sm form-control" placeholder="Coming from...">
+                  </div>
                   <div style="padding:5px;"></div>              
                   <div class="input-group">                  
-                    <input type="text" id="end-to" class="input-sm form-control" placeholder="Search">
+                    <input type="text" id="end-to" class="input-sm form-control" placeholder="Going to...">
                     <span class="input-group-btn">
                     	<button class="btn btn-sm btn-white" type="submit">
                     		<%= link_to_function "Go", "calcRoute();" %>
