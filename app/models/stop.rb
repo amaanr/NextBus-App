@@ -1,3 +1,4 @@
 class Stop < ActiveRecord::Base
-reverse_geocoded_by :latitude, :longitude
+	has_many :posts
+	reverse_geocoded_by :latitude, :longitude
 end

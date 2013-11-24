@@ -31,11 +31,11 @@
           <b class="caret hidden-xs-only"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><%= link_to('Settings', main_app.edit_user_registration_path) %></li>
-          <li><%= link_to('Profile', main_app.user_path(current_user)) %></li>
+          <li><%= link_to('Settings', edit_user_registration_path) %></li>
+          <li><%= link_to('Profile', user_path(current_user)) %></li>
           <li><a href="#"><span class="badge bg-danger pull-right">3</span>Notifications</a></li>
           <li class="divider"></li>
-          <li><%= link_to('Logout', main_app.destroy_user_session_path, :method => :delete) %></li>
+          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
         </ul>
       </li>
     </ul>
@@ -79,7 +79,7 @@
 -->        
       <li>
         <div class="m-t-small">
-          <%= link_to main_app.plan_index_path, 'data-no-turbolink' => true do %>
+          <%= link_to plan_index_path, 'data-no-turbolink' => true do %>
             <div class="btn btn-primary btn-block m-t-mini"><i class="fa fa-map-marker pull-left"></i> Plan a trip</div>
           <% end %> 
         </div>
@@ -124,16 +124,16 @@
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
     <ul class="nav" data-spy="affix" data-offset-top="50">
       <li>
-        <%= link_to main_app.user_path(current_user) do %>
+        <%= link_to user_path(current_user) do %>
           <i class="fa fa-user icon-xlarge"></i><span>Profile</span>
         <% end -%>
       </li>
       <li class="dropdown-submenu">
-        <%= link_to forem.root_path do %>
+        <%= link_to root_path do %>
           <i class="fa fa-plus icon-xlarge"></i><span>Post</span>
         <% end -%>
         <ul class="dropdown-menu">
-          <li><a href="#">Post a Delay</a></li>
+          <li><%= link_to "Post a Delay", new_post_path %></li>
           <li><a href="#">Report an Incident</a></li>
           <li><a href="#">Report Vandalism</a></li>
           <li><a href="#"><b class="badge pull-right">48</b>Feed</a></li>            
@@ -141,12 +141,12 @@
         </ul>
       </li>
       <li>
-        <%= link_to main_app.root_path, 'data-no-turbolink' => true do %>
+        <%= link_to root_path, 'data-no-turbolink' => true do %>
           <i class="fa fa-location-arrow icon-xlarge"></i><span>Nearby</span>
         <% end -%>
       </li>
       <li>
-        <%= link_to main_app.plan_index_path, 'data-no-turbolink' => true do %>
+        <%= link_to plan_index_path, 'data-no-turbolink' => true do %>
           <i class="fa fa-map-marker icon-xlarge"></i><span>Plan a Trip</span>
         <% end -%>
       </li>
@@ -159,12 +159,12 @@
         </ul>
       </li>
       <li>
-        <%= link_to main_app.edit_user_registration_path do %>
+        <%= link_to edit_user_registration_path do %>
           <i class="fa fa-gear icon-xlarge"></i><span>Settings</span>
         <% end -%>
       </li>
       <li>
-        <%= link_to main_app.destroy_user_session_path, :method => :delete do %>
+        <%= link_to destroy_user_session_path, :method => :delete do %>
           <i class="fa fa-sign-out icon-xlarge"></i><span>Log out</span>
         <% end -%>
       </li>
