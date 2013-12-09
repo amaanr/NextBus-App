@@ -20,6 +20,7 @@
 //= require js/app
 //= require js/app.data
 //= require js/app.plugin
+//= require js/fuelux/fuelux
 
 //= require map
 //= require geolocation

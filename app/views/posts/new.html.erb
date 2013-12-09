@@ -16,19 +16,59 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-    	<textarea placeholder="Profile" rows="5" class="form-control" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
-        <select name="account" class="form-control">
-  			<option value="1">Delay</option>
-  			<option value="0">Accident</option>
-		</select>
-
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Make a post</h4>
       </div>
       <div class="modal-body">
-        ...
-      </div>
+        <section class="panel">
+          <div class="clearfix panel-body">
+
+              <label class="col-lg-3 control-label">Type</label>
+              <div class="col-lg-8">
+                <div class="form-group">
+                  <div class="btn-group">
+                    <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle">
+                      <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-select">
+                        <li><a href="#"><input type="checkbox" name="d-s-c-1">Delay</a></li>
+                        <li><a href="#"><input type="checkbox" name="d-s-c-2">Incident</a></li>
+                        <li><a href="#"><input type="checkbox" name="d-s-c-3">Vandalism</a></li>
+                        <li><a href="#"><input type="checkbox" name="d-s-c-4">Hodgepodge</a></li>
+                        <li><a href="#"><input type="checkbox" name="d-s-c-5">Poetry</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Content</label>
+                <div class="col-lg-8">
+                  <textarea placeholder="What's happening?" rows="5" class="form-control" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Tags</label>
+                <div class="col-lg-8">
+                  <div id="MyPillbox" class="pillbox clearfix m-b">
+                    <ul>
+                      <li class="label bg-default">yorkmills</li>
+                      <li class="label bg-success">donmills</li>
+                      <li class="label bg-warning">95w</li>
+                      <li class="label bg-danger">traffic</li>
+                      <li class="label bg-info">5guys</li>
+                      <input type="text" placeHolder=" add a tag">
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+          </div> <!-- panel-body -->
+        </section> <!-- panel -->
+      </div> <!-- modal-body -->
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Post</button>
