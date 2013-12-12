@@ -24,6 +24,13 @@
         <section class="panel">
           <div class="clearfix panel-body">
 
+          <%= form_for @post do |f| %>
+            <%= f.label :content %>:
+            <%= f.text_field :content %><br />
+
+            <%= f.submit %>
+          <% end %>
+
             <span class="thumb-small avatar inline pull-right"><%= image_tag("cmf-avatar.jpg", :class => "img-circle", :style => "max-height:36px;") %></span>
 
               <label class="col-lg-3 control-label">Type</label>
@@ -78,6 +85,7 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
 </aside>
 <!-- /.sidebar -->
 <!-- .sidebar -->
@@ -99,14 +107,23 @@
     <button class="btn btn-sm btn-white" data-toggle="tooltip" data-title="Refresh"><i class="icon-refresh"></i></button>
   </div>
   <div class="list-group list-normal m-t-n-xmini scroll-y scrollbar" style="max-height:400px">
+
+    <% @posts.each do |post| %>
+      <%= link_to(post, :class => "list-group-item") do  %>
+      <small class="pull-right text-muted">1 minute ago</small><strong><%= post.user.first_name %> <%= post.user.last_name %></strong><br><small><%= post.content %></small>
+      <% end %>
+    <% end %>
+<!-- 
     <a href="#" class="list-group-item"><small class="pull-right text-muted">3 minuts ago</small><strong>Foxe Ohil</strong><br><small>Vestibulum ullamcorper sodales nisi nec...</small></a>
+
     <a href="#" class="list-group-item bg"><small class="pull-right text-muted">1 hour ago</small><strong>Sophi Soke</strong><br><small>Morbi nec nunc condimentum...</small></a>
     <a href="#" class="list-group-item"><small class="pull-right text-muted">2 hours ago</small><strong>Foxe Ohil</strong><br><small>Vestibulum ullamcorper sodales nisi nec...</small></a>
     <a href="#" class="list-group-item"><small class="pull-right text-muted">1 day ago</small><strong>Sophi Soke</strong><br><small>Morbi nec nunc condimentum...</small></a>
     <a href="#" class="list-group-item active"><small class="pull-right text-muted">3 days ago</small><strong>Mika Sokeil</strong><br><small>Mobile first web app for startup...</small></a>
     <a href="#" class="list-group-item bg"><small class="pull-right text-muted">Jun 21</small><strong>Sophi Soke</strong><br><small>Morbi nec nunc condimentum...</small></a>
     <a href="#" class="list-group-item"><small class="pull-right text-muted">May 10</small><strong>Foxe Ohil</strong><br><small>Vestibulum ullamcorper sodales nisi nec...</small></a>
-    <a href="#" class="list-group-item bg"><small class="pull-right text-muted">Jan 2</small><strong>Sophi Soke</strong><br><small>Morbi nec nunc condimentum...</small></a>
+    <a href="#" class="list-group-item bg"><small class="pull-right text-muted">Jan 2</small><strong>Sophi Soke</strong><br><small>Morbi nec nunc condimentum...</small></a> -->
+
   </div>
 </aside>
 <!-- /.sidebar -->
@@ -136,14 +153,23 @@
         </div>
       </div>
     </div>
-    <p>Mr. Soe</p>
+
+    <p>Empty</p>
+    <% if !@details.nil? %>
+      <%= @details.content %>
+    <% end %>
+
+
+  <!--   <p>Mr. Soe</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris at pellentesque volutpat. Phasellus at ultricies neque, quis malesuada augue. Donec eleifend condimentum nisl eu consectetur. Integer eleifend, nisl venenatis consequat iaculis, lectus arcu malesuada sem, dapibus porta quam lacus eu neque.</p>
     <blockquote>
       <em>Morbi nec nunc condimentum, egestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula. Nunc placerat purus quam, ac adipiscing arcu rutrum eu. Vestibulum adipiscing ut augue ut auctor. Vestibulum nec lorem imperdiet nibh mollis gravida ut a justo.<br><br>
       Suspendisse arcu nulla, mollis sed eros id, pellentesque vulputate nulla. Nullam lectus dolor, pulvinar eu tristique nec, tempus ut ligula. Quisque pulvinar ut justo id dapibus. Duis convallis tellus faucibus nisl fermentum, nec semper massa adipiscing. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In vestibulum est vel elementum pellentesque.</em>
     </blockquote>
     <p>Duis non malesuada est, quis congue nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-    <p>Best Regards<br>Mical</p>
+    <p>Best Regards<br>Mical</p> -->
+
+
   </div>
   <div class="padder">
     <form class="panel text-small">
