@@ -27,7 +27,7 @@
           <%= form_for @post do |f| %>
             <%= f.label :content %>:
             <%= f.text_field :content %><br />
-
+            <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post) %>
             <%= f.submit %>
           <% end %>
 
@@ -110,7 +110,7 @@
 
     <% @posts.each do |post| %>
       <%= link_to(post, :class => "list-group-item") do  %>
-      <small class="pull-right text-muted">1 minute ago</small><strong><%= post.user.first_name %> <%= post.user.last_name %></strong><br><small><%= post.content %></small>
+      <small class="pull-right text-muted"><%= time_ago_in_words(post.updated_at) %></small><strong><%= post.user.first_name %> <%= post.user.last_name %></strong><br><small><%= post.content %></small>
       <% end %>
     <% end %>
 <!-- 

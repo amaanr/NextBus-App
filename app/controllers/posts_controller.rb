@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
 	def new
-		@posts = Post.all
+		@posts = Post.order("updated_at DESC")
 		@post = Post.new
 	end
 
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 	private
 
 	def post_params
-		params.require(:post).permit(:content)
+		params.require(:post).permit(:content, :post_type_id)
 	end
 
 end
