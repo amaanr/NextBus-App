@@ -24,30 +24,26 @@
         <section class="panel">
           <div class="clearfix panel-body">
 
-          <%= form_for @post do |f| %>
-            <%= f.label :content %>:
-            <%= f.text_field :content %><br />
-            <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post) %>
-            <%= f.submit %>
-          <% end %>
-
             <span class="thumb-small avatar inline pull-right"><%= image_tag("cmf-avatar.jpg", :class => "img-circle", :style => "max-height:36px;") %></span>
 
+            <%= form_for @post do |f| %>
               <label class="col-lg-3 control-label">Type</label>
               <div class="col-lg-8">
                 <div class="form-group">
                   <div class="btn-group">
                     <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle">
-                      <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
-                      <span class="caret"></span>
+                      <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post, :prompt => "Pick one...") do %>
+                        <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
+                        <span class="caret"></span>
+                      <% end -%>
                     </button>
-                    <ul class="dropdown-menu dropdown-select">
-                        <li><a href="#"><input type="checkbox" name="d-s-c-1">Delay</a></li>
-                        <li><a href="#"><input type="checkbox" name="d-s-c-2">Incident</a></li>
-                        <li><a href="#"><input type="checkbox" name="d-s-c-3">Vandalism</a></li>
-                        <li><a href="#"><input type="checkbox" name="d-s-c-4">Hodgepodge</a></li>
-                        <li><a href="#"><input type="checkbox" name="d-s-c-5">Poetry</a></li>
-                    </ul>
+                    <!-- <ul class="dropdown-menu dropdown-select"> -->
+                        <!-- <li><a href="#"><input type="checkbox" name="d-s-c-1">Delay</a></li> -->
+                        <!-- <li><a href="#"><input type="checkbox" name="d-s-c-2">Incident</a></li> -->
+                        <!-- <li><a href="#"><input type="checkbox" name="d-s-c-3">Vandalism</a></li> -->
+                        <!-- <li><a href="#"><input type="checkbox" name="d-s-c-4">Hodgepodge</a></li> -->
+                        <!-- <li><a href="#"><input type="checkbox" name="d-s-c-5">Poetry</a></li> -->
+                    <!-- </ul> -->
                   </div>
                 </div>
               </div>
@@ -55,7 +51,9 @@
               <label class="col-lg-3 control-label">Content</label>
               <div class="col-lg-8">
                 <div class="form-group">
-                  <textarea placeholder="What's happening?" rows="5" class="form-control" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
+                  <%= f.text_field :content, :rows => "5", :class => "form-control", :placeholder => "What's happening?" do %>
+                    <textarea placeholder="What's happening?" rows="5" class="form-control" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
+                  <% end -%>
                 </div>
               </div>
               
@@ -80,11 +78,12 @@
       </div> <!-- modal-body -->
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Post</button>
+        <%= f.submit "Post", :class => "btn btn-primary" %>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<% end %>
 
 </aside>
 <!-- /.sidebar -->
