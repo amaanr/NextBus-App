@@ -1,0 +1,45 @@
+  <div class="bg-primary clearfix padder m-b">
+    <h3 class="m-b">Mobile first web app for startup</h3>
+  </div>
+  <div class="text-small padder">
+    <div class="block clearfix">
+      
+      <a href="#" class="thumb-mini inline"><%= image_tag("cmf-avatar.jpg", :class => "img-circle", :style => "max-height:36px;") %></a> <%= @post.user.full_name %> - [<%= @post.post_type.name %>]
+      <%= @post.user.email_display %>
+      <div class="pull-right inline">May 12 (<em>4 days ago</em>) 
+        <a href="#" data-toggle="class"><i class="icon-star-empty text-muted icon-large text"></i><i class="icon-star text-warning icon-large text-active"></i></a>
+        <div class="btn-group">
+          <button class="btn btn-white btn-xs" data-toggle="tooltip" data-title="Reply"><i class="icon-reply"></i></button>
+          <button class="btn btn-white btn-xs dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+          <ul class="dropdown-menu pull-right">
+            <li><a href="#"><i class="icon-reply"></i> Reply</a></li>
+            <li><a href="#"><i class="icon-signout"></i> Forward</a></li>
+            <li><a href="#">Add Mika Sokeil to contact list</a></li>
+            <li><a href="#">Mark as unread</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Delete this message</a></li>
+            <li><a href="#">Report spam</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+Comment: <%= @comment %>
+<p><%= @post.content %></p>
+
+		<%= form_for [@post,@comment], :url => comments_path do |f| %>
+		  <div class="padder">
+		    <form class="panel text-small">
+		      <div class="input-group">
+		      	<%= f.text_field :content, :class => "form-control", :placeholder => "Say something..." %>
+		  			<span class="input-group-btn">
+		  				<%= f.submit "Send", :class => "btn btn-primary" %>
+		  			</span>
+					</div>
+		<% end %>
+
+      <!-- <div class="panel-body">Click here to <a href="#">Reply</a> or <a href="#">Forward</a></div> -->
+    </form>
+  </div>
+  <% if @post.user == current_user %>
+  	<%= link_to("Delete",post_path(@post),{:method => :delete,:remote => true}) %>
+  <% end %>

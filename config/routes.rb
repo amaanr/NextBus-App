@@ -8,6 +8,7 @@ Sameboat::Application.routes.draw do
   root 'home#index'
 
   resources :users
+  resources :comments
   resources :posts
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

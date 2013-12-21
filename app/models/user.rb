@@ -11,7 +11,13 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  def email_display
+    "<#{self.email}>"
+  end
 
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 
   def self.from_omniauth(auth)
     where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)

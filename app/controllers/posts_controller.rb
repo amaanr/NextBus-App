@@ -11,9 +11,13 @@ class PostsController < ApplicationController
 	end
 
 	def show
-		
-		@details = Post.find(params[:id])
-		redirect_to new_post_path
+		@post = Post.find(params[:id])
+		@comment = Comment.new
+	end
+
+	def destroy
+		@post = Post.find(params[:id])
+    @post.destroy
 	end
 
 	private

@@ -35,7 +35,7 @@
                       <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post, :prompt => "Pick one...") do %>
                         <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
                         <span class="caret"></span>
-                      <% end -%>
+                      <% end %>
                     </button>
                     <!-- <ul class="dropdown-menu dropdown-select"> -->
                         <!-- <li><a href="#"><input type="checkbox" name="d-s-c-1">Delay</a></li> -->
@@ -108,7 +108,7 @@
   <div class="list-group list-normal m-t-n-xmini scroll-y scrollbar" style="max-height:400px">
 
     <% @posts.each do |post| %>
-      <%= link_to(post, :class => "list-group-item") do  %>
+      <%= link_to(post,:remote => true, :class => "list-group-item", :id => dom_id(post)) do  %>
       <small class="pull-right text-muted"><%= time_ago_in_words(post.updated_at) %></small><strong><%= post.user.first_name %> <%= post.user.last_name %></strong><br><small><%= post.content %></small>
       <% end %>
     <% end %>
@@ -128,53 +128,11 @@
 <!-- /.sidebar -->
 <!-- .main -->
 <section class="main">
-  <div class="bg-primary clearfix padder m-b">
-    <h3 class="m-b">Mobile first web app for startup</h3>
-  </div>
-  <div class="text-small padder">
-    <div class="block clearfix">
-      <a href="#" class="thumb-mini inline"><img src="images/avatar.jpg" class="img-circle"></a> Mika Sokeil
-      &lt;mica_sokeil@gmail.com&gt; to me
-      <div class="pull-right inline">May 12 (<em>4 days ago</em>) 
-        <a href="#" data-toggle="class"><i class="icon-star-empty text-muted icon-large text"></i><i class="icon-star text-warning icon-large text-active"></i></a>
-        <div class="btn-group">
-          <button class="btn btn-white btn-xs" data-toggle="tooltip" data-title="Reply"><i class="icon-reply"></i></button>
-          <button class="btn btn-white btn-xs dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-          <ul class="dropdown-menu pull-right">
-            <li><a href="#"><i class="icon-reply"></i> Reply</a></li>
-            <li><a href="#"><i class="icon-signout"></i> Forward</a></li>
-            <li><a href="#">Add Mika Sokeil to contact list</a></li>
-            <li><a href="#">Mark as unread</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Delete this message</a></li>
-            <li><a href="#">Report spam</a></li>
-          </ul>
-        </div>
-      </div>
+
+    <div id="posts">
+
     </div>
 
-    <p>Empty</p>
-    <% if !@details.nil? %>
-      <%= @details.content %>
-    <% end %>
-
-
-  <!--   <p>Mr. Soe</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris at pellentesque volutpat. Phasellus at ultricies neque, quis malesuada augue. Donec eleifend condimentum nisl eu consectetur. Integer eleifend, nisl venenatis consequat iaculis, lectus arcu malesuada sem, dapibus porta quam lacus eu neque.</p>
-    <blockquote>
-      <em>Morbi nec nunc condimentum, egestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula. Nunc placerat purus quam, ac adipiscing arcu rutrum eu. Vestibulum adipiscing ut augue ut auctor. Vestibulum nec lorem imperdiet nibh mollis gravida ut a justo.<br><br>
-      Suspendisse arcu nulla, mollis sed eros id, pellentesque vulputate nulla. Nullam lectus dolor, pulvinar eu tristique nec, tempus ut ligula. Quisque pulvinar ut justo id dapibus. Duis convallis tellus faucibus nisl fermentum, nec semper massa adipiscing. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In vestibulum est vel elementum pellentesque.</em>
-    </blockquote>
-    <p>Duis non malesuada est, quis congue nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-    <p>Best Regards<br>Mical</p> -->
-
-
-  </div>
-  <div class="padder">
-    <form class="panel text-small">
-      <div class="panel-body">Click here to <a href="#">Reply</a> or <a href="#">Forward</a></div>
-    </form>
-  </div>
 </section>
 <!-- /.main -->
 <!-- .sidebar -->
