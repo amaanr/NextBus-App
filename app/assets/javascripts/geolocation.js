@@ -1,7 +1,7 @@
 // HTML5 geolocation
 function geolocation() {
   if(navigator.geolocation) {
-    navigator.geolocation.watchPosition(showTransit),
+    navigator.geolocation.getCurrentPosition(showTransit),
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       // var pos = new google.maps.LatLng(43.757192, -79.337571);
