@@ -26,7 +26,7 @@
 Comment: <%= @comment %>
 <p><%= @post.content %></p>
 
-		<%= form_for [@post,@comment], :url => comments_path do |f| %>
+		<%= form_for [@post,@comment] do |f| %>
 		  <div class="padder">
 		    <form class="panel text-small">
 		      <div class="input-group">
@@ -40,6 +40,10 @@ Comment: <%= @comment %>
       <!-- <div class="panel-body">Click here to <a href="#">Reply</a> or <a href="#">Forward</a></div> -->
     </form>
   </div>
+  <% @post.comments.each do |comment| %>
+  <div><%= comment.content %> by <%= comment.user.full_name %></div>
+  <% end %>
+
   <% if @post.user == current_user %>
   	<%= link_to("Delete",post_path(@post),{:method => :delete,:remote => true}) %>
   <% end %>
