@@ -1,18 +1,21 @@
 class PostsController < ApplicationController
 
-	def new
+	def index
 		@posts = Post.order("updated_at DESC")
-		@post = Post.new
+		@new_post = Post.new
 	end
 
 	def create
 		current_user.posts.create(post_params)
-		redirect_to new_post_path
+		redirect_to posts_path
 	end
 
 	def show
+		@posts = Post.order("updated_at DESC")
+		@new_post = Post.new
 		@post = Post.find(params[:id])
 		@comment = Comment.new
+		render 'posts/index'
 	end
 
 	def destroy

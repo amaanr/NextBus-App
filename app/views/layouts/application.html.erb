@@ -129,16 +129,9 @@
         <% end -%>
       </li>
       <li class="dropdown-submenu">
-        <%= link_to root_path do %>
+        <%= link_to posts_path do %>
           <i class="fa fa-plus icon-xlarge"></i><span>Post</span>
         <% end -%>
-        <ul class="dropdown-menu">
-          <li><%= link_to "Post a Delay", new_post_path %></li>
-          <li><a href="#">Report an Incident</a></li>
-          <li><a href="#">Report Vandalism</a></li>
-          <li><a href="#"><b class="badge pull-right">48</b>Feed</a></li>            
-          <li><a href="#">Search</a></li>
-        </ul>
       </li>
       <li>
         <%= link_to root_path, 'data-no-turbolink' => true do %>

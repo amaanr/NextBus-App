@@ -26,7 +26,7 @@
 
             <span class="thumb-small avatar inline pull-right"><%= image_tag("cmf-avatar.jpg", :class => "img-circle", :style => "max-height:36px;") %></span>
 
-            <%= form_for @post do |f| %>
+            <%= form_for @new_post do |f| %>
               <label class="col-lg-3 control-label">Type</label>
               <div class="col-lg-8">
                 <div class="form-group">
@@ -108,7 +108,7 @@
   <div class="list-group list-normal m-t-n-xmini scroll-y scrollbar" style="max-height:400px">
 
     <% @posts.each do |post| %>
-      <%= link_to(post,:remote => true, :class => "list-group-item", :id => dom_id(post)) do  %>
+      <%= link_to(post, :class => "list-group-item", :id => dom_id(post)) do  %>
       <small class="pull-right text-muted"><%= time_ago_in_words(post.updated_at) %></small><strong><%= post.user.first_name %> <%= post.user.last_name %></strong><br><small><%= post.content %></small>
       <% end %>
     <% end %>
@@ -128,10 +128,9 @@
 <!-- /.sidebar -->
 <!-- .main -->
 <section class="main">
-
-    <div id="posts">
-
-    </div>
+  <% if @post %>
+        <%= render :partial => "post" %>
+  <% end %>
 
 </section>
 <!-- /.main -->
