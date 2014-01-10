@@ -1,3 +1,6 @@
+
+
+
 <section id="content" class="content-sidebar bg-white">
 <!-- .sidebar -->
 <aside class="sidebar bg-lighter sidebar-small">
@@ -78,6 +81,9 @@
       </div> <!-- modal-body -->
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!-- <%= hidden_field_tag 'lat', 'hello' %> -->
+        <%= hidden_field_tag("lat", "$(geolocation)", :id => "lat") %>
+        <%= hidden_field_tag :lng %>
         <%= f.submit "Post", :class => "btn btn-primary" %>
       </div>
     </div><!-- /.modal-content -->
@@ -190,3 +196,7 @@
 </aside>
 <!-- /.sidebar -->
 </section>
+
+<script>
+alert("hiho")
+</script>

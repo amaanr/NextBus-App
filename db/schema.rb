@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131221200708) do
+ActiveRecord::Schema.define(version: 20140110205917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20131221200708) do
     t.string   "location_type"
     t.string   "parent_station"
     t.string   "parent_boarding"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_locations", force: true do |t|
+    t.integer  "user_id"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.integer  "stop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
