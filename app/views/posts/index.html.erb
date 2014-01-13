@@ -1,10 +1,11 @@
-
-
-
 <section id="content" class="content-sidebar bg-white">
 <!-- .sidebar -->
 <aside class="sidebar bg-lighter sidebar-small">
-  <div class="text-center clearfix bg-white" data-toggle="modal" data-target="#myModal"><button class="btn btn-sm btn-danger m-t m-b"><i class="icon-edit"></i> Compose</button></div>
+  <div class="text-center clearfix bg-white">
+    <%= link_to "data-toggle" => "modal", 'data-target' => '#modal', 'data-no-turbolink' => true do %>
+      <div class="btn btn-info btn-sm m-t m-b"><i class="fa fa-plus pull-left"></i> POST</div>
+    <% end %>
+  </div>
   <div class="list-group list-normal m-b-none">
     <a href="#" class="list-group-item active"><i class="icon-inbox"></i><span class="badge m-r">201</span> Inbox</a>
     <a href="#" class="list-group-item"><i class="icon-envelope-alt"></i>Sent mail</a>
@@ -14,83 +15,6 @@
     <a href="#" class="list-group-item"><i class="icon-trash"></i>Trash</a>
     <a href="#" class="list-group-item"><i class="icon-user"></i><span class="badge m-r">23</span> Contacts</a>
   </div>
-
-  <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Make a post</h4>
-      </div>
-      <div class="modal-body">
-        <section class="panel">
-          <div class="clearfix panel-body">
-
-            <span class="thumb-small avatar inline pull-right"><%= image_tag("cmf-avatar.jpg", :class => "img-circle", :style => "max-height:36px;") %></span>
-
-            <%= form_for @new_post do |f| %>
-              <label class="col-lg-3 control-label">Type</label>
-              <div class="col-lg-8">
-                <div class="form-group">
-                  <div class="btn-group">
-                    <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle">
-                      <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post, :prompt => "Pick one...") do %>
-                        <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
-                        <span class="caret"></span>
-                      <% end %>
-                    </button>
-                    <!-- <ul class="dropdown-menu dropdown-select"> -->
-                        <!-- <li><a href="#"><input type="checkbox" name="d-s-c-1">Delay</a></li> -->
-                        <!-- <li><a href="#"><input type="checkbox" name="d-s-c-2">Incident</a></li> -->
-                        <!-- <li><a href="#"><input type="checkbox" name="d-s-c-3">Vandalism</a></li> -->
-                        <!-- <li><a href="#"><input type="checkbox" name="d-s-c-4">Hodgepodge</a></li> -->
-                        <!-- <li><a href="#"><input type="checkbox" name="d-s-c-5">Poetry</a></li> -->
-                    <!-- </ul> -->
-                  </div>
-                </div>
-              </div>
-
-              <label class="col-lg-3 control-label">Content</label>
-              <div class="col-lg-8">
-                <div class="form-group">
-                  <%= f.text_field :content, :rows => "5", :class => "form-control", :placeholder => "What's happening?" do %>
-                    <textarea placeholder="What's happening?" rows="5" class="form-control" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
-                  <% end -%>
-                </div>
-              </div>
-              
-              <label class="col-lg-3 control-label">Tags</label>
-              <div class="col-lg-8">
-                <div class="form-group">
-                  <div id="MyPillbox" class="pillbox clearfix m-b">
-                    <ul>
-                      <li class="label bg-default">yorkmills</li>
-                      <li class="label bg-success">donmills</li>
-                      <li class="label bg-warning">95w</li>
-                      <li class="label bg-danger">traffic</li>
-                      <li class="label bg-info">5guys</li>
-                      <input type="text" placeHolder=" add a tag">
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-          </div> <!-- panel-body -->
-        </section> <!-- panel -->
-      </div> <!-- modal-body -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <!-- <%= hidden_field_tag 'lat', 'hello' %> -->
-        <%= hidden_field_tag("lat", "$(geolocation)", :id => "lat") %>
-        <%= hidden_field_tag :lng %>
-        <%= f.submit "Post", :class => "btn btn-primary" %>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<% end %>
-
 </aside>
 <!-- /.sidebar -->
 <!-- .sidebar -->
@@ -118,85 +42,58 @@
       <small class="pull-right text-muted"><%= time_ago_in_words(post.updated_at) %></small><strong><%= post.user.first_name %> <%= post.user.last_name %></strong><br><small><%= post.content %></small>
       <% end %>
     <% end %>
-<!-- 
-    <a href="#" class="list-group-item"><small class="pull-right text-muted">3 minuts ago</small><strong>Foxe Ohil</strong><br><small>Vestibulum ullamcorper sodales nisi nec...</small></a>
-
-    <a href="#" class="list-group-item bg"><small class="pull-right text-muted">1 hour ago</small><strong>Sophi Soke</strong><br><small>Morbi nec nunc condimentum...</small></a>
-    <a href="#" class="list-group-item"><small class="pull-right text-muted">2 hours ago</small><strong>Foxe Ohil</strong><br><small>Vestibulum ullamcorper sodales nisi nec...</small></a>
-    <a href="#" class="list-group-item"><small class="pull-right text-muted">1 day ago</small><strong>Sophi Soke</strong><br><small>Morbi nec nunc condimentum...</small></a>
-    <a href="#" class="list-group-item active"><small class="pull-right text-muted">3 days ago</small><strong>Mika Sokeil</strong><br><small>Mobile first web app for startup...</small></a>
-    <a href="#" class="list-group-item bg"><small class="pull-right text-muted">Jun 21</small><strong>Sophi Soke</strong><br><small>Morbi nec nunc condimentum...</small></a>
-    <a href="#" class="list-group-item"><small class="pull-right text-muted">May 10</small><strong>Foxe Ohil</strong><br><small>Vestibulum ullamcorper sodales nisi nec...</small></a>
-    <a href="#" class="list-group-item bg"><small class="pull-right text-muted">Jan 2</small><strong>Sophi Soke</strong><br><small>Morbi nec nunc condimentum...</small></a> -->
-
   </div>
 </aside>
 <!-- /.sidebar -->
 <!-- .main -->
 <section class="main">
   <% if @post %>
-        <%= render :partial => "post" %>
+    <%= render :partial => "post" %>
   <% end %>
-
 </section>
 <!-- /.main -->
-<!-- .sidebar -->
-<aside class="sidebar bg text-small">
-  <ul class="list-group list-normal m-b">
-    <li class="list-group-item">
-      <div class="media">
-        <span class="pull-left thumb-small"><img src="images/avatar.jpg" alt="John said" class="img-circle"></span>
-        <div class="pull-right text-success m-t-small">
-          <i class="icon-circle"></i>
-        </div>
-        <div class="media-body">
-          <div><a href="#" class="h5">Chris Fox</a></div>
-          <small class="text-muted">2 minutes ago</small>
-        </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="media">
-        <span class="pull-left thumb-small"><img src="images/avatar.jpg" alt="John said" class="img-circle"></span>
-        <div class="pull-right text-success m-t-small">
-          <i class="icon-circle"></i>
-        </div>
-        <div class="media-body">
-          <div><a href="#" class="h5">Amanda Col</a></div>
-          <small class="text-muted">2 hours ago</small>
-        </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="media">
-        <span class="pull-left thumb-small"><img src="images/avatar.jpg" alt="John said" class="img-circle"></span>
-        <div class="pull-right text-warning m-t-small">
-          <i class="icon-circle"></i>
-        </div>
-        <div class="media-body">
-          <div><a href="#" class="h5">Dan Doorack</a></div>
-          <small class="text-muted">3 days ago</small>
-        </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="media">
-        <span class="pull-left thumb-small"><img src="images/avatar.jpg" alt="John said" class="img-circle"></span>
-        <div class="pull-right text-danger m-t-small">
-          <i class="icon-circle"></i>
-        </div>
-        <div class="media-body">
-          <div><a href="#" class="h5">Lauren Taylor</a></div>
-          <small class="text-muted">2 minutes ago</small>
-        </div>
-      </div>
-    </li>
-  </ul>
-  <p class="text-center m-b"><a class="btn btn-success btn-sm" href="#"><i class="icon-plus"></i>New Contact</a></p>
-</aside>
-<!-- /.sidebar -->
 </section>
 
-<script>
-alert("hiho")
-</script>
+  <!-- .modal -->
+  <div id="modal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><i class="fa-remove"></i>&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Make a post...</h4>
+          </div>
+          <%= form_for Post.new do |f| %>
+          <div class="modal-body">          
+            <div class="block">
+              <label class="control-label">Title</label>
+              <input type="text" class="form-control" placeholder="Post title">
+            </div>
+            <div class="block">
+              <label class="control-label">Type of Post</label>
+              <div class="form-group">
+                <div class="btn-group">
+                  <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle">
+                    <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post, :prompt => true ) do %>
+                      <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
+                      <span class="caret"></span>
+                    <% end %>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <label class="control-label">Content</label>
+              <%= f.text_field :content, :class => "form-control", :placeholder => "What's happening?", 'data-trigger' => 'keyup', 'data-rangelength' => '[20,200]', 'rows' => '5' do %>
+                  <textarea placeholder="What's happening?" rows="5" class="form-control"></textarea>
+              <% end -%>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+            <%= f.submit "Post", :class => "btn btn-sm btn-primary", 'data-loading-text' => 'Publishing' %>
+          </div>
+        </div><!-- /.modal-content -->
+      </div>
+      <% end %><!-- ends form -->
+  </div>
+  <!-- / .modal -->

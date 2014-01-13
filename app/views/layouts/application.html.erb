@@ -44,39 +44,6 @@
       <i class="icon-reorder icon-xlarge text-default"></i>
     </button>
     <ul class="nav navbar-nav hidden-xs">
-      <!-- <li>
-        <div class="m-t m-b-small" id="panel-notifications">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-comment-alt icon-xlarge text-default"></i><b class="badge badge-notes bg-danger count-n">2</b></a>
-          <section class="dropdown-menu m-l-small m-t-mini">
-            <section class="panel panel-large arrow arrow-top">
-              <header class="panel-heading bg-white"><span class="h5"><strong>You have <span class="count-n">2</span> notifications</strong></span></header>
-              <div class="list-group">
-                <a href="#" class="media list-group-item">
-                  <span class="pull-left thumb-small"><%= image_tag "avatar.jpg", :class=>"img-circle" %></span>
-                  <span class="media-body block m-b-none">
-                    6 minute delay to Work today<br>
-                    <small class="text-muted">Now</small>
-                  </span>
-                </a>
-                <a href="#" class="media list-group-item">
-                  <span class="media-body block m-b-none">
-                    Messages from Aly<br>
-                    <small class="text-muted">Yesterday</small>
-                  </span>
-                </a>
-              </div>
-              <footer class="panel-footer text-small">
-                <a href="#" class="pull-right"><i class="icon-cog"></i></a>
-                <a href="#">See all the notifications</a>
-              </footer>
-            </section>
-          </section>
-        </div>
-      </li> -->
-<!--         <li>
-        <div class="m-t-small"><a class="btn btn-sm btn-info" data-toggle="modal" href="/posts"><i class="icon-plus"></i> POST</a></div>
-      </li>
--->        
       <li>
         <div class="m-t-small">
           <%= link_to plan_index_path, 'data-no-turbolink' => true do %>
@@ -84,42 +51,15 @@
           <% end %> 
         </div>
       </li>
-      <!-- <li> -->
-        <!-- <div class=m-t-small> -->
-          <!-- <%= link_to_function "Go", "geolocation();" do %> -->
-            <!-- <div class="btn btn-primary btn-block m-t-mini"><i class="icon-map-marker pull-left"></i></div> -->
-          <!-- <% end -%> -->
-        <!-- </div> -->
-      <!-- </li> -->
-      <!-- <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret hidden-sm-only"></b></a>
-        <ul class="dropdown-menu">
-          <li>
-            <a href="#">Plan a trip</a>
-          </li>
-          <li>
-            <a href="#">Reminders</a>
-          </li>
-          <li class="divider"></li>
-          <li class="dropdown-header">Favourites</li>
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">School</a>
-          </li>
-        </ul>
-      </li> -->
+      <li>
+        <div class="m-t-small">
+          <%= link_to "data-toggle" => "modal", 'data-target' => '#modal', 'data-no-turbolink' => true do %>
+            <div class="btn btn-info btn-block m-t-mini"><i class="fa fa-plus pull-left"></i> POST</div>
+          <% end %>
+        </div>
+      </li>
     </ul>
-    <!-- <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
-      <i class="icon-search text-muted"></i>
-      <input type="text" input id="target" class="input-sm form-control" placeholder="Where to boss?">
-    </form>
-    <ul class="nav navbar-nav hidden-xs">
-      <li><div class="m-t-small"><%= link_to_function "Go", "calcRoute();", :class=>"btn btn-sm btn-success" %></div></li>
-    </ul> -->
-	</header>
-    <!-- / header -->
+	</header><!-- / header -->
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
     <ul class="nav" data-spy="affix" data-offset-top="50">
@@ -176,6 +116,49 @@
 <% end %>
 
 <%= yield %>
+  <!-- .modal -->
+  <div id="modal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><i class="fa-remove"></i>&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Make a post...</h4>
+          </div>
+          <%= form_for Post.new do |f| %>
+          <div class="modal-body">          
+            <div class="block">
+              <label class="control-label">Title</label>
+              <input type="text" class="form-control" placeholder="Post title">
+            </div>
+            <div class="block">
+              <label class="control-label">Type of Post</label>
+              <div class="form-group">
+                <div class="btn-group">
+                  <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle">
+                    <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post, :prompt => true ) do %>
+                      <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
+                      <span class="caret"></span>
+                    <% end %>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <label class="control-label">Content</label>
+              <%= f.text_field :content, :class => "form-control", :placeholder => "What's happening?", 'data-trigger' => 'keyup', 'data-rangelength' => '[20,200]', 'rows' => '5' do %>
+                  <textarea placeholder="What's happening?" rows="5" class="form-control"></textarea>
+              <% end -%>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+            <%= f.submit "Post", :class => "btn btn-sm btn-primary", 'data-loading-text' => 'Publishing' %>
+          </div>
+        </div><!-- /.modal-content -->
+      </div>
+      <% end %><!-- ends form -->
+  </div>
+  <!-- / .modal -->
 
   <!-- footer -->
   <footer id="footer">
