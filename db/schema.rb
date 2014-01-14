@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140114001323) do
   create_table "posts", force: true do |t|
     t.string   "content"
     t.integer  "user_id"
+    t.integer  "stop_id"
     t.integer  "post_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
