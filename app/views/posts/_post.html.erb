@@ -1,43 +1,31 @@
 <div class="bg-primary clearfix padder m-b">
-  <h3 class="m-b">Mobile first web app for startup</h3>
+  <h3 class="m-b"><%= @post.title %></h3>
 </div>
 <div class="text-small padder">
-  <div class="block clearfix">
-    <a href="#" class="thumb-mini inline"><%= image_tag("cmf-avatar.jpg", :class => "img-circle", :style => "max-height:36px;") %></a> <%= @post.user.full_name %> - [<%= @post.post_type.name %>]
-    <%= @post.user.email_display %>
-    <div class="pull-right inline"><%= @post.created_at.strftime("%b %e") %> (<em>updated <%= time_ago_in_words(@post.updated_at) %> ago</em>) 
-      <a href="#" data-toggle="class"><i class="fa fa-star-empty text-muted icon-large text"></i><i class="fa fa-star text-warning icon-large text-active"></i></a>
-      <div class="btn-group">
-        <button class="btn btn-white btn-xs" data-toggle="tooltip" data-title="Reply"><i class="fa fa-reply"></i></button>
-        <button class="btn btn-white btn-xs dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-        <ul class="dropdown-menu pull-right">
-          <li><a href="#"><i class="fa fa-reply"></i> Reply</a></li>
-          <li class="divider"></li>
-          <li>
-            <% if @post.user == current_user %>
-              <%= link_to("Delete",post_path(@post),{:method => :delete,:remote => true}) %>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
   <article id="comment-id-3" class="comment-item media arrow arrow-left">
     <a class="pull-left thumb-small avatar"><%= image_tag("cmf-avatar.jpg", :class => "img-circle", :style => "max-height:36px;") %></a>
     <section class="media-body panel">
       <header class="panel-heading clearfix">
-        <a href="#">By me</a><label class="label bg-default m-l-mini">User</label> <span class="text-muted m-l-small pull-right"><i class="icon-time"></i>about 1 hour ago</span>
+        <% if @post.user == current_user %>
+          By me
+        <% else %>
+          <%= @post.user.full_name %>
+        <% end %>
+        <label class="label bg-default m-l-mini"><%= @post.post_type.name %></label>
+        <span class="text-muted m-l-small pull-right"><i class="fa fa-time"></i>Created <%= @post.created_at.strftime("%b %e") %> (<em>updated <%= time_ago_in_words(@post.updated_at) %> ago</em>)</span>
       </header>
       <div class="panel-body">
-        <div>This comment was posted by you.</div>
+        <div><%= @post.content %></div>
         <div class="comment-action m-t-small">
-          <a href="#comment-id-3" data-dismiss="alert" class="btn btn-white btn-xs"><i class="icon-trash text-muted"></i>Remove</a>
+          <% if @post.user == current_user %>
+            <%= link_to post_path(@post), {:method => :delete, :id => "comment-id-3", 'data-dismiss' => 'alert', :class => "btn btn-white btn-xs"} do %>
+              <i class="fa fa-trash text-muted"></i><span>Remove</span>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </section>
   </article>
-
-  <h4><%= @post.content %></h4>
 
 		<%= form_for [@post,@comment] do |f| %>
 		  <div class="padder">
@@ -50,13 +38,8 @@
 					</div>
 		<% end %>
 
-      <!-- <div class="panel-body">Click here to <a href="#">Reply</a> or <a href="#">Forward</a></div> -->
-    </form>
   </div>
+
   <% @post.comments.each do |comment| %>
   <div><%= comment.content %> by <%= comment.user.full_name %></div>
-  <% end %>
-
-  <% if @post.user == current_user %>
-  	<%= link_to("Delete",post_path(@post),{:method => :delete,:remote => true}) %>
   <% end %>
