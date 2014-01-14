@@ -24,6 +24,6 @@ CSV.foreach("db/stops.csv") do |row|
 	).save
 end
 
-["Accident","Delay"].each do |post_type|
+["Accident","Delay","Damage","Poetry"].each do |post_type|
 	PostType.new(:type_of_post => post_type).save
 end
