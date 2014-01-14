@@ -36,7 +36,7 @@
   <div class="list-group list-normal m-t-n-xmini scroll-y scrollbar" style="max-height:400px">
     <% @posts.each do |post| %>
       <%= link_to(post, :class => "list-group-item", :id => dom_id(post)) do  %>
-      <small class="pull-right text-muted"><%= time_ago_in_words(post.updated_at) %> ago</small><strong><%= post.user.first_name %> <%= post.user.last_name %></strong><br><small><%= post.content %></small>
+      <small class="pull-right text-muted"><%= time_ago_in_words(post.updated_at) %> ago</small><strong><%= post.title %></strong><br><small><%= post.user.first_name %> <%= post.user.last_name %></small>
       <% end %>
     <% end %>
   </div>
@@ -61,6 +61,9 @@
       <%= form_for Post.new do |f| %>
       <div class="modal-body">          
         <div class="block">
+          <%= f.label :title %>
+          <%= f.text_field :title %><br />
+
           <label class="control-label">Title</label>
           <input type="text" class="form-control" placeholder="Post title">
         </div>
