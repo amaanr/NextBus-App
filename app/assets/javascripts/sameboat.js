@@ -32,38 +32,47 @@ function showTransit(position) {
           type: "GET",
           url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
           dataType: "xml",
-          success: function(xml) {
-            $(xml).find('body').each(function() {
-              var timeInSeconds = $(this).find('predictions').find('direction').find('prediction').attr('seconds');
-              var timeInMinutes = $(this).find('predictions').find('direction').find('prediction').attr('minutes');
-              var directionTitle = $(this).find('predictions').find('direction').attr('title');
-              var stopTitle = $(this).find('predictions').attr('stopTitle');
+          success: xmlParser1
+          // function(xml) {
+          //   $(xml).find('body').each(function() {
+          //     var timeInSeconds = $(this).find('predictions').find('direction').find('prediction').attr('seconds');
+          //     var timeInMinutes = $(this).find('predictions').find('direction').find('prediction').attr('minutes');
+          //     var directionTitle = $(this).find('predictions').find('direction').attr('title');
+          //     var stopTitle = $(this).find('predictions').attr('stopTitle');
 
-              // Make and place nearby stops on map as markers
-              var marker = new google.maps.Marker({
-                map: map,
-                position: tmpLatLng,
-                title: stopTitle
-              });
+          //     // Make and place nearby stops on map as markers
+          //     var marker = new google.maps.Marker({
+          //       map: map,
+          //       position: tmpLatLng,
+          //       title: stopTitle
+          //     });
 
-              var infoWindowContent = '<div id="content">'+
-                '<div id="siteNotice">'+
-                '</div>'+
-                '<h3 id="firstHeading" class="firstHeading">'+stopTitle+'</h3>'+
-                '<div id="bodyContent">'+
-                '<p><b>'+directionTitle+'</b> will arrive in <b>'+timeInSeconds+' seconds ' +
-                '('+timeInMinutes+' minutes)</b>. '+
-                '<div id="counter"></div>'+
-                '<p>Source: NextBus, <a href="http://www.nextbus.com">'+
-                'http://nextbus.com</a></p>'+
-                '</div>'+
-                '</div>';
+          //     var infoWindowContent = '<div id="content">'+
+          //       '<div id="siteNotice">'+
+          //       '</div>'+
+          //       '<h3 id="firstHeading" class="firstHeading">'+stopTitle+'</h3>'+
+          //       '<div id="bodyContent">'+
+          //       '<p><b>'+directionTitle+'</b> will arrive in <b>'+timeInSeconds+' seconds ' +
+          //       '('+timeInMinutes+' minutes)</b>. '+
+          //       '<div id="counter"></div>'+
+          //       '<p>Source: NextBus, <a href="http://www.nextbus.com">'+
+          //       'http://nextbus.com</a></p>'+
+          //       '</div>'+
+          //       '</div>';
 
-              // Binds stop markers on map with nextbusContent for each nearby stop 
-              bindInfoWindow(marker, map, infowindow, infoWindowContent);
-            }); // ends xml function
-          } // ends nextbus success handler
+          //     // Binds stop markers on map with nextbusContent for each nearby stop 
+          //     bindInfoWindow(marker, map, infowindow, infoWindowContent);
+          //   }); // ends xml function
+          // } // ends nextbus success handler
         }); // ends nextbus ajax request
+
+        function xmlParser1(xml) {
+          var obj = $.xml2json(xml);
+          for (var i = 0; i < obj.predictions.length; i++) {
+            var allPredictions = obj.predictions[i];
+            console.log(allPredictions);
+          };
+        }
       } // ends for loop
     } // ends main success handler
   }); // ends main post ajax request to /nearby_stops
