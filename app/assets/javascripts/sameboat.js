@@ -1,3 +1,7 @@
+function getCoordinates(callmemaybe) {
+  navigator.geolocation.getCurrentPosition(callmemaybe);
+}
+
 // Gets nearby transit stops
 function showTransit(position) {
   var latitude = position.coords.latitude;
@@ -24,7 +28,7 @@ function showTransit(position) {
         var tmpLatLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
         // stopName only needed if NextBus stopTitle fails
         var stopName = response[i].stop_name;
-        
+
         // Gets NextBus arrivalTimes
         $.ajax ({
           async: false,
