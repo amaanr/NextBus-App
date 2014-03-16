@@ -74,7 +74,25 @@ function showTransit(position) {
           var obj = $.xml2json(xml);
           for (var i = 0; i < obj.predictions.length; i++) {
             var allPredictions = obj.predictions[i];
-            console.log(allPredictions);
+            if (typeof allPredictions.direction != "undefined") {
+              for (var j = 0; j < allPredictions.direction.prediction.length; j++) {
+                var dirPred = allPredictions.direction.prediction[j];
+                // console.log(allPredictions.direction.title);
+                // $(allPredictions.direction.title).append('.stop_title');
+                // $.each(allPredictions.direction.title, function() {
+                  // $( "#schedules_table tbody tr" ).append("<td>" + allPredictions.direction.title + "</td>");
+                  // $( "#schedules_table tbody tr" ).append("<td>" + dirPred.seconds + "</td>");
+                  // $('#schedules_table > tbody:last').after('<td>'+dirPred.seconds+'</td>');
+                  // $("#schedules_table").find('tbody').append(
+                    // $('<tr>').append(
+                      // $('<td>').append(dirPred.seconds)
+                    // )
+                  // );
+                  $("#schedules_table").find('tbody').append("<tr><td>" + dirPred.seconds + " s</td><td>" + allPredictions.direction.title + "<td></tr>");
+                // });
+                // console.log(dirPred.seconds);
+              };
+            };
           };
         }
       } // ends for loop

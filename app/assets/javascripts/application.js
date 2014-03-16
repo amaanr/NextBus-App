@@ -21,6 +21,7 @@
 //= require js/app.data
 //= require js/app.plugin
 //= require js/fuelux/fuelux
+//= require js/datatables/jquery.dataTables.min
 
 //= require map
 //= require geolocation
