@@ -19,8 +19,8 @@
 <aside class="sidebar sidebar-large">
   <div class="padder header-bar bg clearfix">
     <div class="btn-group m-t pull-right">
-      <button type="button" class="btn btn-sm btn-white"><i class="icon-chevron-left"></i></button>
-      <button type="button" class="btn btn-sm btn-white"><i class="icon-chevron-right"></i></button>
+      <button type="button" class="btn btn-sm btn-white"><i class="fa fa-chevron-left"></i></button>
+      <button type="button" class="btn btn-sm btn-white"><i class="fa fa-chevron-right"></i></button>
     </div>
     <div class="btn-group m-t m-b">
       <button class="btn btn-white btn-sm dropdown-toggle" data-toggle="dropdown">Filter <span class="caret"></span></button>
@@ -31,13 +31,12 @@
         <li><a href="#">Unstarred</a></li>
       </ul>
     </div>
-    <button class="btn btn-sm btn-white" data-toggle="tooltip" data-title="Refresh"><i class="icon-refresh"></i></button>
+    <button class="btn btn-sm btn-white" data-toggle="tooltip" data-title="Refresh"><i class="fa fa-refresh"></i></button>
   </div>
   <div class="list-group list-normal m-t-n-xmini scroll-y scrollbar" style="max-height:400px">
-
     <% @posts.each do |post| %>
       <%= link_to(post, :class => "list-group-item", :id => dom_id(post)) do  %>
-      <small class="pull-right text-muted"><%= time_ago_in_words(post.updated_at) %></small><strong><%= post.user.first_name %> <%= post.user.last_name %></strong><br><small><%= post.content %></small>
+      <small class="pull-right text-muted"><%= time_ago_in_words(post.updated_at) %> ago</small><strong><%= post.title %><label class="label bg-default m-l-mini"><%= post.post_type.name %></label></strong><br><small>by <%= post.user.first_name %> <%= post.user.last_name %></small>
       <% end %>
     <% end %>
   </div>
@@ -51,47 +50,46 @@
 </section>
 <!-- /.main -->
 </section>
-
-  <!-- .modal -->
-  <div id="modal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><i class="fa-remove"></i>&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Make a post...</h4>
-          </div>
-          <%= form_for Post.new do |f| %>
-          <div class="modal-body">          
-            <div class="block">
-              <label class="control-label">Title</label>
-              <input type="text" class="form-control" placeholder="Post title">
-            </div>
-            <div class="block">
-              <label class="control-label">Type of Post</label>
-              <div class="form-group">
-                <div class="btn-group">
-                  <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle">
-                    <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post, :prompt => true ) do %>
-                      <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
-                      <span class="caret"></span>
-                    <% end %>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="block">
-              <label class="control-label">Content</label>
-              <%= f.text_field :content, :class => "form-control", :placeholder => "What's happening?", 'data-trigger' => 'keyup', 'data-rangelength' => '[20,200]', 'rows' => '5' do %>
-                  <textarea placeholder="What's happening?" rows="5" class="form-control"></textarea>
-              <% end -%>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-            <%= f.submit "Post", :class => "btn btn-sm btn-primary", 'data-loading-text' => 'Publishing' %>
-          </div>
-        </div><!-- /.modal-content -->
+<!-- .modal -->
+<div id="modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><i class="fa-remove"></i>&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Make a post...</h4>
       </div>
-      <% end %><!-- ends form -->
+      <%= form_for Post.new do |f| %>
+      <div class="modal-body">          
+        <div class="block">
+          <label class="control-label">Title</label>
+          <%= f.text_field :title, :class => "form-control", :placeholder => "Post title" %>
+        </div>
+        <div class="block">
+          <label class="control-label">Type of Post</label>
+          <div class="form-group">
+            <div class="btn-group">
+              <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle">
+                <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post, :prompt => true ) do %>
+                  <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
+                  <span class="caret"></span>
+                <% end %>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="block">
+          <label class="control-label">Content</label>
+          <%= f.text_field :content, :class => "form-control", :placeholder => "What's happening?", 'data-trigger' => 'keyup', 'data-rangelength' => '[20,200]', 'rows' => '5' do %>
+              <textarea placeholder="What's happening?" rows="5" class="form-control"></textarea>
+          <% end -%>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "Post", :class => "btn btn-sm btn-primary", 'data-loading-text' => 'Publishing' %>
+      </div>
+    </div><!-- /.modal-content -->
   </div>
-  <!-- / .modal -->
+  <% end %><!-- ends form -->
+</div>
+<!-- / .modal -->
