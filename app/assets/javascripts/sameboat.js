@@ -4,12 +4,12 @@ function getCoordinates(callmemaybe) {
 
 // Gets nearby transit stops
 function showTransit(position) {
-  // var latitude = position.coords.latitude;
-  // var longitude = position.coords.longitude;
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
 
-  var latitude = 43.757192;
-  var longitude = -79.337571;
-  
+  // var latitude = 43.757192;
+  // var longitude = -79.337571;
+
   var infowindow = new google.maps.InfoWindow({
     content: ''
   });
@@ -36,65 +36,56 @@ function showTransit(position) {
           type: "GET",
           url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
           dataType: "xml",
-          success: xmlParser1
-          // function(xml) {
-          //   $(xml).find('body').each(function() {
-          //     var timeInSeconds = $(this).find('predictions').find('direction').find('prediction').attr('seconds');
-          //     var timeInMinutes = $(this).find('predictions').find('direction').find('prediction').attr('minutes');
-          //     var directionTitle = $(this).find('predictions').find('direction').attr('title');
-          //     var stopTitle = $(this).find('predictions').attr('stopTitle');
+          success:
+            function xmlParser1(xml) {
+              var obj = $.xml2json(xml);
 
-          //     // Make and place nearby stops on map as markers
-          //     var marker = new google.maps.Marker({
-          //       map: map,
-          //       position: tmpLatLng,
-          //       title: stopTitle
-          //     });
+              for (var i = 0; i < obj.predictions.length; i++) {
+                var allPredictions = obj.predictions[i];
+                
+                if (typeof allPredictions.direction != "undefined") {
+                  for (var j = 0; j < allPredictions.direction.prediction.length; j++) {
+                    var dirPred = allPredictions.direction.prediction[j];
+                    
+                    $.each([dirPred.seconds], function(i, val) {
+                      // $("#schedules_table").find('tbody').append("<tr><td>" + count + " s</td><td>" + allPredictions.stopTitle + "<td></tr>");
+                      $("#schedules_table tbody tr .arrival_times").countdown({until: val, format: 'MS', layout: '{mn}:{sn} min'});
+                    });
 
-          //     var infoWindowContent = '<div id="content">'+
-          //       '<div id="siteNotice">'+
-          //       '</div>'+
-          //       '<h3 id="firstHeading" class="firstHeading">'+stopTitle+'</h3>'+
-          //       '<div id="bodyContent">'+
-          //       '<p><b>'+directionTitle+'</b> will arrive in <b>'+timeInSeconds+' seconds ' +
-          //       '('+timeInMinutes+' minutes)</b>. '+
-          //       '<div id="counter"></div>'+
-          //       '<p>Source: NextBus, <a href="http://www.nextbus.com">'+
-          //       'http://nextbus.com</a></p>'+
-          //       '</div>'+
-          //       '</div>';
+                    var stopTitle = allPredictions.stopTitle;
+                    var directionTitle = allPredictions.direction.title;
+                    var timeInSeconds = dirPred.seconds;
+                    var timeInMinutes = dirPred.minutes;
 
-          //     // Binds stop markers on map with nextbusContent for each nearby stop 
-          //     bindInfoWindow(marker, map, infowindow, infoWindowContent);
-          //   }); // ends xml function
-          // } // ends nextbus success handler
+                  };
+                };
+
+                // Make and place nearby stops on map as markers
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: tmpLatLng,
+                  title: stopTitle
+                });
+
+                var infoWindowContent = '<div id="content">'+
+                  '<div id="siteNotice">'+
+                  '</div>'+
+                  '<h3 id="firstHeading" class="firstHeading">'+stopTitle+'</h3>'+
+                  '<div id="bodyContent">'+
+                  '<p><b>'+directionTitle+'</b> will arrive in <b>'+timeInSeconds+' seconds ' +
+                  '('+timeInMinutes+' minutes)</b>. '+
+                  '<div id="counter"></div>'+
+                  '</div>'+
+                  '</div>';
+
+              }; // ends obj.predictions for loop
+
+              // Binds stop markers on map with nextbusContent for each nearby stop 
+              bindInfoWindow(marker, map, infowindow, infoWindowContent);
+
+            } // ends xmlParser1
         }); // ends nextbus ajax request
 
-        function xmlParser1(xml) {
-          var obj = $.xml2json(xml);
-          for (var i = 0; i < obj.predictions.length; i++) {
-            var allPredictions = obj.predictions[i];
-            if (typeof allPredictions.direction != "undefined") {
-              for (var j = 0; j < allPredictions.direction.prediction.length; j++) {
-                var dirPred = allPredictions.direction.prediction[j];
-                // console.log(allPredictions.direction.title);
-                // $(allPredictions.direction.title).append('.stop_title');
-                // $.each(allPredictions.direction.title, function() {
-                  // $( "#schedules_table tbody tr" ).append("<td>" + allPredictions.direction.title + "</td>");
-                  // $( "#schedules_table tbody tr" ).append("<td>" + dirPred.seconds + "</td>");
-                  // $('#schedules_table > tbody:last').after('<td>'+dirPred.seconds+'</td>');
-                  // $("#schedules_table").find('tbody').append(
-                    // $('<tr>').append(
-                      // $('<td>').append(dirPred.seconds)
-                    // )
-                  // );
-                  $("#schedules_table").find('tbody').append("<tr><td>" + dirPred.seconds + " s</td><td>" + allPredictions.direction.title + "<td></tr>");
-                // });
-                // console.log(dirPred.seconds);
-              };
-            };
-          };
-        }
       } // ends for loop
     } // ends main success handler
   }); // ends main post ajax request to /nearby_stops
