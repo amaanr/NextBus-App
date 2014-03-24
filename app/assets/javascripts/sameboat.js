@@ -47,18 +47,18 @@ function showTransit(position) {
                   for (var j = 0; j < allPredictions.direction.prediction.length; j++) {
                     var dirPred = allPredictions.direction.prediction[j];
                     
-                    $.each([dirPred.seconds], function(i, val) {
-                      // $("#schedules_table").find('tbody').append("<tr><td>" + count + " s</td><td>" + allPredictions.stopTitle + "<td></tr>");
-                      $("#schedules_table tbody tr .arrival_times").countdown({until: val, format: 'MS', layout: '{mn}:{sn} min'});
-                    });
+                    $("#schedules_table").find('tbody').append("<tr><td>" + dirPred.seconds + " s</td><td>" + allPredictions.stopTitle + "<td></tr>");
+                    // $.each([dirPred.seconds], function(i, val) {
+                      // $("#schedules_table tbody tr .arrival_times").countdown({until: val, format: 'MS', layout: '{mn}:{sn} min'});
+                    // });
 
                     var stopTitle = allPredictions.stopTitle;
                     var directionTitle = allPredictions.direction.title;
                     var timeInSeconds = dirPred.seconds;
                     var timeInMinutes = dirPred.minutes;
 
-                  };
-                };
+                  }; // ends for allPredictions.direction.prediction loop
+                }; // ends if allPredictions.direction is not undefined
 
                 // Make and place nearby stops on map as markers
                 var marker = new google.maps.Marker({
