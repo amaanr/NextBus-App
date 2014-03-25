@@ -37,7 +37,7 @@ function showTransit(position) {
           url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
           dataType: "xml",
           success:
-            function xmlParser1(xml) {
+            function xmlParser(xml) {
               var obj = $.xml2json(xml);
 
               for (var i = 0; i < obj.predictions.length; i++) {
@@ -46,11 +46,17 @@ function showTransit(position) {
                 if (typeof allPredictions.direction != "undefined") {
                   for (var j = 0; j < allPredictions.direction.prediction.length; j++) {
                     var dirPred = allPredictions.direction.prediction[j];
-                    
-                    $("#schedules_table").find('tbody').append("<tr><td>" + dirPred.seconds + " s</td><td>" + allPredictions.stopTitle + "<td></tr>");
-                    // $.each([dirPred.seconds], function(i, val) {
-                      // $("#schedules_table tbody tr .arrival_times").countdown({until: val, format: 'MS', layout: '{mn}:{sn} min'});
-                    // });
+
+                    $.each([dirPred.seconds], function(i, val) {
+
+                      var arrivalSeconds = parseInt([val]);
+                      console.log(arrivalSeconds);
+                      // $("#schedules_table").find('tbody').append("<tr><td>" + dirPred.seconds + " s</td><td>" + allPredictions.stopTitle + "<td></tr>");
+
+                      $("#schedules_table tbody tr .arrival_times1").countdown({until: arrivalSeconds, format: 'MS', layout: '{mn}:{sn} min'});
+                      $("#schedules_table tbody tr .arrival_times2").countdown({until: arrivalSeconds, format: 'MS', layout: '{mn}:{sn} min'});
+                      // $("#schedules_table tbody tr .stop_time").countdown({until: val, format: 'MS', layout: '{mn}:{sn} min'});
+                    });
 
                     var stopTitle = allPredictions.stopTitle;
                     var directionTitle = allPredictions.direction.title;
