@@ -47,21 +47,13 @@ function showTransit(position) {
                   for (var j = 0; j < allPredictions.direction.prediction.length; j++) {
                     var dirPred = allPredictions.direction.prediction[j];
 
-                    $.each([dirPred.seconds], function(i, val) {
-
-                      var arrivalSeconds = parseInt([val]);
-                      console.log(arrivalSeconds);
-                      // $("#schedules_table").find('tbody').append("<tr><td>" + dirPred.seconds + " s</td><td>" + allPredictions.stopTitle + "<td></tr>");
-
-                      $("#schedules_table tbody tr .arrival_times1").countdown({until: arrivalSeconds, format: 'MS', layout: '{mn}:{sn} min'});
-                      $("#schedules_table tbody tr .arrival_times2").countdown({until: arrivalSeconds, format: 'MS', layout: '{mn}:{sn} min'});
-                      // $("#schedules_table tbody tr .stop_time").countdown({until: val, format: 'MS', layout: '{mn}:{sn} min'});
-                    });
-
                     var stopTitle = allPredictions.stopTitle;
+                    var routeTag = allPredictions.routeTag;
                     var directionTitle = allPredictions.direction.title;
                     var timeInSeconds = dirPred.seconds;
                     var timeInMinutes = dirPred.minutes;
+
+                    $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds + " s</td><td>" + "<span class='badge bg-info'>" + routeTag + "</span> " + stopTitle + "<td></tr>");
 
                   }; // ends for allPredictions.direction.prediction loop
                 }; // ends if allPredictions.direction is not undefined
@@ -76,7 +68,7 @@ function showTransit(position) {
                 var infoWindowContent = '<div id="content">'+
                   '<div id="siteNotice">'+
                   '</div>'+
-                  '<h3 id="firstHeading" class="firstHeading">'+stopTitle+'</h3>'+
+                  '<h3 id="firstHeading" class="firstHeading">' + stopTitle + '</h3>'+
                   '<div id="bodyContent">'+
                   '<p><b>'+directionTitle+'</b> will arrive in <b>'+timeInSeconds+' seconds ' +
                   '('+timeInMinutes+' minutes)</b>. '+
