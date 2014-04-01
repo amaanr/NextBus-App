@@ -1,6 +1,6 @@
-function getCoordinates(callmemaybe) {
-  navigator.geolocation.getCurrentPosition(callmemaybe);
-}
+// function getCoordinates(callmemaybe) {
+  // navigator.geolocation.getCurrentPosition(callmemaybe);
+// }
 
 // Gets nearby transit stops
 function showTransit(position) {
@@ -24,10 +24,14 @@ function showTransit(position) {
     },
     success: function(response) {
       for (var i = 0; i < response.length; i++) {
+
         // Creates LatLng obj
         var tmpLatLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
         // stopName only needed if NextBus stopTitle fails
         var stopName = response[i].stop_name;
+        // $.each([response, function(i, val) {
+          // console.log(val);
+        // });
 
         // Gets NextBus arrivalTimes
         $.ajax ({
@@ -39,47 +43,70 @@ function showTransit(position) {
           success:
             function xmlParser(xml) {
               var obj = $.xml2json(xml);
+              // console.log(obj.predictions.direction);
 
-              for (var i = 0; i < obj.predictions.length; i++) {
-                var allPredictions = obj.predictions[i];
-                
-                if (typeof allPredictions.direction != "undefined") {
-                  for (var j = 0; j < allPredictions.direction.prediction.length; j++) {
-                    var dirPred = allPredictions.direction.prediction[j];
+              $.each([obj], function(i, val) {
+                for (var j = 0; j < val.predictions.length; j++) {
+                  var obj1 = val.predictions[j];
+                  // console.log(obj1);
+                  if (obj1.direction != undefined) {
+                    // console.log(allPred.direction);
+                    $.each([obj1.direction], function(i, val) {
+                      if (obj1.direction.prediction != undefined) {
+                        for (var i = 0; i < obj1.direction.prediction.length; i++) {
+                          var obj2 = obj1.direction.prediction[i];
+                          // console.log(obj2.seconds);
+                        };
+                      } else {};
+                      
+                    });
+                  } else {};
+                };
+              });
 
-                    var stopTitle = allPredictions.stopTitle;
-                    var routeTag = allPredictions.routeTag;
-                    var directionTitle = allPredictions.direction.title;
-                    var timeInSeconds = dirPred.seconds;
-                    var timeInMinutes = dirPred.minutes;
+              // console.log(obj);
 
-                    $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds + " s</td><td>" + "<span class='badge bg-info'>" + routeTag + "</span> " + stopTitle + "<td></tr>");
+              // for (var j = 0; j < obj.predictions.length; j++) {
+                // var allPredictions = obj.predictions[j];
+                // console.log(allPredictions);
 
-                  }; // ends for allPredictions.direction.prediction loop
-                }; // ends if allPredictions.direction is not undefined
+                // if (typeof allPredictions.direction != "undefined") {
+                  // for (var k = 0; k < allPredictions.direction.prediction.length; k++) {
+                    // var dirPred = allPredictions.direction.prediction[k];
+
+                    // var stopTitle = allPredictions.stopTitle;
+                    // var routeTag = allPredictions.routeTag;
+                    // var directionTitle = allPredictions.direction.title;
+                    // var timeInSeconds = dirPred.seconds;
+                    // var timeInMinutes = dirPred.minutes;
+
+                    // $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds + " s</td><td>" + "<span class='badge bg-info'>" + routeTag + "</span> " + stopTitle + "<td></tr>");
+
+                  // }; // ends for allPredictions.direction.prediction loop
+                // }; // ends if allPredictions.direction is not undefined
 
                 // Make and place nearby stops on map as markers
                 var marker = new google.maps.Marker({
                   map: map,
                   position: tmpLatLng,
-                  title: stopTitle
+                  title: stopName
                 });
 
-                var infoWindowContent = '<div id="content">'+
-                  '<div id="siteNotice">'+
-                  '</div>'+
-                  '<h3 id="firstHeading" class="firstHeading">' + stopTitle + '</h3>'+
-                  '<div id="bodyContent">'+
-                  '<p><b>'+directionTitle+'</b> will arrive in <b>'+timeInSeconds+' seconds ' +
-                  '('+timeInMinutes+' minutes)</b>. '+
-                  '<div id="counter"></div>'+
-                  '</div>'+
-                  '</div>';
+                // var infoWindowContent = '<div id="content">'+
+                  // '<div id="siteNotice">'+
+                  // '</div>'+
+                  // '<h3 id="firstHeading" class="firstHeading">' + stopName + '</h3>'+
+                  // '<div id="bodyContent">'+
+                  // '<p><b>'+stopTitle+'</b> will arrive in <b>'+stopTitle+' seconds ' +
+                  // '('+stopTitle+' minutes)</b>. '+
+                  // '<div id="counter"></div>'+
+                  // '</div>'+
+                  // '</div>';
 
-              }; // ends obj.predictions for loop
+              // }; // ends obj.predictions for loop
 
               // Binds stop markers on map with nextbusContent for each nearby stop 
-              bindInfoWindow(marker, map, infowindow, infoWindowContent);
+              bindInfoWindow(marker, map);
 
             } // ends xmlParser1
         }); // ends nextbus ajax request
