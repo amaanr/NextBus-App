@@ -43,47 +43,35 @@ function showTransit(position) {
           success:
             function xmlParser(xml) {
               var obj = $.xml2json(xml);
-              // console.log(obj.predictions.direction);
+
+              var timeInSeconds;
+              var routeTag;
+              var stopTitle;
+              var directionTitle;
 
               $.each([obj], function(i, val) {
                 for (var j = 0; j < val.predictions.length; j++) {
                   var obj1 = val.predictions[j];
-                  // console.log(obj1);
                   if (obj1.direction != undefined) {
-                    // console.log(allPred.direction);
                     $.each([obj1.direction], function(i, val) {
                       if (obj1.direction.prediction != undefined) {
                         for (var i = 0; i < obj1.direction.prediction.length; i++) {
                           var obj2 = obj1.direction.prediction[i];
-                          // console.log(obj2.seconds);
+
+                          timeInSeconds = obj2.seconds;
+                          routeTag = obj1.routeTag;
+                          stopTitle = obj1.stopTitle;
+                          directionTitle = obj1.direction.title;
+
+                          $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds + " s</td><td>" + "<span class='badge bg-info'>" + routeTag + "</span> " + directionTitle + "<td></tr>");
+
                         };
                       } else {};
                       
                     });
                   } else {};
                 };
-              });
-
-              // console.log(obj);
-
-              // for (var j = 0; j < obj.predictions.length; j++) {
-                // var allPredictions = obj.predictions[j];
-                // console.log(allPredictions);
-
-                // if (typeof allPredictions.direction != "undefined") {
-                  // for (var k = 0; k < allPredictions.direction.prediction.length; k++) {
-                    // var dirPred = allPredictions.direction.prediction[k];
-
-                    // var stopTitle = allPredictions.stopTitle;
-                    // var routeTag = allPredictions.routeTag;
-                    // var directionTitle = allPredictions.direction.title;
-                    // var timeInSeconds = dirPred.seconds;
-                    // var timeInMinutes = dirPred.minutes;
-
-                    // $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds + " s</td><td>" + "<span class='badge bg-info'>" + routeTag + "</span> " + stopTitle + "<td></tr>");
-
-                  // }; // ends for allPredictions.direction.prediction loop
-                // }; // ends if allPredictions.direction is not undefined
+              }); // ends each on obj
 
                 // Make and place nearby stops on map as markers
                 var marker = new google.maps.Marker({
@@ -92,23 +80,18 @@ function showTransit(position) {
                   title: stopName
                 });
 
-                // var infoWindowContent = '<div id="content">'+
-                  // '<div id="siteNotice">'+
-                  // '</div>'+
-                  // '<h3 id="firstHeading" class="firstHeading">' + stopName + '</h3>'+
-                  // '<div id="bodyContent">'+
-                  // '<p><b>'+stopTitle+'</b> will arrive in <b>'+stopTitle+' seconds ' +
-                  // '('+stopTitle+' minutes)</b>. '+
-                  // '<div id="counter"></div>'+
-                  // '</div>'+
-                  // '</div>';
-
-              // }; // ends obj.predictions for loop
+                var infoWindowContent = '<div id="content">'+
+                  '<div id="siteNotice">'+
+                  '</div>'+
+                  '<h3 id="firstHeading" class="firstHeading">' + stopName + '</h3>'+
+                  '<div id="bodyContent">'+
+                  '</div>'+
+                  '</div>';
 
               // Binds stop markers on map with nextbusContent for each nearby stop 
-              bindInfoWindow(marker, map);
+              bindInfoWindow(marker, map, infowindow, infoWindowContent);
 
-            } // ends xmlParser1
+            } // ends xmlParser function
         }); // ends nextbus ajax request
 
       } // ends for loop
