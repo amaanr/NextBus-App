@@ -54,6 +54,7 @@ function showTransit(position) {
                   var obj1 = val.predictions[j];
                   if (obj1.direction != undefined) {
                     $.each([obj1.direction], function(i, val) {
+                      // console.log(obj1.direction);
                       if (obj1.direction.prediction != undefined) {
                         for (var i = 0; i < obj1.direction.prediction.length; i++) {
                           var obj2 = obj1.direction.prediction[i];
@@ -66,7 +67,25 @@ function showTransit(position) {
                           $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds + " s</td><td>" + "<span class='badge bg-info'>" + routeTag + "</span> " + directionTitle + "<td></tr>");
 
                         };
-                      } else {};
+                      } else {
+                        for (var i = 0; i < obj1.direction.length; i++) {
+                          var obj3 = obj1.direction[i]
+                          if (obj3.prediction != undefined) {
+                            for (var i = 0; i < obj3.prediction.length; i++) {
+                              var obj4 = obj3.prediction[i];
+                              console.log(obj1);
+
+                              timeInSeconds2 = obj4.seconds;
+                              routeTag2 = obj1.routeTag;
+                              stopTitle2 = obj1.stopTitle;
+                              directionTitle2 = obj1.direction.title;
+
+                              $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds2 + " s</td><td>" + "<span class='badge bg-info'>" + routeTag2 + "</span> " + stopTitle2 + "<td></tr>");
+
+                            };
+                          };
+                        };
+                      };
                       
                     });
                   } else {};
