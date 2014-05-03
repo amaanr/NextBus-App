@@ -80,6 +80,13 @@ function showTransit(position) {
                   title: stopName
                 });
 
+                // function toDateTime(timeInSeconds) {
+                  // var t = new Date(1970,0,1);
+                  // t.setSeconds(timeInSeconds);
+                  // return t;
+                  // alert(t);
+                // }
+
                 var infoWindowContent = '<div id="content">'+
                   '<div id="siteNotice">'+
                   '</div>'+
