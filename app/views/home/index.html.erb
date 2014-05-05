@@ -1,3 +1,15 @@
+<style type="text/css">
+	@media only screen and (max-width: 800px) {
+	#schedule table td:nth-child(3), 
+	#schedule table th:nth-child(3) {display: none;}
+}
+ 
+@media only screen and (max-width: 640px) {
+	#schedule table td:nth-child(5),
+	#schedule table th:nth-child(5){display: none;}
+}
+</style>
+
 <section id="content">
 	<section class="main">
 	  <div class="padder m-t">
@@ -6,18 +18,23 @@
 	        <section class="panel">
 	          <header class="panel-heading">Real-time Schedules</header>
 	          <div class="panel-body">
+	          <section id="schedule">
 							<div class="table-responsive">
 		            <table id="schedules_table" class="table table-striped m-b-none">
 		              <thead>
 		                <tr>
-		                  <th width="20%">Arriving</th>
-		                  <th width="80%">Stop Title</th>
+		                	<th class="branch_th">Branch</th>
+		                	<th class="title_th">Title</th>
+		                	<th class="heading_th">Heading</th>
+		                	<th class="departure_th" width="15%">Departs in</th>
 		                </tr>
 		              </thead>
 		              <tbody>
-		              	<!-- filled in from sameboat.js -->
+		              	<tr>
+		              	</tr>
 		              </tbody>
 		            </table>
+		            </section>
             	</div>	          
           	</div>
 	        </section>
