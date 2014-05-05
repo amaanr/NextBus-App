@@ -48,13 +48,15 @@ function showTransit(position) {
               var routeTag;
               var stopTitle;
               var directionTitle;
+              var branchCode;
+              var directionCode;
+              var heading;
 
               $.each([obj], function(i, val) {
                 for (var j = 0; j < val.predictions.length; j++) {
                   var obj1 = val.predictions[j];
                   if (obj1.direction != undefined) {
                     $.each([obj1.direction], function(i, val) {
-                      // console.log(obj1.direction);
                       if (obj1.direction.prediction != undefined) {
                         for (var i = 0; i < obj1.direction.prediction.length; i++) {
                           var obj2 = obj1.direction.prediction[i];
@@ -63,8 +65,21 @@ function showTransit(position) {
                           routeTag = obj1.routeTag;
                           stopTitle = obj1.stopTitle;
                           directionTitle = obj1.direction.title;
+                          branchCode = obj2.branch;
+                          directionCode = directionTitle.substring(0,1);
 
-                          $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds + " s</td><td>" + "<span class='badge bg-info'>" + routeTag + "</span> " + directionTitle + "<td></tr>");
+                          $(function () {
+                            var n = directionTitle.indexOf("towards");
+                            var directionLength = directionTitle.length;
+                            heading = directionTitle.substring(n,directionLength);
+                            $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + timeInSeconds + " s</td></tr>");
+
+                          });
+                          // console.log(directionCode + " " + branchCode);
+
+
+
+                          // $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds + " s</td><td>" + "<span class='badge bg-info'>" + routeTag + "</span> " + directionTitle + "<td></tr>");
 
                         };
                       } else {
@@ -73,14 +88,13 @@ function showTransit(position) {
                           if (obj3.prediction != undefined) {
                             for (var i = 0; i < obj3.prediction.length; i++) {
                               var obj4 = obj3.prediction[i];
-                              console.log(obj1);
 
                               timeInSeconds2 = obj4.seconds;
                               routeTag2 = obj1.routeTag;
                               stopTitle2 = obj1.stopTitle;
-                              directionTitle2 = obj1.direction.title;
+                              directionTitle2 = obj3.title;
 
-                              $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds2 + " s</td><td>" + "<span class='badge bg-info'>" + routeTag2 + "</span> " + stopTitle2 + "<td></tr>");
+                              // $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds2 + " s</td><td>" + "<span class='badge bg-info'>" + routeTag2 + "</span> " + directionTitle2 + "<td></tr>");
 
                             };
                           };
