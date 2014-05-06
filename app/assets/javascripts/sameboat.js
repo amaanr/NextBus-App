@@ -4,11 +4,11 @@
 
 // Gets nearby transit stops
 function showTransit(position) {
-  var latitude = position.coords.latitude;
-  var longitude = position.coords.longitude;
+  // var latitude = position.coords.latitude;
+  // var longitude = position.coords.longitude;
 
-  // var latitude = 43.757192;
-  // var longitude = -79.337571;
+  var latitude = 43.757192;
+  var longitude = -79.337571;
 
   var infowindow = new google.maps.InfoWindow({
     content: ''
@@ -52,59 +52,83 @@ function showTransit(position) {
               var directionCode;
               var heading;
 
-              $.each([obj], function(i, val) {
-                for (var j = 0; j < val.predictions.length; j++) {
-                  var obj1 = val.predictions[j];
-                  if (obj1.direction != undefined) {
-                    $.each([obj1.direction], function(i, val) {
-                      if (obj1.direction.prediction != undefined) {
-                        for (var i = 0; i < obj1.direction.prediction.length; i++) {
-                          var obj2 = obj1.direction.prediction[i];
+              // console.log(obj.predictions.direction); // shows all
+              
+              // if (obj.predictions.direction.prediction != undefined) {
+              //   for (var i = 0; i < obj.predictions.direction.prediction.length; i++) {
+              //     var obj4 = obj.predictions.direction.prediction[i];
 
-                          timeInSeconds = obj2.seconds;
-                          routeTag = obj1.routeTag;
-                          stopTitle = obj1.stopTitle;
-                          directionTitle = obj1.direction.title;
-                          branchCode = obj2.branch;
-                          directionCode = directionTitle.substring(0,1);
+              //     timeInSeconds = obj4.seconds;
+              //     routeTag = obj.predictions.routeTag;
+              //     stopTitle = obj.predictions.stopTitle;
+              //     directionTitle = obj.predictions.direction.title;
+              //     branchCode = obj4.branch;
+              //     directionCode = directionTitle.substring(0,1);
 
-                          $(function () {
-                            var n = directionTitle.indexOf("towards");
-                            var directionLength = directionTitle.length;
-                            heading = directionTitle.substring(n,directionLength);
-                            $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + timeInSeconds + " s</td></tr>");
+              //     $(function () {
+              //       var n = directionTitle.indexOf("towards");
+              //       var directionLength = directionTitle.length;
+              //       heading = directionTitle.substring(n,directionLength);
+              //       $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + timeInSeconds + " s</td></tr>");
 
-                          });
-                          // console.log(directionCode + " " + branchCode);
+              //     });
+              //   };
+              // } else {}; // ends else
+
+                $.each([obj], function(i, val) {
+                  for (var j = 0; j < val.predictions.length; j++) {
+                    var obj1 = val.predictions[j];
+                    if (obj1.direction != undefined) {
+                      $.each([obj1.direction], function(i, val) {
+                        if (obj1.direction.prediction != undefined) {
+                          for (var i = 0; i < obj1.direction.prediction.length; i++) {
+                            var obj2 = obj1.direction.prediction[i];
+
+                            timeInSeconds = obj2.seconds;
+                            routeTag = obj1.routeTag;
+                            stopTitle = obj1.stopTitle;
+                            directionTitle = obj1.direction.title;
+                            branchCode = obj2.branch;
+                            directionCode = directionTitle.substring(0,1);
+
+                            $(function () {
+                              var n = directionTitle.indexOf("towards");
+                              var directionLength = directionTitle.length;
+                              heading = directionTitle.substring(n,directionLength);
+                              $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + timeInSeconds + " s</td></tr>");
+
+                            });
+                            // console.log(directionCode + " " + branchCode);
 
 
 
-                          // $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds + " s</td><td>" + "<span class='badge bg-info'>" + routeTag + "</span> " + directionTitle + "<td></tr>");
+                            // $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds + " s</td><td>" + "<span class='badge bg-info'>" + routeTag + "</span> " + directionTitle + "<td></tr>");
 
-                        };
-                      } else {
-                        for (var i = 0; i < obj1.direction.length; i++) {
-                          var obj3 = obj1.direction[i]
-                          if (obj3.prediction != undefined) {
-                            for (var i = 0; i < obj3.prediction.length; i++) {
-                              var obj4 = obj3.prediction[i];
+                          };
+                        } else {
+                          for (var i = 0; i < obj1.direction.length; i++) {
+                            var obj3 = obj1.direction[i]
+                            if (obj3.prediction != undefined) {
+                              for (var i = 0; i < obj3.prediction.length; i++) {
+                                var obj4 = obj3.prediction[i];
 
-                              timeInSeconds2 = obj4.seconds;
-                              routeTag2 = obj1.routeTag;
-                              stopTitle2 = obj1.stopTitle;
-                              directionTitle2 = obj3.title;
+                                timeInSeconds2 = obj4.seconds;
+                                routeTag2 = obj1.routeTag;
+                                stopTitle2 = obj1.stopTitle;
+                                directionTitle2 = obj3.title;
 
-                              // $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds2 + " s</td><td>" + "<span class='badge bg-info'>" + routeTag2 + "</span> " + directionTitle2 + "<td></tr>");
+                                // $("#schedules_table").find('tbody').append("<tr><td>" + timeInSeconds2 + " s</td><td>" + "<span class='badge bg-info'>" + routeTag2 + "</span> " + directionTitle2 + "<td></tr>");
 
+                              };
                             };
                           };
                         };
-                      };
-                      
-                    });
-                  } else {};
-                };
-              }); // ends each on obj
+                        
+                      });
+                    } else {};
+                  };
+                }); // ends each on obj
+              
 
                 // Make and place nearby stops on map as markers
                 var marker = new google.maps.Marker({
