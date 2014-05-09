@@ -38,11 +38,11 @@ function showTransit(position) {
           async: false,
           cache: false,
           type: "GET",
-          url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
-          dataType: "xml",
+          url: "http://webservices.nextbus.com/service/publicJSONFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
+          dataType: "JSON",
           success:
-            function xmlParser(xml) {
-              var obj = $.xml2json(xml);
+            function nextbusData(response) {
+              var obj = response;
 
               var timeInSeconds;
               var routeTag;
