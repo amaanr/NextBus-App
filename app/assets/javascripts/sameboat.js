@@ -4,11 +4,14 @@
 
 // Gets nearby transit stops
 function showTransit(position) {
-  // var latitude = position.coords.latitude;
-  // var longitude = position.coords.longitude;
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
 
-  var latitude = 43.757192;
-  var longitude = -79.337571;
+  // 43.657201,-79.406653 // lippincott
+  // 43.757192,-79.337571 // laurentide
+  // 43.666307,-79.393124 // queen's park
+  // var latitude = 43.666307;
+  // var longitude = -79.393124;
 
   var infowindow = new google.maps.InfoWindow({
     content: ''
@@ -29,20 +32,19 @@ function showTransit(position) {
         var tmpLatLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
         // stopName only needed if NextBus stopTitle fails
         var stopName = response[i].stop_name;
-        // $.each([response, function(i, val) {
-          // console.log(val);
-        // });
 
         // Gets NextBus arrivalTimes
         $.ajax ({
           async: false,
           cache: false,
           type: "GET",
-          url: "http://webservices.nextbus.com/service/publicJSONFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
-          dataType: "JSON",
+          url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
+          dataType: "XML",
           success:
             function nextbusData(response) {
-              var obj = response;
+              var obj = $.xml2json(response);
+              // console.log(obj);
+              // var obj = response;
               // console.log(obj);
 
               var timeInSeconds;
@@ -58,20 +60,46 @@ function showTransit(position) {
                   for (var i = 0; i < obj.predictions.length; i++) {
                     var obj1 = obj.predictions[i];
                     $.each([obj1], function(i, val) {
-                      if (obj1.direction != undefined) {
-                        if ($.isArray(obj1.direction.prediction) == true) {
-                          for (var i = 0; i < obj1.direction.prediction.length; i++) {
-                            var obj2 = obj1.direction.prediction[i];
-                            console.log(obj1.direction.title);
-                          };
-                        } else {
-                          console.log("obj1.direction.prediction not array" + obj1.direction.title);
-                        }
+                      if (obj1.direction != undefined) { // get our data for all arrays
+                        $.each([obj1.direction], function(i, val){
+                          if ($.isArray(obj1.direction.prediction) == true) {
+                            for (var i = 0; i < obj1.direction.prediction.length; i++) {
+                              var obj2 = obj1.direction.prediction[i];
+                              console.log(obj1.direction.title);
+                            };
+                          } else {
+                            for (var i = 0; i < obj1.direction.length; i++) {
+                              var obj3 = obj1.direction[i]
+                              $.each([obj3], function(i, val) {
+                                if (obj3.prediction != undefined) {
+                                  for (var i = 0; i < obj3.prediction.length; i++) {
+                                    var obj4 = obj3.prediction[i];
+                                    console.log(obj3.title);
+                                  }
+                                }  
+                              });
+                            }
+                          } // ends else
+                        });
                       };
                     });
                   };
                 } else {
-                  // console.log("obj no array"); test downtown schedules
+                  $.each([obj.predictions], function(i, val) {
+                    if (obj.predictions != undefined) {
+                      if ($.isArray(obj.predictions.direction.prediction) == true) {
+                        $.each([obj.predictions.direction], function(i, val) {
+                          if (obj.predictions.direction.prediction != undefined) {
+                            for (var i = 0; i < obj.predictions.direction.prediction.length; i++) {
+                              var obj4 = obj.predictions.direction.prediction[i];
+                              console.log(obj.predictions.direction.title);
+                            };
+                          }; 
+                        });
+                      };
+                    };
+                  });
+                  
                 };
               });
 
