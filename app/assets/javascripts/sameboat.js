@@ -73,13 +73,29 @@ function showTransit(position) {
                               branchCode = obj2.branch;
                               directionCode = directionTitle.substring(0,1);
 
-                              $(function () {
-                                var n = directionTitle.indexOf("towards");
-                                var directionLength = directionTitle.length;
-                                heading = directionTitle.substring(n,directionLength);
-                                $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + timeInSeconds + " s</td></tr>");
-
+                              var seconds = timeInSeconds;
+                              $(function countDown() {
+                                  var minutes = Math.round((seconds - 30)/60);
+                                  var remainingSeconds = seconds % 60;
+                                  if (remainingSeconds < 10) {
+                                      remainingSeconds = "0" + remainingSeconds;  
+                                  }
+                                  $(function () {
+                                    var n = directionTitle.indexOf("towards");
+                                    var directionLength = directionTitle.length;
+                                    heading = directionTitle.substring(n,directionLength);
+                                    $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + minutes + ":" + remainingSeconds + " s</td></tr>");
+                                  });
+                                  if (seconds == 0) {
+                                      clearInterval(countdownTimer);
+                                      $('#countdown').html("Departing...");
+                                  } else {
+                                      seconds--;
+                                  }
                               });
+                              // var countdownTimer = setInterval(function () {
+                              //   countDown();
+                              // }, 1000);
                             };
                           } else {
                             for (var i = 0; i < obj1.direction.length; i++) {
@@ -114,7 +130,7 @@ function showTransit(position) {
                   };
                 } else {
                   $.each([obj.predictions], function(i, val) {
-                    if (obj.predictions != undefined) {
+                    if (obj.predictions.direction != undefined) {
                       if ($.isArray(obj.predictions.direction.prediction) == true) {
                         $.each([obj.predictions.direction], function(i, val) {
                           if (obj.predictions.direction.prediction != undefined) {
@@ -128,13 +144,28 @@ function showTransit(position) {
                               branchCode = obj5.branch;
                               directionCode = directionTitle.substring(0,1);
 
-                              $(function () {
-                                var n = directionTitle.indexOf("towards");
-                                var directionLength = directionTitle.length;
-                                heading = directionTitle.substring(n,directionLength);
-                                $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + timeInSeconds + " s</td></tr>");
-
+                              var seconds = timeInSeconds;
+                              $(function countDown() {
+                                  var minutes = Math.round((seconds - 30)/60);
+                                  var remainingSeconds = seconds % 60;
+                                  if (remainingSeconds < 10) {
+                                      remainingSeconds = "0" + remainingSeconds;  
+                                  }
+                                  // $('#countdown').html(minutes + ":" + remainingSeconds);
+                                  $(function () {
+                                    var n = directionTitle.indexOf("towards");
+                                    var directionLength = directionTitle.length;
+                                    heading = directionTitle.substring(n,directionLength);
+                                    $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + minutes + ":" + remainingSeconds + " s</td></tr>");
+                                  });
+                                  if (seconds == 0) {
+                                      clearInterval(countdownTimer);
+                                      $('#countdown').html("Departing...");
+                                  } else {
+                                      seconds--;
+                                  }
                               });
+
                             };
                           }; 
                         });
