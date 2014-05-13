@@ -1,7 +1,3 @@
-// function getCoordinates(callmemaybe) {
-  // navigator.geolocation.getCurrentPosition(callmemaybe);
-// }
-
 // Gets nearby transit stops
 function showTransit(position) {
   var latitude = position.coords.latitude;
@@ -43,9 +39,6 @@ function showTransit(position) {
           success:
             function nextbusData(response) {
               var obj = $.xml2json(response);
-              // console.log(obj);
-              // var obj = response;
-              // console.log(obj);
 
               var timeInSeconds;
               var routeTag;
@@ -72,30 +65,13 @@ function showTransit(position) {
                               directionTitle = obj1.direction.title;
                               branchCode = obj2.branch;
                               directionCode = directionTitle.substring(0,1);
-
-                              var seconds = timeInSeconds;
-                              $(function countDown() {
-                                  var minutes = Math.round((seconds - 30)/60);
-                                  var remainingSeconds = seconds % 60;
-                                  if (remainingSeconds < 10) {
-                                      remainingSeconds = "0" + remainingSeconds;  
-                                  }
-                                  $(function () {
-                                    var n = directionTitle.indexOf("towards");
-                                    var directionLength = directionTitle.length;
-                                    heading = directionTitle.substring(n,directionLength);
-                                    $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + minutes + ":" + remainingSeconds + " s</td></tr>");
-                                  });
-                                  if (seconds == 0) {
-                                      clearInterval(countdownTimer);
-                                      $('#countdown').html("Departing...");
-                                  } else {
-                                      seconds--;
-                                  }
+                              
+                              $(function () {
+                                var n = directionTitle.indexOf("towards");
+                                var directionLength = directionTitle.length;
+                                heading = directionTitle.substring(n,directionLength);
+                                $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td></tr>");
                               });
-                              // var countdownTimer = setInterval(function () {
-                              //   countDown();
-                              // }, 1000);
                             };
                           } else {
                             for (var i = 0; i < obj1.direction.length; i++) {
@@ -116,8 +92,7 @@ function showTransit(position) {
                                       var n = directionTitle.indexOf("towards");
                                       var directionLength = directionTitle.length;
                                       heading = directionTitle.substring(n,directionLength);
-                                      $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + timeInSeconds + " s</td></tr>");
-
+                                      $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td></tr>");
                                     });
                                   }
                                 }  
@@ -145,27 +120,13 @@ function showTransit(position) {
                               directionCode = directionTitle.substring(0,1);
 
                               var seconds = timeInSeconds;
-                              $(function countDown() {
-                                  var minutes = Math.round((seconds - 30)/60);
-                                  var remainingSeconds = seconds % 60;
-                                  if (remainingSeconds < 10) {
-                                      remainingSeconds = "0" + remainingSeconds;  
-                                  }
-                                  // $('#countdown').html(minutes + ":" + remainingSeconds);
-                                  $(function () {
-                                    var n = directionTitle.indexOf("towards");
-                                    var directionLength = directionTitle.length;
-                                    heading = directionTitle.substring(n,directionLength);
-                                    $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + minutes + ":" + remainingSeconds + " s</td></tr>");
-                                  });
-                                  if (seconds == 0) {
-                                      clearInterval(countdownTimer);
-                                      $('#countdown').html("Departing...");
-                                  } else {
-                                      seconds--;
-                                  }
-                              });
 
+                              $(function () {
+                                var n = directionTitle.indexOf("towards");
+                                var directionLength = directionTitle.length;
+                                heading = directionTitle.substring(n,directionLength);
+                                $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td></tr>");
+                              });
                             };
                           }; 
                         });
