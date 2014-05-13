@@ -24,6 +24,7 @@
 
 //= require map
 //= require geolocation
+//= require schedulesCountdown
 //= require sameboat
 
 //= require turbolinks
