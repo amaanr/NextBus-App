@@ -69,37 +69,14 @@ function showTransit(position) {
                               branchCode = obj2.branch;
                               directionCode = directionTitle.substring(0,1);
 
-                              var seconds = timeInSeconds;
-                              $(function countDown() {
-                                  var minutes = Math.round((seconds - 30)/60);
-                                  var remainingSeconds = seconds % 60;
-                                  if (remainingSeconds < 10) {
-                                      remainingSeconds = "0" + remainingSeconds;  
-                                  }
-                                  if (seconds == 0) {
-                                      clearInterval(countdownTimer);
-                                      $('#countdown').html("Departing...");
-                                  } else {
-                                      seconds--;
-                                  }
-                              });
-                              
-                              function countDepartsIn() {
-                                $('.departs_in').each(function () {
-                                  var count = $(this).data('seconds');
-                                  count --;
-                                  $(this).data('seconds', count);
-                                  $(this).text(countDown(count));
-                                });
-                              }
-
                               $(function () {
                                 var n = directionTitle.indexOf("towards");
                                 var directionLength = directionTitle.length;
                                 heading = directionTitle.substring(n,directionLength);
-                                $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td class='departs_in' data-seconds='" + timeInSeconds + "'>" + minutes + ":" + remainingSeconds + " s</td></tr>");
                               });
-  
+
+                              $("#schedules_table").find('tbody').append("<tr><td><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
+                            
                             };
                           } else {
                             for (var i = 0; i < obj1.direction.length; i++) {
@@ -120,9 +97,10 @@ function showTransit(position) {
                                       var n = directionTitle.indexOf("towards");
                                       var directionLength = directionTitle.length;
                                       heading = directionTitle.substring(n,directionLength);
-                                      $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td>" + timeInSeconds + " s</td></tr>");
-
                                     });
+
+                                    $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td></tr>");
+                            
                                   }
                                 }  
                               });
