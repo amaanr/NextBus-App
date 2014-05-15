@@ -88,7 +88,7 @@ function showTransit(position) {
 
                                     timeInSeconds = obj4.seconds;
                                     routeTag = obj.predictions.routeTag;
-                                    stopTitle = obj3.stopTitle; //issue here
+                                    stopTitle = obj.predictions.stopTitle;
                                     directionTitle = obj3.title;
                                     branchCode = obj4.branch;
                                     directionCode = directionTitle.substring(0,1);
@@ -99,7 +99,7 @@ function showTransit(position) {
                                       heading = directionTitle.substring(n,directionLength);
                                     });
 
-                                    $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td></tr>");
+                                    $("#schedules_table").find('tbody').append("<tr><td><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
                             
                                   }
                                 }  
@@ -132,7 +132,7 @@ function showTransit(position) {
                                 heading = directionTitle.substring(n,directionLength);
                               });
 
-                              $("#schedules_table").find('tbody').append("<tr><td>" + directionCode + " " + branchCode + "</td><td>" + stopTitle + "</td><td>" + heading + "</td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td></tr>");
+                              $("#schedules_table").find('tbody').append("<tr><td><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
                             
                             };
                           }; 
