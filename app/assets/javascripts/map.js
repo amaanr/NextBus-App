@@ -19,13 +19,13 @@ function initialize() {
   directionsDisplay.setPanel(document.getElementById('directions-panel'));
 
   // Instantiate autocomplete method for origin
-  var startFrom = document.getElementById('start-from');
-  var autoStartFrom = new google.maps.places.Autocomplete(startFrom);
-  autoStartFrom.bindTo('bounds', map);
+  // var startFrom = document.getElementById('start-from');
+  // var autoStartFrom = new google.maps.places.Autocomplete(startFrom);
+  // autoStartFrom.bindTo('bounds', map);
   // Instantiates autocomplete method for destination
-  var endTo = document.getElementById('end-to');
-  var autoEndTo = new google.maps.places.Autocomplete(endTo);
-  autoEndTo.bindTo('bounds', map);
+  // var endTo = document.getElementById('end-to');
+  // var autoEndTo = new google.maps.places.Autocomplete(endTo);
+  // autoEndTo.bindTo('bounds', map);
 
 } // ends initialize function
 
