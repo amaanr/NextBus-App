@@ -1,13 +1,13 @@
 // Gets nearby transit stops
 function showTransit(position) {
-  var latitude = position.coords.latitude;
-  var longitude = position.coords.longitude;
+  // var latitude = position.coords.latitude;
+  // var longitude = position.coords.longitude;
 
   // 43.657201,-79.406653 // lippincott
   // 43.757192,-79.337571 // laurentide
   // 43.666307,-79.393124 // queen's park
-  // var latitude = 43.666307;
-  // var longitude = -79.393124;
+  var latitude = 43.757192;
+  var longitude = -79.337571;
 
   var infowindow = new google.maps.InfoWindow({
     content: ''
@@ -64,7 +64,7 @@ function showTransit(position) {
 
                               timeInSeconds = obj2.seconds;
                               routeTag = obj1.routeTag;
-                              stopTitle = obj1.stopTitle; //issue here
+                              stopTitle = obj1.stopTitle;
                               directionTitle = obj1.direction.title;
                               branchCode = obj2.branch;
                               directionCode = directionTitle.substring(0,1);
@@ -88,7 +88,7 @@ function showTransit(position) {
 
                                     timeInSeconds = obj4.seconds;
                                     routeTag = obj.predictions.routeTag;
-                                    stopTitle = obj.predictions.stopTitle;
+                                    stopTitle = obj1.stopTitle;
                                     directionTitle = obj3.title;
                                     branchCode = obj4.branch;
                                     directionCode = directionTitle.substring(0,1);

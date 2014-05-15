@@ -5,7 +5,7 @@ function decorateSeconds (seconds) {
     remainingSeconds = "0" + remainingSeconds;
   }
 	if (seconds == 0) {
-    clearInterval(countdownTimer);
+    clearInterval(decorateSeconds);
     $('.cellDepartsIn').html("Departing...");
   } else {
     seconds--;
