@@ -1,13 +1,7 @@
 // Gets nearby transit stops
 function showTransit(position) {
-  // var latitude = position.coords.latitude;
-  // var longitude = position.coords.longitude;
-
-  // 43.657201,-79.406653 // lippincott
-  // 43.757192,-79.337571 // laurentide
-  // 43.666307,-79.393124 // queen's park
-  var latitude = 43.757192;
-  var longitude = -79.337571;
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
 
   var infowindow = new google.maps.InfoWindow({
     content: ''
