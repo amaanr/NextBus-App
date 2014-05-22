@@ -26,6 +26,7 @@
 //= require geolocation
 //= require schedulesCountdown
 //= require sameboat
+//= require uservoice
 
 //= require turbolinks
 //= require_tree .
