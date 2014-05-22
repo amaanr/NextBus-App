@@ -33,9 +33,6 @@ function showTransit(position) {
           success:
             function nextbusData(response) {
               var obj = $.xml2json(response);
-              // console.log(obj);
-              // var obj = response;
-              // console.log(obj);
 
               var timeInSeconds;
               var routeTag;
