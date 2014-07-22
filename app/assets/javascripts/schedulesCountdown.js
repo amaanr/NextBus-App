@@ -16,7 +16,9 @@ function decorateSeconds (seconds) {
 function tickDepartsIn() {
   $('.cellDepartsIn').each(function () {
     var count = $(this).data('seconds');
-    count --;
+    if (count != 0) {
+      count --;
+    };
     $(this).data('seconds', count);
     $(this).text(decorateSeconds(count));
   });
