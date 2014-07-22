@@ -5,7 +5,7 @@ class UserLocation < ActiveRecord::Base
 	def self.search(latitude,longitude)
 		Geocoder.configure(:lookup => :google)
 		results = Geocoder.search("#{latitude},#{longitude}")
-		result = results.select {|res| !res.neighborhood.nil? }.first
+		result = results.select {|res| !res.neighborhood.nil? && !res.address.nil? }.first
 		return result
 
 	end
