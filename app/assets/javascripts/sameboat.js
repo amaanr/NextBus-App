@@ -103,7 +103,7 @@ function showTransit(position) {
                   };
                 } else {
                   $.each([obj.predictions], function(i, val) {
-                    if (obj.predictions.direction != undefined) {
+                    if (obj.predictions != undefined) {
                       if ($.isArray(obj.predictions.direction.prediction) == true) {
                         $.each([obj.predictions.direction], function(i, val) {
                           if (obj.predictions.direction.prediction != undefined) {
