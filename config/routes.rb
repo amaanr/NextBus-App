@@ -6,7 +6,7 @@ Sameboat::Application.routes.draw do
   post "/nearby_stops"=>"home#nearby_stops"
   get "/nearby_stops"=>"home#nearby_stops"
   root 'home#index'
-  
+  get "/admin" => "home#admin"
 
   resources :plans
   resources :users

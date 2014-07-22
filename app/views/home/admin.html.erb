@@ -1,0 +1,30 @@
+<h2>Admin Page</h2>
+<div>
+<h5>Number of visits</h5>
+<%= @users_count %>
+<h5>Number of visits <strong>today</strong></h5>
+<%= @users_today %>
+</div>
+<table>
+	<thead>
+		<th>Longitude</th>
+		<th>Latitude</th>
+		<th>City</th>
+		<th>Address</th>
+		<th>Intersection</th>
+		<th>Neighbourhood</th>
+	</thead>
+	<% @users.each do |user| %>
+		<tr>
+			<td><%= user.longitude %></td>
+			<td><%= user.latitude %></td>
+			<td><%= user.city %></td>
+			<td><%= user.address %></td>
+			<td><%= user.main_intersection %></td>
+			<td><%= user.neighborhood %></td>
+		</tr>
+	<% end %>
+	</table>
+	
+
+
