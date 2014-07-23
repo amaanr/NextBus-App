@@ -28,11 +28,11 @@ function showTransit(position) {
           async: false,
           cache: false,
           type: "GET",
-          url: "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
-          dataType: "XML",
+          url: "http://webservices.nextbus.com/service/publicJSONFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
+          dataType: "JSON",
           success:
             function nextbusData(response) {
-              var obj = $.xml2json(response);
+              var obj = response;
 
               var timeInSeconds;
               var routeTag;
@@ -103,7 +103,7 @@ function showTransit(position) {
                   };
                 } else {
                   $.each([obj.predictions], function(i, val) {
-                    if (obj.predictions != undefined) {
+                    if (obj.predictions.direction != undefined) {
                       if ($.isArray(obj.predictions.direction.prediction) == true) {
                         $.each([obj.predictions.direction], function(i, val) {
                           if (obj.predictions.direction.prediction != undefined) {
