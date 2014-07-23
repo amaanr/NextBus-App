@@ -4,12 +4,12 @@ function decorateSeconds (seconds) {
   if (remainingSeconds < 10) {
     remainingSeconds = "0" + remainingSeconds;
   }
-	if (seconds == 0) {
-    clearInterval(decorateSeconds);
-    $('.cellDepartsIn').html("Departing...");
-  } else {
-    seconds--;
-  }
+	// if (seconds == 0) {
+ //    clearInterval(decorateSeconds);
+ //    $('.cellDepartsIn').html("Departing...");
+ //  } else {
+ //    seconds--;
+ //  }
   return minutes + ":" + remainingSeconds;
 }
 
