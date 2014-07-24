@@ -66,7 +66,7 @@ function showTransit(position) {
                                 heading = directionTitle.substring(n,directionLength);
                               });
 
-                              $("#schedules_table").find('tbody').append("<tr><td><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
+                              $("#schedules_table").find('tbody').append("<tr><td><a href='https://www.ttc.ca/Routes/" + routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
                             
                             };
                           } else {
@@ -78,7 +78,7 @@ function showTransit(position) {
                                     var obj4 = obj3.prediction[i];
 
                                     timeInSeconds = obj4.seconds;
-                                    routeTag = obj.predictions.routeTag;
+                                    routeTag = obj1.routeTag;
                                     stopTitle = obj1.stopTitle;
                                     directionTitle = obj3.title;
                                     branchCode = obj4.branch;
@@ -90,7 +90,7 @@ function showTransit(position) {
                                       heading = directionTitle.substring(n,directionLength);
                                     });
 
-                                    $("#schedules_table").find('tbody').append("<tr><td><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
+                                    $("#schedules_table").find('tbody').append("<tr><td><a href='https://www.ttc.ca/Routes/" + routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
                             
                                   }
                                 }  
@@ -123,7 +123,7 @@ function showTransit(position) {
                                 heading = directionTitle.substring(n,directionLength);
                               });
 
-                              $("#schedules_table").find('tbody').append("<tr><td><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
+                              $("#schedules_table").find('tbody').append("<tr><td><a href='https://www.ttc.ca/Routes/" + routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
                             
                             };
                           }; 
