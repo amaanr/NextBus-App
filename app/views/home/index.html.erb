@@ -21,7 +21,10 @@
 	          <div class="panel-body">
 	          <section id="schedule">
 							<div class="table-responsive">
-		            <table id="schedules_table" class="tablesorter table table-striped">
+								<div style="margin-left:auto;margin-right:auto;text-align:center;">
+									<%= image_tag("loader.gif", :class => "table-loader", :style => "max-height:15px;") %>
+								</div>
+		            <table id="schedules_table" class="tablesorter table table-striped hide">
 		              <thead>
 		                <tr>
 		                	<th class=""><i class="fa fa-code-fork"></i></th>
@@ -81,7 +84,14 @@
         3: { sorter: false}
     	}
   	});
-  }, 6000);
+  }, 4000);
+
+  setTimeout(function() {
+  	$('table#schedules_table').trigger('update');
+  	$('table#schedules_table').removeClass('hide');
+  	$('.table-loader').hide();
+  }, 5000);
+
 </script>
 
 
