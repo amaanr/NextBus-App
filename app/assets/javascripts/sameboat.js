@@ -160,3 +160,6 @@ function showTransit(position) {
     } // ends main success handler
   }); // ends main post ajax request to /nearby_stops
 } // ends showTransit function
+
+// $('table#schedules_table').tablesorter();
+// $("table#schedules_table").trigger("update");

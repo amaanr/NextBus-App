@@ -21,18 +21,16 @@
 	          <div class="panel-body">
 	          <section id="schedule">
 							<div class="table-responsive">
-		            <table id="schedules_table" class="table table-striped m-b-none">
+		            <table id="schedules_table" class="tablesorter table table-striped">
 		              <thead>
 		                <tr>
-		                	<th style="text-align:center;" class="th-sortable branch_th" data-toggle="class" width="15%"> <i class="fa fa-code-fork"></i></th>
-		                	<th style="text-align:center;" class="th-sortable departure_th" data-toggle="class" width="15%"> <i class="fa fa-clock-o"></i></th>
-		                	<th class="th-sortable title_th" data-toggle="class">Stop <i class="pull-right fa fa-dot-circle-o"></i></th>
-		                	<th class="th-sortable heading_th" data-toggle="class">Heading <i class="pull-right fa fa-arrows"></i></th>
+		                	<th class=""><i class="fa fa-code-fork"></i></th>
+		                	<th class="th-sortable"><i class="fa fa-clock-o"></i></th>
+		                	<th class="">Stop <i class="pull-right fa fa-dot-circle-o"></i></th>
+		                	<th class="">Heading <i class="pull-right fa fa-arrows"></i></th>
 		                </tr>
 		              </thead>
 		              <tbody>
-		              	<tr>
-		              	</tr>
 		              </tbody>
 		            </table>
 		            </section>
@@ -73,6 +71,17 @@
   $( document ).ready(function() {
     $(geolocation);
   });
+
+  setTimeout(function() {
+  	$('table#schedules_table').tablesorter({
+			headers: {
+        0: { sorter: false},
+        1: { sorter: 'time'},
+        2: { sorter: false},
+        3: { sorter: false}
+    	}
+  	});
+  }, 6000);
 </script>
 
 

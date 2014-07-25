@@ -25,6 +25,7 @@
 //= require map
 //= require geolocation
 //= require schedulesCountdown
+//= require js/jquery.tablesorter.min
 //= require sameboat
 //= require uservoice
 
