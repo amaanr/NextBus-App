@@ -23,8 +23,8 @@
 							<div style="margin-left:auto;margin-right:auto;text-align:center;">
 								<%= image_tag("loader.gif", :class => "table-loader", :style => "max-height:15px;") %>
 							</div>
-							<div class="table-responsive">
-		            <table id="schedules_table" class="tablesorter table table-striped hide">
+							<div class="table-responsive hide">
+		            <table id="schedules_table" class="tablesorter table table-striped">
 		              <thead>
 		                <tr>
 		                	<th class=""><i class="fa fa-code-fork"></i></th>
@@ -88,7 +88,7 @@
 
   setTimeout(function() {
   	$('table#schedules_table').trigger('update');
-  	$('table#schedules_table').removeClass('hide');
+  	$('.table-responsive').removeClass('hide');
   	$('.table-loader').hide();
   }, 5000);
 
