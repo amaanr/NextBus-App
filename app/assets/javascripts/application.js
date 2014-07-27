@@ -13,13 +13,13 @@
 
 //= require_self
 //= require jquery
+//= require bootstrap
 //= require jquery_ujs
 //= require jquery.xml2json
-//= require bootstrap
 
 //= require js/app
-//= require js/app.data
 //= require js/app.plugin
+//= require js/app.data
 //= require js/fuelux/fuelux
 
 //= require map

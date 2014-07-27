@@ -10,9 +10,10 @@
  *
  *= require_self
  *= require css/bootstrap
- *= require css/plugin
  *= require font-awesome
+ *= require css/font
  *= require css/style
+ *= require css/plugin
  *= require map
  *= require_tree .
 */
