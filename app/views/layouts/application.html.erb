@@ -159,9 +159,17 @@
   </footer>
   <!-- / footer -->
 
-  <script type="text/javascript" src="/assets/js/app.js"></script>
-  <script type="text/javascript" src="/assets/js/app.plugin.js"></script>
-  <script type="text/javascript" src="/assets/js/app.data.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    if( !window.location.hash && window.addEventListener ){
+      window.addEventListener( "load",function() {
+        setTimeout(function(){
+            window.scrollTo(0, 0);
+        }, 0);
+      });
+    }
+  });
+  </script>
 
 </body>
 </html>
