@@ -17,9 +17,9 @@
 //= require jquery_ujs
 //= require jquery.xml2json
 
-//= require js/app
-//= require js/app.plugin
-//= require js/app.data
+///= require js/app
+///= require js/app.plugin
+///= require js/app.data
 //= require js/fuelux/fuelux
 
 //= require map
