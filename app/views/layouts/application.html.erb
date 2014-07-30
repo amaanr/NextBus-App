@@ -8,14 +8,13 @@
   <meta name="author" content="Aly Rattansi & Amaan Rattansi">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="mobile-web-app-capable" content="yes"> 
-  <link rel="stylesheet" href="/assets/css/bootstrap.css">
-  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/assets/css/font.css">
-  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <%= stylesheet_link_tag "css/bootstrap" %>
+  <%= stylesheet_link_tag "css/font-awesome.min" %>
+  <%= stylesheet_link_tag "css/font" %>
+  <%= stylesheet_link_tag "css/style" %>
 
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1cvBrNQdGDTZAFbF6pMG4zK0iTQtAnFs&sensor=true&libraries=places"></script>
-
-  <!-- <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %> -->
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   
