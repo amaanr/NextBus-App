@@ -9,10 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require css/bootstrap
- *= require font-awesome
- *= require css/font
- *= require css/style
  *= require map
  *= require_tree .
 */
