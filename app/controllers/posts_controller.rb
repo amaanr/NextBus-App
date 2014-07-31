@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!
 	def index
+		redirect_to new_user_session_path
 		@posts = Post.order("updated_at DESC")
 		@new_post = Post.new
 	end
