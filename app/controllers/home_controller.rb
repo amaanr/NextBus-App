@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:admin]
+
   
   def index
    # Stop.near([43.7956938500000004,-79.3368321],3, :order => "distance").limit(4)
@@ -11,11 +12,12 @@ class HomeController < ApplicationController
     @users_count = UserLocation.count
     @users_today = UserLocation.where("created_at >= ?", Time.zone.now.beginning_of_day).count
     @users = UserLocation.all
+    authorize! :admin, User
   end
 
   # Default distance set to 10 km, nearest 4 stops
   def nearby_stops
-  	stops = Stop.near([params[:latitude],params[:longitude]],0.01, :order => "distance").limit(6)
+  	stops = Stop.near([params[:latitude],params[:longitude]],10, :order => "distance").limit(6)
     google_results = UserLocation.search(params[:latitude],params[:longitude])
     geocoder_ca_results = UserLocation.geocoder_ca(params[:latitude],params[:longitude]).intersection
     user_location=UserLocation.new(

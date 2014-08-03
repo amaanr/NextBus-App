@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   
+  ROLES = %i[admin user]
 
   has_many :posts
   has_many :locations
