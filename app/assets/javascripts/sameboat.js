@@ -16,7 +16,7 @@ function showTransit(position) {
       "longitude": longitude
     },
     error: function(data) {
-      window.location.replace("http://sameboat.co/lakfd");
+      window.location.replace("http://sameboat.co/lakfd"); //amaan update this
     },
     success: function(response) {
       for (var i = 0; i < response.length; i++) {
@@ -138,11 +138,13 @@ function showTransit(position) {
                 };
               });
 
+		            var image = "http://i.imgur.com/aMW2NfO.png";
                 // Make and place nearby stops on map as markers
                 var marker = new google.maps.Marker({
                   map: map,
                   position: tmpLatLng,
-                  title: stopName
+                  title: stopName,
+		              icon: image
                 });
 
                 var infoWindowContent = '<div id="content">'+
