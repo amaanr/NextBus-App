@@ -138,11 +138,13 @@ function showTransit(position) {
                 };
               });
 
+		var image = "http://i.imgur.com/aMW2NfO.png";
                 // Make and place nearby stops on map as markers
                 var marker = new google.maps.Marker({
                   map: map,
                   position: tmpLatLng,
-                  title: stopName
+                  title: stopName,
+		  icon: image
                 });
 
                 var infoWindowContent = '<div id="content">'+
