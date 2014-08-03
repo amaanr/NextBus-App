@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  # before_filter :authenticate_user!, :only => [:index]
+  before_filter :authenticate_user!, :only => [:admin]
   
   def index
    # Stop.near([43.7956938500000004,-79.3368321],3, :order => "distance").limit(4)
