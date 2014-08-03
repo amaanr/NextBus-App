@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114001323) do
+ActiveRecord::Schema.define(version: 20140315212049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,25 @@ ActiveRecord::Schema.define(version: 20140114001323) do
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "plans", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "start_address"
+    t.string   "end_address"
+    t.string   "current_location"
+    t.integer  "nearest_stop_id"
+    t.integer  "start_stop_id"
+    t.integer  "end_stop_id"
+    t.integer  "total_distance"
+    t.integer  "total_time"
+    t.integer  "speed"
+  end
+
+  create_table "plans_stops", id: false, force: true do |t|
+    t.integer "plan_id", null: false
+    t.integer "stop_id", null: false
   end
 
   create_table "post_types", force: true do |t|
@@ -60,6 +79,10 @@ ActiveRecord::Schema.define(version: 20140114001323) do
     t.integer  "user_id"
     t.string   "latitude"
     t.string   "longitude"
+    t.string   "address"
+    t.string   "city"
+    t.string   "main_intersection"
+    t.string   "neighborhood"
     t.integer  "stop_id"
     t.datetime "created_at"
     t.datetime "updated_at"

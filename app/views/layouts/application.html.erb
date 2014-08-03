@@ -6,13 +6,19 @@
   <meta name="keywords" content="sameboat public transit toronto ttc canada aly amaan rattansi where public meets transit">
   <meta name="description" content="Sameboat is a web & mobile app that allows transit riders to plan trips in real-time. We provide to-the-second bus and streetcar schedules, in addition to traffic delays and other incidents.">
   <meta name="author" content="Aly Rattansi & Amaan Rattansi">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="mobile-web-app-capable" content="yes"> 
+
+  <%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" %>
+  <%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" %>
+  <%= stylesheet_link_tag "//sameboatcdn.blob.core.windows.net/css/font.css" %>
+  <%= stylesheet_link_tag "//sameboatcdn.blob.core.windows.net/css/style.css" %>
+  <%= stylesheet_link_tag "//sameboatcdn.blob.core.windows.net/css/plugin.css" %>
 
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1cvBrNQdGDTZAFbF6pMG4zK0iTQtAnFs&sensor=true&libraries=places"></script>
-
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %>
+  
 </head>
 <body style class="navbar-fixed">
 
@@ -94,7 +100,7 @@
 
   <!-- header -->
   <header id="header" class="navbar bg bg-black">
-    <a href="docs.html" class="btn btn-link pull-right m-t-mini"><i class="fa fa-question icon-xlarge text-default"></i></a>
+    <a href="http://www.sameboat.ca" target="_blank" class="btn btn-link pull-right m-t-mini"><i class="fa fa-question icon-xlarge text-default"></i></a>
     <%= link_to image_tag("sameboat_white.png", :class => "thumb-small", :style => "max-width:20px;"), root_path, :class => "navbar-brand" %>
   </header>
 
@@ -149,21 +155,13 @@
   <footer id="footer">
     <div class="text-center padder clearfix">
       <p>
-        <small>&copy; Copyright Sameboat 2013, a product of How Pigs Fly Inc.</small><br><br>
+        <small>&copy; Copyright Sameboat 2014</small><br><br>
         <a href="http://www.twitter.com/sameboatco" target="_blank" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
         <a href="http://www.facebook.com/sameboat" target="_blank" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
-        <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="fa fa-google-plus"></i></a>
       </p>
     </div>
   </footer>
   <!-- / footer -->
-
-<script>
-  $( document ).ready(function() {
-    $(geolocation);
-  });
-</script>
-
 
 </body>
 </html>

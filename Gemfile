@@ -53,9 +53,6 @@ gem 'debugger', group: [:development, :test]
 # Use RubyGeocoder
 gem 'geocoder'
 
-# Use font-awesome-rails
-gem 'font-awesome-rails'
-
 # Use OmniAuth for Facebook & Twitter login/register
 gem 'omniauth'
 gem 'omniauth-facebook'

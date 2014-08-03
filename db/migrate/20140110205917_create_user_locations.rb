@@ -5,6 +5,10 @@ class CreateUserLocations < ActiveRecord::Migration
       t.references :user
       t.string :latitude
       t.string :longitude
+      t.string :address
+      t.string :city
+      t.string :main_intersection
+      t.string :neighborhood
       t.references :stop
       t.timestamps
     end
