@@ -6,7 +6,7 @@ class Ability
     if user.role == "admin"
         can :admin, User
     else
-
+        #nothing 
     end
 
   end
