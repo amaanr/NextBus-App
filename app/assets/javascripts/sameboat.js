@@ -16,7 +16,7 @@ function showTransit(position) {
       "longitude": longitude
     },
     error: function(data) {
-      window.location.replace("http://sameboat.co/lakfd");
+      window.location.replace("http://sameboat.co/lakfd"); //amaan update this
     },
     success: function(response) {
       for (var i = 0; i < response.length; i++) {

@@ -15,7 +15,7 @@ class HomeController < ApplicationController
 
   # Default distance set to 10 km, nearest 4 stops
   def nearby_stops
-  	stops = Stop.near([params[:latitude],params[:longitude]],0.01, :order => "distance").limit(6)
+  	stops = Stop.near([params[:latitude],params[:longitude]],10, :order => "distance").limit(6)
     google_results = UserLocation.search(params[:latitude],params[:longitude])
     geocoder_ca_results = UserLocation.geocoder_ca(params[:latitude],params[:longitude]).intersection
     user_location=UserLocation.new(
