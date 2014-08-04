@@ -1,58 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <style>
-  body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-  }
-
-  div.dialog {
-    width: 25em;
-    margin: 4em auto 0 auto;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 4em 0 4em;
-  }
-
-  h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
-  body > p {
-    width: 33em;
-    margin: 0 auto 1em;
-    padding: 1em 0;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow:0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
+  <meta charset="utf-8">
+  <title>Sameboat | Where Public Meets Transit</title>
+  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://sameboatcdn.blob.core.windows.net/css/font.css">
+  <link rel="stylesheet" href="https://sameboatcdn.blob.core.windows.net/css/style.css">
+  <!--[if lt IE 9]>
+    <script src="js/ie/respond.min.js"></script>
+    <script src="js/ie/html5.js"></script>
+  <![endif]-->
 </head>
-
 <body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-  <p>If you are the application owner check the logs for more information.</p>
+  <!-- header -->
+  <header id="header" class="navbar bg bg-black">
+    <a href="http://www.sameboat.ca" target="_blank" class="btn btn-link pull-right m-t-mini"><i class="fa fa-question icon-xlarge text-default"></i></a>
+    <a class="navbar-brand" href="http://sameboat.co"> <img style="max-width:20px;" src="https://sameboatcdn.blob.core.windows.net/img/sameboat_white.png"> </a>
+  </header>
+  <!-- header end -->
+  <section id="content">
+    <div class="main padder">
+      <div class="row">
+          <div class="col-lg-4 col-lg-offset-4">
+            <div class="text-center m-b-large">
+              <h1 class="h text-white">404</h1>
+            </div>
+            <div class="list-group m-b-small">
+              <a href="http://sameboat.co" class="list-group-item">
+                <i class="fa fa-chevron-right"></i>
+                <i class="fa fa-fw fa-home"></i> app
+              </a>
+              <a href="mailto:us@sameboat.ca" class="list-group-item">
+                <i class="fa fa-chevron-right"></i>
+                <span class="badge">us@sameboat.ca</span>
+                <i class="fa fa-fw fa-envelope"></i> contact
+              </a>
+              <a href="http://sameboat.co/about" class="list-group-item">
+                <i class="fa fa-chevron-right"></i>
+                <i class="fa fa-fw fa-question"></i> about
+              </a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <footer id="footer">
+    <div class="text-center padder clearfix">
+      <p>
+        <small>&copy; Copyright Sameboat 2014</small><br><br>
+        <a href="http://www.twitter.com/sameboatco" target="_blank" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
+        <a href="http://www.facebook.com/sameboat" target="_blank" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
+      </p>
+    </div>
+  </footer>
+  <!-- / footer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <!-- app -->
+  <script src="https://sameboatcdn.blob.core.windows.net/scripts/app.js"></script>
+  <script src="https://sameboatcdn.blob.core.windows.net/scripts/app.plugin.js"></script>
+  <script src="https://sameboatcdn.blob.core.windows.net/scripts/app.data.js"></script>
 </body>
 </html>
