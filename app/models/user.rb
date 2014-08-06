@@ -1,12 +1,13 @@
 class User < ActiveRecord::Base
   
+  ROLES = %i[admin user]
 
   has_many :posts
   has_many :locations
   has_many :comments
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  
+  validates :first_name, :last_name, :role, :email, presence: true  
 
   devise :database_authenticatable, :registerable, :omniauthable, :recoverable, :rememberable, :trackable, :validatable
 

@@ -29,6 +29,7 @@ GEM
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
+    cancancan (1.9.1)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -171,6 +172,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  cancancan (~> 1.9)
   capistrano (~> 2.15)
   carrierwave
   coffee-rails (~> 4.0.0)

@@ -23,6 +23,10 @@
 </head>
 <body style class="navbar-fixed">
 
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
+
 <% if user_signed_in? %>
 
   <!-- header -->

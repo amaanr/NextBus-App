@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:admin]
+
   
   def index
    # Stop.near([43.7956938500000004,-79.3368321],3, :order => "distance").limit(4)
@@ -11,6 +12,7 @@ class HomeController < ApplicationController
     @users_count = UserLocation.count
     @users_today = UserLocation.where("created_at >= ?", Time.zone.now.beginning_of_day).count
     @users = UserLocation.all
+    authorize! :admin, User
   end
 
   # Default distance set to 10 km, nearest 4 stops
