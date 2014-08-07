@@ -9,11 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="mobile-web-app-capable" content="yes"> 
 
-  <%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" %>
-  <%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" %>
-  <%= stylesheet_link_tag "//sameboatcdn.blob.core.windows.net/css/font.css" %>
-  <%= stylesheet_link_tag "//sameboatcdn.blob.core.windows.net/css/style.css" %>
-  <%= stylesheet_link_tag "//sameboatcdn.blob.core.windows.net/css/plugin.css" %>
+  <%= stylesheet_link_tag "application", "data-turbolinks-track" => true %>
 
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1cvBrNQdGDTZAFbF6pMG4zK0iTQtAnFs&sensor=true&libraries=places"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
