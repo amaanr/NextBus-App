@@ -2,9 +2,17 @@
 
 html, body {
   height: 100%;
-  max-width: 100%;
+  /*max-width: 100%;*/
   margin: 0;
   padding: 0;
+}
+
+.googleMapContainer img {
+    max-width: none !important;
+}
+
+#map-canvas img {
+  max-width: none !important;
 }
 
 #map-canvas, #map_canvas {

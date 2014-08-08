@@ -47,22 +47,6 @@
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
       <i class="fa fa-bars icon-xlarge text-default"></i>
     </button>
-    <ul class="nav navbar-nav hidden-xs">
-      <li>
-        <div class="m-t-small">
-          <%= link_to plans_path, 'data-no-turbolink' => true do %>
-            <div class="btn btn-primary btn-block m-t-mini"><i class="fa fa-map-marker pull-left"></i> Plan a trip</div>
-          <% end %> 
-        </div>
-      </li>
-      <li>
-        <div class="m-t-small">
-          <%= link_to "data-toggle" => "modal", 'data-target' => '#modal', 'data-no-turbolink' => true do %>
-            <div class="btn btn-info btn-block m-t-mini"><i class="fa fa-plus pull-left"></i> POST</div>
-          <% end %>
-        </div>
-      </li>
-    </ul>
 	</header><!-- / header -->
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
@@ -107,50 +91,7 @@
 <% end %>
 
 <%= yield %>
-  <!-- .modal -->
-  <div id="modal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><i class="fa-remove"></i>&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Make a post...</h4>
-          </div>
-          <%= form_for Post.new do |f| %>
-          <div class="modal-body">          
-            <div class="block">
-              <label class="control-label">Title</label>
-              <input type="text" class="form-control" placeholder="Post title">
-            </div>
-            <div class="block">
-              <label class="control-label">Type of Post</label>
-              <div class="form-group">
-                <div class="btn-group">
-                  <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle">
-                    <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post, :prompt => true ) do %>
-                      <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
-                      <span class="caret"></span>
-                    <% end %>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="block">
-              <label class="control-label">Content</label>
-              <%= f.text_field :content, :class => "form-control", :placeholder => "What's happening?", 'data-trigger' => 'keyup', 'data-rangelength' => '[20,200]', 'rows' => '5' do %>
-                  <textarea placeholder="What's happening?" rows="5" class="form-control"></textarea>
-              <% end -%>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-            <%= f.submit "Post", :class => "btn btn-sm btn-primary", 'data-loading-text' => 'Publishing' %>
-          </div>
-        </div><!-- /.modal-content -->
-      </div>
-      <% end %><!-- ends form -->
-  </div>
-  <!-- / .modal -->
-
+  
   <!-- footer -->
   <footer id="footer">
     <div class="text-center padder clearfix">
