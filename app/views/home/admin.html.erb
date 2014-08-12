@@ -10,8 +10,7 @@
 							<div class="table-responsive">
 		            <table class="table table-striped m-b-none">
 		              <thead>
-										<th>Lat</th>
-										<th>Lon</th>
+										<th>Location</th>
 										<th>City</th>
 										<th>Address</th>
 										<th>Intersection</th>
@@ -21,8 +20,7 @@
 		              <tbody>
 										<% @users.each do |user| %>
 											<tr>
-												<td><%= user.latitude %></td>
-												<td><%= user.longitude %></td>
+												<td><%= user.latitude %>, <%= user.longitude %></td>
 												<td><%= user.city %></td>
 												<td><%= user.address %></td>
 												<td><%= user.main_intersection %></td>
