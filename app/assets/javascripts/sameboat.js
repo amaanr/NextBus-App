@@ -72,9 +72,10 @@ function showTransit(position) {
                               $("#schedules_table").find('tbody').append("<tr><td><a href='https://www.ttc.ca/Routes/" + routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
                             
                             };
-                          } else {
+                          } else if ($.isArray(obj1.direction.prediction) != true) {
                             for (var i = 0; i < obj1.direction.length; i++) {
                               var obj3 = obj1.direction[i]
+                              console.log(obj3);
                               $.each([obj3], function(i, val) {
                                 if (obj3.prediction != undefined) {
                                   for (var i = 0; i < obj3.prediction.length; i++) {
@@ -99,7 +100,7 @@ function showTransit(position) {
                                 }  
                               });
                             }
-                          } // ends else
+                          }
                         });
                       };
                     });

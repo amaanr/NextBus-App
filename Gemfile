@@ -60,3 +60,6 @@ gem 'geocoder'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
+
+# Use font-awesome gem
+gem 'font-awesome-rails'
