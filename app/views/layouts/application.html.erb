@@ -11,16 +11,12 @@
 
   <%= stylesheet_link_tag "application", "data-turbolinks-track" => true %>
 
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1cvBrNQdGDTZAFbF6pMG4zK0iTQtAnFs&sensor=true&libraries=places"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&sensor=true"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   
 </head>
 <body style class="navbar-fixed">
-
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class: name %>
-<% end -%>
 
 <% if user_signed_in? %>
 
@@ -103,6 +99,12 @@
     </div>
   </footer>
   <!-- / footer -->
+
+  <script type="text/javascript">
+    $( document ).ready(function() {
+      $(geolocation);
+    });
+  </script>
 
 </body>
 </html>

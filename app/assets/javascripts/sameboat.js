@@ -75,7 +75,6 @@ function showTransit(position) {
                           } else if ($.isArray(obj1.direction.prediction) != true) {
                             for (var i = 0; i < obj1.direction.length; i++) {
                               var obj3 = obj1.direction[i]
-                              console.log(obj3);
                               $.each([obj3], function(i, val) {
                                 if (obj3.prediction != undefined) {
                                   for (var i = 0; i < obj3.prediction.length; i++) {
