@@ -9,10 +9,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="mobile-web-app-capable" content="yes"> 
 
-  <%= stylesheet_link_tag "application", "data-turbolinks-track" => true %>
+  <!-- <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> -->
+  <%= stylesheet_link_tag "css/bootstrap" %>
+  <%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" %>
+  <%= stylesheet_link_tag "css/font" %>
+  <%= stylesheet_link_tag "css/style" %>
+  <%= stylesheet_link_tag "css/sameboat" %>
+  <%= stylesheet_link_tag "map" %>
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&sensor=true"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
   <%= csrf_meta_tags %>
   
 </head>
