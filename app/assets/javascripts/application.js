@@ -22,6 +22,8 @@
 //= require js/app.plugin
 //= require js/app.data
 //= require js/fuelux/fuelux
+//= require js/plugins2
+//= require js/scripts2
 
 //= require geolocation
 //= require schedulesCountdown
