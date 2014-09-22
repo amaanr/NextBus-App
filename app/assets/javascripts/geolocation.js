@@ -3,8 +3,7 @@ function geolocation() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showTransit),
     navigator.geolocation.getCurrentPosition(function(position) {
-      //var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      var pos = new google.maps.LatLng(43.7570490944184,-79.33689926972312);
+      var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       var infowindow = new google.maps.InfoWindow({
         map: map,
