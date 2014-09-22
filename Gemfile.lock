@@ -189,7 +189,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   pg
-  rails (= 4.0.0)
+  rails
   sass-rails (~> 4.0.0)
   sdoc
   turbolinks
