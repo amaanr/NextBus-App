@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:admin]
-
-  protected
-
+  
   def require_login
     unless user_signed_in?
       flash[:error] = "You must be logged in to access this section"
