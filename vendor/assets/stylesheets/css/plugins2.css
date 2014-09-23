@@ -4032,11 +4032,11 @@ body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
 
 @font-face {
 	font-family: 'icomoon';
-	src:url('../ico/icomoon0ef6.eot');
-	src:url('../ico/icomoond41d.eot') format('embedded-opentype'),
-		/*url('../ico/icomoon0ef6.woff') format('woff'),*/
-		url('../ico/icomoon0ef6.ttf') format('truetype'),
-		url('../ico/icomoon0ef6.svg') format('svg');
+	src:url('/assets/ico/icomoon0ef6.eot');
+	src:url('/assets/ico/icomoond41d.eot') format('embedded-opentype'),
+		/*url('/assets/ico/icomoon0ef6.woff') format('woff'),*/
+		url('/assets/ico/icomoon0ef6.ttf') format('truetype'),
+		url('/assets/ico/icomoon0ef6.svg') format('svg');
 	font-weight: normal; 
 	font-style: normal;
 }
