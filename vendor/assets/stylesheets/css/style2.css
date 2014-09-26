@@ -163,7 +163,7 @@ blockquote:first-letter {
 /* BACKGROUNDS */
 
 .dotted:after {
-    background: url("/assets/pattern_dot.png") repeat left top rgba(0,0,0,0.5);
+    background: url(<%= asset_path 'pattern_dot.png' %>) repeat left top rgba(0,0,0,0.5);
 	content: "";
 	display: block;
 	width: 100%;
