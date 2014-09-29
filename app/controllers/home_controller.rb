@@ -1,12 +1,12 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:admin]
   
-  def require_login
-    unless user_signed_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to about_index # halts request cycle
-    end
-  end
+  #def require_login
+   # unless user_signed_in?
+    #  flash[:error] = "You must be logged in to access this section"
+     # redirect_to about_index # halts request cycle
+    #end
+  #end
   
   def index
    # Stop.near([43.7956938500000004,-79.3368321],3, :order => "distance").limit(4)
