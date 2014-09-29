@@ -33,10 +33,10 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
           <span class="hidden-xs-only"><%= current_user.first_name %> <%= current_user.last_name %></span>
-            <% if current_user.avatar %>
+            <!-- <% if current_user.avatar %> -->
               <!-- <span class="thumb-small avatar inline"><%= image_tag(current_user.avatar.url, :class => "img-circle", :style => "max-height:36px;") %></span> -->
-              <span class="thumb-small avatar inline"><%= image_tag("cmf-avatar.jpg", :class => "img-circle", :style => "max-height:36px;") %></span>
-            <% end %>
+          <span class="thumb-small avatar inline"><%= image_tag("sameboat_black.png", :class => "img-circle", :style => "max-height:36px;") %></span>
+            <!-- <% end %> -->
           <b class="caret hidden-xs-only"></b>
         </a>
         <ul class="dropdown-menu">
@@ -54,19 +54,9 @@
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
     <ul class="nav" data-spy="affix" data-offset-top="50">
-      <li class="dropdown-submenu">
-        <%= link_to posts_path do %>
-          <i class="fa fa-plus icon-xlarge"></i><span>Post</span>
-        <% end -%>
-      </li>
       <li>
         <%= link_to root_path, 'data-no-turbolink' => true do %>
           <i class="fa fa-location-arrow icon-xlarge"></i><span>Nearby</span>
-        <% end -%>
-      </li>
-      <li>
-        <%= link_to plans_path, 'data-no-turbolink' => true do %>
-          <i class="fa fa-map-marker icon-xlarge"></i><span>Plan a Trip</span>
         <% end -%>
       </li>
       <li>
