@@ -16,7 +16,7 @@ img{max-width: 100%}
 /*primary nav*/
 .nav-primary:before, .nav-primary:after {display: table;content: " ";}
 .nav-primary:after {clear: both;}
-.nav-primary{background-color: #EA6153}
+.nav-primary{background-color: #233445}
 .nav-primary li{line-height: 1.5}
 .nav-primary li li a{padding:5px 15px;}
 .nav-primary li a i{margin-right: 0.5em}
