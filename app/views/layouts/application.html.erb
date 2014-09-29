@@ -54,21 +54,21 @@
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
     <ul class="nav" data-spy="affix" data-offset-top="50">
-      <li class="dropdown-submenu">
-        <%= link_to posts_path do %>
-          <i class="fa fa-plus icon-xlarge"></i><span>Post</span>
-        <% end -%>
-      </li>
+      <!--<li class="dropdown-submenu">
+        #<%= link_to posts_path do %>
+          #<i class="fa fa-plus icon-xlarge"></i><span>Post</span>
+        #<% end -%>
+      </li>-->
       <li>
         <%= link_to root_path, 'data-no-turbolink' => true do %>
           <i class="fa fa-location-arrow icon-xlarge"></i><span>Nearby</span>
         <% end -%>
       </li>
-      <li>
-        <%= link_to plans_path, 'data-no-turbolink' => true do %>
-          <i class="fa fa-map-marker icon-xlarge"></i><span>Plan a Trip</span>
-        <% end -%>
-      </li>
+      <!--<li>
+        #<%= link_to plans_path, 'data-no-turbolink' => true do %>
+          #<i class="fa fa-map-marker icon-xlarge"></i><span>Plan a Trip</span>
+        #<% end -%>
+      </li>-->
       <li>
         <%= link_to edit_user_registration_path do %>
           <i class="fa fa-gear icon-xlarge"></i><span>Settings</span>
