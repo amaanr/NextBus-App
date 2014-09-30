@@ -39,9 +39,9 @@
             <!-- <% end %> -->
           <b class="caret hidden-xs-only"></b>
         </a>
-        <ul class="dropdown-menu">
-          <li><%= link_to('Settings', edit_user_registration_path) %></li>
-          <li class="divider"></li>
+        <ul class="dropdown-menu pull-right">
+<!--           <li><%= link_to('Settings', edit_user_registration_path) %></li> -->
+<!--           <li class="divider"></li> -->
           <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
         </ul>
       </li>
@@ -59,11 +59,11 @@
           <i class="fa fa-location-arrow icon-xlarge"></i><span>Nearby</span>
         <% end -%>
       </li>
-      <li>
-        <%= link_to edit_user_registration_path do %>
+      <!-- <li>
+         <%= link_to edit_user_registration_path do %>
           <i class="fa fa-gear icon-xlarge"></i><span>Settings</span>
-        <% end -%>
-      </li>
+         <% end -%>
+      </li> -->
       <li>
         <%= link_to destroy_user_session_path, :method => :delete do %>
           <i class="fa fa-sign-out icon-xlarge"></i><span>Log out</span>
