@@ -10,9 +10,8 @@
 							<div class="table-responsive">
 		            <table class="table table-striped m-b-none">
 		              <thead>
+                    <th>User</th>
 										<th>Location</th>
-										<th>City</th>
-										<th>Address</th>
 										<th>Intersection</th>
 										<th>Area</th>
 										<th>Time</th>
@@ -20,9 +19,8 @@
 		              <tbody>
 										<% @users.each do |user| %>
 											<tr>
-												<td><%= user.latitude %>, <%= user.longitude %></td>
-												<td><%= user.city %></td>
-												<td><%= user.address %></td>
+                        <td><%= user.user.first_name %> <%= user.user.last_name %></td>
+												<td><a href="https://www.google.ca/maps/place/<%= user.latitude %>,<%= user.longitude %>" target="_blank">View</a></td>
 												<td><%= user.main_intersection %></td>
 												<td><%= user.neighborhood %></td>
 												<td><%= time_ago_in_words(user.created_at) %> ago</td>

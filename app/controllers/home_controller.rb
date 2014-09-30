@@ -27,6 +27,7 @@ class HomeController < ApplicationController
     google_results = UserLocation.search(params[:latitude],params[:longitude])
     geocoder_ca_results = UserLocation.geocoder_ca(params[:latitude],params[:longitude]).intersection
     user_location=UserLocation.new(
+      :user_id => current_user.id,
       :longitude => params[:longitude],
       :latitude => params[:latitude],
       :address => google_results.address,
