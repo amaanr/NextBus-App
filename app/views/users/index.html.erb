@@ -4,7 +4,7 @@
 	    <div class="row">
 	      <div class="col-md-12">
 	        <section class="panel">
-	          <header class="panel-heading">User Locations</header>
+	          <header class="panel-heading">Users</header>
 	          <div class="panel-body">
 	           <section>
 							<div class="table-responsive">
@@ -14,7 +14,7 @@
 										<th>First</th>
 										<th>Last</th>
 										<th>Role</th>
-										<th>Last logged in</th>
+										<th>Registered</th>
 		              </thead>
 		              <tbody>
 										<% @users.each do |user| %>
@@ -23,7 +23,7 @@
 												<td><%= user.first_name %></td>
 												<td><%= user.last_name %></td>
 												<td><%= user.role %></td>
-												<td><%= time_ago_in_words(user.last_sign_in_at) %> ago</td>
+                        <td><%= time_ago_in_words(user.created_at) %> ago</td>
 											</tr>
 										<% end %>
 		              </tbody>
@@ -36,7 +36,6 @@
         <div class="col-md-12">
 	        <section class="panel">
 	          <div class="panel-body text-muted l-h-2x">
-	            <span class="badge">Logged in as <%= current_user.first_name %><%= current_user.last_name %></span>
 	            <%= link_to "New User", new_user_path, class: "btn btn-default" %>
 	          </div>
 	        </section>
