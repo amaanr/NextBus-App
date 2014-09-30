@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- META -->
+<meta name="viewport" content="width=device-width, user-scalable=no">
+
+<title>Sameboat | Where Public Meets Transit</title>
+
+<!-- CSS -->
+<%= stylesheet_link_tag "css/style2", media: "all" %>
+<%= stylesheet_link_tag "css/plugins2.css", media: "all" %>
+<%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" %>
+
+<!-- GOOGLE FONTS -->
+<link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'>
+
+<!-- FAVICON -->
+<link rel="icon" type="image/png" href="img/favicon.png" />
+
+<style type="text/css">
+	
+	/* THEME COLORS */
+	
+	.wh-clr { color: #fff; }
+	.wh-clr-hov:hover { color: #fff; }
+	.brd-wh-clr { border-color: #fff; }
+	.brd-wh-clr-hov:hover { border-color: #fff; }
+	.bg-wh-clr { background-color: #fff; }
+	.bg-wh-clr-hov:hover { background-color: #fff; }
+	.bg-wh-alpha { background-color: rgba(255,255,255,0.9); }
+	
+	.bg-bk-alpha { background-color: rgba(0,0,0,0.7); }
+	
+	.gr1-clr { color: #fafafa; }
+	.gr1-clr-hov:hover { color: #fafafa; }
+	.brd-gr1-clr { border-color: #fafafa; }
+	.brd-gr1-clr-hov:hover { border-color: #fafafa; }
+	.bg-gr1-clr { background-color: #fafafa; }
+	.bg-gr1-clr-hov:hover { background-color: #fafafa; }
+	
+	.gr2-clr { color: #dfdfdf; }
+	.gr2-clr-hov:hover { color: #dfdfdf; }
+	.brd-gr2-clr { border-color: #dfdfdf; }
+	.brd-gr2-clr-hov:hover { border-color: #dfdfdf; }
+	.bg-gr2-clr { background-color: #dfdfdf; }
+	.bg-gr2-clr-hov:hover { background-color: #dfdfdf; }
+	
+	.gr3-clr { color: #333; }
+	.gr3-clr-hov:hover { color: #333; }
+	.brd-gr3-clr { border-color: #333; }
+	.brd-gr3-clr-hov:hover { border-color: #333; }
+	.bg-gr3-clr { background-color: #333; }
+	.bg-gr3-clr-hov:hover { background-color: #333; }
+	
+	/* CUSTOM COLORS */
+	
+	.fs-clr { color: #EA6153; } 
+	.fs-clr-hov:hover { color: #EA6153; } 
+	.bg-fs-clr { background-color: #EA6153; }
+	.bg-fs-clr-hov:hover { background-color: #EA6153; } 
+	.bg-fs-alpha { background-color: rgba(234,97,83,0.7); }
+	.brd-fs-clr { border-color: #EA6153; }
+	.brd-fs-clr-hov:hover { border-color: #EA6153; }
+		
+	.nd-clr { color: #c0392b; } 
+	.nd-clr-hov:hover { color: #c0392b; } 
+	.bg-nd-clr { background-color: #c0392b; }
+	.bg-nd-clr-hov:hover { background-color: #c0392b; }
+	.bg-nd-alpha { background-color: rgba(192,57,43,0.7); }
+	.brd-nd-clr { border-color: #c0392b; }
+	.brd-nd-clr-hov:hover { border-color: #EA6153; }
+		
+	/* Preloader */
+	
+	#jpreBar {
+		background: #EA6153;
+	}
+	
+	#jprePercentage {
+		border-color: #EA6153;
+		color: #EA6153;
+	}
+	
+	/* Standard Menu/Submenu */
+		
+	.main-menu li:hover a  {
+		color: #c0392b;
+	}
+	
+	.header-dark .sub-menu li a {
+		background-color: #c0392b !important;
+	}
+	
+	.header-dark .sub-menu li a:hover {
+		background-color: #fff !important;
+		color: #c0392b	}
+	
+	.sub-menu li:hover a {
+		color: #c0392b !important;
+	}
+	
+	/* Sticky Menu/Submenu */
+	
+	.sticky .main-menu li, .sticky .main-menu li a {
+		color: #c0392b;
+	}
+	
+	.sticky .main-menu li:hover a {
+		background-color: #c0392b;
+	}
+	
+	.sticky .sub-menu li a {
+		background-color: #EA6153 !important;
+	}
+	
+	.sticky .sub-menu li:hover a {
+		background-color: #c0392b !important;
+	}
+	
+	/* Sticky Quick Icons */
+	
+	.sticky #quick-icons li {
+		color: #c0392b;
+	}
+	
+	.sticky #quick-icons li:hover {
+		border-color: #c0392b;
+	}
+	
+	/* Sticky Nav Icons */
+	
+	.sticky-icons li{
+		color: #c0392b !important;
+	}
+		
+	/* Filters */
+ 	
+	.port-filter li.selected {
+		background-color: #EA6153;
+	}
+	
+	/* Slills */
+	
+	.team-skills li .bar-val {
+   		background: #EA6153;
+	}
+	
+	/* Mobile Menu */
+	
+	#mobile-menu {
+		background-color: #c0392b;
+	}
+	
+	#mobile-menu li:hover {
+		background: #EA6153;
+	}
+	
+	/* Video */
+	
+	#volume { position: absolute; left: 0; bottom: 0; background: #c0392b; z-index:9999; color: #fff; padding: 10px; display: block; opacity: 0.2; font-size: 16px; cursor: pointer; }
+	
+	#volume:hover { opacity: 1; }
+	
+	#internal-video:after { content: ''; display: block; width: 100%; height: 100%; position: absolute; left: 0; top: 0; background: rgba(234,97,83,0.7); }
+	
+	/* Typography */
+	
+	blockquote { 
+		border-color: #EA6153;
+		color: #EA6153; 
+	}
+	
+	h1, h2, h3 { color: #EA6153; }
+	
+	.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+		background: #EA6153;
+		color: #fff;
+	}
+
+</style>
+
+</head>
+
+<body><!-- // HEADER -->
+ 
+    <div id="wrap">
+    
+    	<header class="transit header-clear">
+
+    <div id="logo-white" class="logo"><a href="#"><%= image_tag "logo-white.png" %></a></div>
+    <div id="logo-dark" class="logo"><a href="#"><%= image_tag "logo-dark.png" %></a></div>
+    <div id="logo-short" class="logo"><a href="#"><%= image_tag "sb-logo-black.png", :class => "brd-nd-clr" %></a></div>
+
+    <div class="main-menu">
+            
+        <ul>
+          <li><%= link_to('Sign in', new_user_session_path) %></li>
+          <li>
+          	<%= link_to new_user_registration_path do %>
+          		Sign up &nbsp;<i class="fa fa-plus"></i>&nbsp;
+        		<% end %>
+        	</li>
+        </ul>
+        
+    </div>
+    
+    <div id="quick-icons">
+    	
+        <ul class="info-menu">
+            <li><a title="like us" target="_blank" href="https://www.facebook.com/sameboat"><i class="fa fa-facebook"></i></a></li>
+            <li><a title="follow us" target="_blank" href="https://twitter.com/sameboatco"><i class="fa fa-twitter"></i></a></li>
+            <li><a title="contact" href="mailto:us@sameboat.ca"><i class="fa fa-envelope-o"></i></a></li>
+        </ul>
+        
+        <ul class="switch-menu">
+            <li class="open-menu"><i class="fa fa-bars"></i></li>
+        </ul>
+               
+<!--         <ul class="quick-menu">
+            <li data-title="Overview" data-scrollto="#overview"><i class="icon-eye"></i></li>
+            <li data-title="Works" data-scrollto="#portfolio"><i class="icon-box"></i></li>
+            <li data-title="Blog" data-scrollto="#blog"><i class="icon-paper"></i></li>
+            <li data-title="Contacts" data-scrollto="#form"><i class="icon-mail"></i></li>
+            <li data-title="Map" data-scrollto="#map"><i class="icon-globe"></i></li>
+        </ul>
+ -->        
+        <div class="clear"></div>
+        
+	</div>
+    
+    <div class="clear"></div>
+    
+</header>
+
+<div id="mobile-menu">
+            
+    <ul>
+        <li><%= link_to('Sign In', new_user_session_path) %></li>
+        <li>
+        	<%= link_to new_user_registration_path do %>
+        		Sign up &nbsp;<i class="fa fa-plus"></i>&nbsp;
+      		<% end %>
+        </li>
+    </ul>
+        
+</div>
+<!-- // MENU / LOG -->
+    	        
+    	<div id="intro" class="section">
+
+   <div id="intro-slideshow">
+   
+        <div>
+        
+            <span class="item-image" style="background-image: url(<%= asset_path 'slider/toronto5.jpg' %>);"></span>
+            
+            <div id="intro-message">
+            
+                <!-- <div class="intro-title padd-x-50">Where Public Meets Transit</div> -->
+                <div class="intro-subtitle marg-x-50 bg-fs-clr">Where Public Meets Transit.</div>
+                                   
+            </div>  
+            
+       </div>
+       
+    </div>
+    
+    <!-- <div id="icons-menu" class="transit-top" data-delay="1500" data-appear="false">
+
+        <ul>
+            <li data-title="Overview" data-scrollto="#overview"><i class="icon-eye"></i></li>
+            <li data-title="Works" data-scrollto="#portfolio"><i class="icon-box"></i></li>
+            <li data-title="Blog" data-scrollto="#blog"><i class="icon-paper"></i></li>
+            <li data-title="Contacts" data-scrollto="#form"><i class="icon-mail"></i></li>
+            <li data-title="Map" data-scrollto="#map"><i class="icon-globe"></i></li>
+        </ul>
+        
+    </div> -->
+    
+<!--     <div class="btn-down brd-wh-clr brd-fs-clr-hov transit-bouncein" data-delay="2000" data-appear="false" data-scrollto="#overview">
+		<i class="fa fa-arrow-down"></i>
+	</div> -->
+
+</div><!-- // INTRO -->       
+                        
+        <div id="widgets" class="section">
+
+    <div class="widget-content padd-y-50 bg-fs-clr">
+    
+        <div class="boxed">
+    
+            <div class="col-1-3">
+            
+                <div class="widget-about widget-box marg-25">
+                
+                    <div class="widget-title marg-bott-25 wh-clr">Our Company</div>
+                    <div class="widget-exc wh-clr">
+                    	We provide real-time transit information to the masses.</div>
+                    
+                    <div class="line-left brd-gr2-clr"></div>
+
+                    <div class="widget-logo"><%= image_tag "logo-white.png" %></div>
+                    <div class="widget-address wh-clr">Toronto, Canada</div>
+                    <!-- <div class="widget-phone wh-clr">+1 (416) 123-4567 </div> -->
+                
+                </div>
+                
+            </div>
+        
+            <div class="col-1-3">
+            
+                <div class="widget-post widget-box marg-25">
+            
+                    <div class="widget-title marg-bott-25 wh-clr"></div>
+                    
+                    <ul>
+                    
+                        <li>
+                            <div class="post-date brd-wh-clr wh-clr" style="border-style:none;"></div>
+                            <div class="post-detail">
+                                <span class="post-title wh-clr"><a href="#"></a></span>
+                                <span class="post-exc wh-clr"></span>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="post-date brd-wh-clr wh-clr" style="border-style:none;"></div>
+                            <div class="post-detail">
+                            	<span class="post-title wh-clr"><a href="#"></a></span>
+                            	<span class="post-exc wh-clr"></span>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="post-date brd-wh-clr wh-clr" style="border-style:none;"></div>
+                            <div class="post-detail">
+                            	<span class="post-title wh-clr"><a href="#"></a></span>
+                            	<span class="post-exc wh-clr"></span>
+                       		</div>
+                        </li>                       
+                                                
+                    </ul>
+                
+                </div>
+            
+            </div>
+
+            <div class="col-1-3">
+            
+                <div class="widget-contact widget-box marg-25">
+            
+                    <div class="widget-title marg-bott-25">Quick Contact</div>
+                    
+                    <div class="widget-form">
+                    
+                        <form action="" method="post">
+                        
+                            <input type="text" name="name" placeholder="your name" required>
+                            <input type="email" name="email" placeholder="your email" required>
+                            <textarea name="message" placeholder="your message" required></textarea>
+                            
+                            <input class="bg-fs-clr bg-nd-clr-hov" type="submit" name="submit" value="send">
+                            
+                        </form>
+                        
+                    </div>
+                
+                </div>
+            
+            </div>
+        
+            <div class="clear"></div>
+        
+        </div>
+
+    </div>
+    
+</div><!-- // WIDGETS -->
+        
+        <footer>
+	
+    <div class="footer-content">
+    
+    	<div class="footer-layer bg-nd-clr">
+        
+        	<div class="boxed">
+    
+                <div class="footer-icons">
+<!--                     <ul>
+                        <li><i class="fa fa-facebook"></i></li>
+                        <li><i class="fa fa-twitter"></i></li>
+                        <li><i class="fa fa-google-plus"></i></li>
+                        <li><i class="fa fa-linkedin"></i></li>
+                        <li><i class="fa fa-instagram"></i></li>
+                    </ul>
+ -->                </div>
+        
+                <div id="footer-copy" class="padd-x-25">Copyrights &copy; 2014 | <strong>Sameboat</strong></div>
+                
+                <div class="clear"></div>
+            
+            </div>
+        
+        </div>
+        
+    </div>
+    
+</footer><!-- // FOOTER -->
+    	
+	</div>
+    
+<!--     <div class="btn-up brd-wh-clr bg-wh-clr fs-clr brd-fs-clr-hov">        
+         <i class="fa fa-arrow-up"></i>
+    </div> -->
+
+	<div id="curtain"></div>
+
+<!-- JS LIBS -->
+<%= javascript_include_tag "jquery" %>
+<%= javascript_include_tag "js/plugins2" %>
+<%= javascript_include_tag "js/scripts2" %>
+
+</body>
+</html><!-- // FOOTER -->
+    

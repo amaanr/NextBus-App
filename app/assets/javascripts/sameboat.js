@@ -2,7 +2,7 @@
 function showTransit(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
-
+  
   var infowindow = new google.maps.InfoWindow({
     content: ''
   });
@@ -72,7 +72,7 @@ function showTransit(position) {
                               $("#schedules_table").find('tbody').append("<tr><td><a href='https://www.ttc.ca/Routes/" + routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
                             
                             };
-                          } else {
+                          } else if ($.isArray(obj1.direction.prediction) != true) {
                             for (var i = 0; i < obj1.direction.length; i++) {
                               var obj3 = obj1.direction[i]
                               $.each([obj3], function(i, val) {
@@ -99,7 +99,7 @@ function showTransit(position) {
                                 }  
                               });
                             }
-                          } // ends else
+                          }
                         });
                       };
                     });
@@ -138,11 +138,13 @@ function showTransit(position) {
                 };
               });
 
+		            // var image = "http://i.imgur.com/aMW2NfO.png";
                 // Make and place nearby stops on map as markers
                 var marker = new google.maps.Marker({
                   map: map,
                   position: tmpLatLng,
                   title: stopName
+		              // icon: image
                 });
 
                 var infoWindowContent = '<div id="content">'+

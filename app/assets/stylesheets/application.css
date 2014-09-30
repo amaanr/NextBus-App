@@ -8,11 +8,11 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require map
  *= require css/bootstrap
- *= require css/font-awesome.min
+ *= require font-awesome
  *= require css/font
  *= require css/style
- *= require_tree .
+ *= require css/style2
+ *= require css/plugins2
+ *= require map
 */

@@ -1,8 +1,10 @@
-ruby '2.0.0'
 source 'https://rubygems.org'
 
+# Model permissions gem
+gem 'cancancan', '~> 1.9'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -57,3 +59,6 @@ gem 'geocoder'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
+
+# Use font-awesome gem
+gem 'font-awesome-rails'

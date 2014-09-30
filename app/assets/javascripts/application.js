@@ -13,6 +13,7 @@
 
 //= require_self
 //= require jquery
+//= require map
 //= require bootstrap
 //= require jquery_ujs
 //= require jquery.xml2json
@@ -22,7 +23,6 @@
 //= require js/app.data
 //= require js/fuelux/fuelux
 
-//= require map
 //= require geolocation
 //= require schedulesCountdown
 //= require js/jquery.tablesorter.min

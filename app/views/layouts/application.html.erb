@@ -9,15 +9,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="mobile-web-app-capable" content="yes"> 
 
+  <!-- <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> -->
   <%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" %>
   <%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" %>
-  <%= stylesheet_link_tag "//sameboatcdn.blob.core.windows.net/css/font.css" %>
-  <%= stylesheet_link_tag "//sameboatcdn.blob.core.windows.net/css/style.css" %>
-  <%= stylesheet_link_tag "//sameboatcdn.blob.core.windows.net/css/plugin.css" %>
-  <%= stylesheet_link_tag "//sameboatcdn.blob.core.windows.net/css/map.css" %>
+  <%= stylesheet_link_tag "https://sameboatcdn.blob.core.windows.net/css/style.css" %>
+  <%= stylesheet_link_tag "https://sameboatcdn.blob.core.windows.net/css/plugin.css" %>
+  <%= stylesheet_link_tag "https://sameboatcdn.blob.core.windows.net/css/map.css" %>
+  <%= stylesheet_link_tag "https://sameboatcdn.blob.core.windows.net/css/sameboat.css" %>
 
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1cvBrNQdGDTZAFbF6pMG4zK0iTQtAnFs&sensor=true&libraries=places"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&sensor=true"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
   <%= csrf_meta_tags %>
   
 </head>
@@ -31,15 +33,15 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
           <span class="hidden-xs-only"><%= current_user.first_name %> <%= current_user.last_name %></span>
-            <% if current_user.avatar %>
+            <!-- <% if current_user.avatar %> -->
               <!-- <span class="thumb-small avatar inline"><%= image_tag(current_user.avatar.url, :class => "img-circle", :style => "max-height:36px;") %></span> -->
-              <span class="thumb-small avatar inline"><%= image_tag("cmf-avatar.jpg", :class => "img-circle", :style => "max-height:36px;") %></span>
-            <% end %>
+          <span class="thumb-small avatar inline"><%= image_tag("sameboat_black.png", :class => "img-circle", :style => "max-height:36px;") %></span>
+            <!-- <% end %> -->
           <b class="caret hidden-xs-only"></b>
         </a>
-        <ul class="dropdown-menu">
-          <li><%= link_to('Settings', edit_user_registration_path) %></li>
-          <li class="divider"></li>
+        <ul class="dropdown-menu pull-right">
+<!--           <li><%= link_to('Settings', edit_user_registration_path) %></li> -->
+<!--           <li class="divider"></li> -->
           <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
         </ul>
       </li>
@@ -48,46 +50,20 @@
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
       <i class="fa fa-bars icon-xlarge text-default"></i>
     </button>
-    <ul class="nav navbar-nav hidden-xs">
-      <li>
-        <div class="m-t-small">
-          <%= link_to plans_path, 'data-no-turbolink' => true do %>
-            <div class="btn btn-primary btn-block m-t-mini"><i class="fa fa-map-marker pull-left"></i> Plan a trip</div>
-          <% end %> 
-        </div>
-      </li>
-      <li>
-        <div class="m-t-small">
-          <%= link_to "data-toggle" => "modal", 'data-target' => '#modal', 'data-no-turbolink' => true do %>
-            <div class="btn btn-info btn-block m-t-mini"><i class="fa fa-plus pull-left"></i> POST</div>
-          <% end %>
-        </div>
-      </li>
-    </ul>
 	</header><!-- / header -->
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
     <ul class="nav" data-spy="affix" data-offset-top="50">
-      <li class="dropdown-submenu">
-        <%= link_to posts_path do %>
-          <i class="fa fa-plus icon-xlarge"></i><span>Post</span>
-        <% end -%>
-      </li>
       <li>
         <%= link_to root_path, 'data-no-turbolink' => true do %>
           <i class="fa fa-location-arrow icon-xlarge"></i><span>Nearby</span>
         <% end -%>
       </li>
-      <li>
-        <%= link_to plans_path, 'data-no-turbolink' => true do %>
-          <i class="fa fa-map-marker icon-xlarge"></i><span>Plan a Trip</span>
-        <% end -%>
-      </li>
-      <li>
-        <%= link_to edit_user_registration_path do %>
+      <!-- <li>
+         <%= link_to edit_user_registration_path do %>
           <i class="fa fa-gear icon-xlarge"></i><span>Settings</span>
-        <% end -%>
-      </li>
+         <% end -%>
+      </li> -->
       <li>
         <%= link_to destroy_user_session_path, :method => :delete do %>
           <i class="fa fa-sign-out icon-xlarge"></i><span>Log out</span>
@@ -101,57 +77,14 @@
 
   <!-- header -->
   <header id="header" class="navbar bg bg-black">
-    <a href="http://www.sameboat.ca" target="_blank" class="btn btn-link pull-right m-t-mini"><i class="fa fa-question icon-xlarge text-default"></i></a>
+    <a href="/about" target="_blank" class="btn btn-link pull-right m-t-mini"><i class="fa fa-question icon-xlarge text-default"></i></a>
     <%= link_to image_tag("sameboat_white.png", :class => "thumb-small", :style => "max-width:20px;"), root_path, :class => "navbar-brand" %>
   </header>
 
 <% end %>
 
 <%= yield %>
-  <!-- .modal -->
-  <div id="modal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><i class="fa-remove"></i>&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Make a post...</h4>
-          </div>
-          <%= form_for Post.new do |f| %>
-          <div class="modal-body">          
-            <div class="block">
-              <label class="control-label">Title</label>
-              <input type="text" class="form-control" placeholder="Post title">
-            </div>
-            <div class="block">
-              <label class="control-label">Type of Post</label>
-              <div class="form-group">
-                <div class="btn-group">
-                  <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle">
-                    <%= collection_select(:post, :post_type_id, PostType.all, :id, :type_of_post, :prompt => true ) do %>
-                      <span class="dropdown-label" data-placeholder="Please select">Pick one...</span> 
-                      <span class="caret"></span>
-                    <% end %>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="block">
-              <label class="control-label">Content</label>
-              <%= f.text_field :content, :class => "form-control", :placeholder => "What's happening?", 'data-trigger' => 'keyup', 'data-rangelength' => '[20,200]', 'rows' => '5' do %>
-                  <textarea placeholder="What's happening?" rows="5" class="form-control"></textarea>
-              <% end -%>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-            <%= f.submit "Post", :class => "btn btn-sm btn-primary", 'data-loading-text' => 'Publishing' %>
-          </div>
-        </div><!-- /.modal-content -->
-      </div>
-      <% end %><!-- ends form -->
-  </div>
-  <!-- / .modal -->
-
+  
   <!-- footer -->
   <footer id="footer">
     <div class="text-center padder clearfix">
@@ -163,6 +96,12 @@
     </div>
   </footer>
   <!-- / footer -->
+
+  <script type="text/javascript">
+    //$( document ).ready(function() {
+    //  $(geolocation);
+    //});
+  </script>
 
 </body>
 </html>

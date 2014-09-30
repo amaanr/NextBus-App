@@ -32,10 +32,10 @@ function handleNoGeolocation(errorFlag) {
 
   var options = {
     map: map,
-    position: new google.maps.LatLng(60, 105),
+    position: new google.maps.LatLng(43.6525,79.3836),
     content: content
   };
 
   var infowindow = new google.maps.InfoWindow(options);
-  map.setCenter(options.position);
+  map.setCenter(new google.maps.LatLng(43.6525,79.3836));
 }

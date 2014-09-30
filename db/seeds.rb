@@ -23,7 +23,14 @@ CSV.foreach("db/stops.csv") do |row|
 
 	).save
 end
-
+super_admin = User.new(
+		email: "amaan@sameboat.ca",
+		first_name: "Amaan",
+		last_name: "Rattansi",
+		password: "howpigsfly",
+		role: "admin"
+	)
+super_admin.save
 ["Accident","Delay","Damage","Poetry"].each do |post_type|
 	PostType.new(:type_of_post => post_type).save
 end

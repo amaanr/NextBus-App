@@ -1,0 +1,10 @@
+/* schedules table responsive view */
+@media only screen and (max-width: 800px) {
+	#schedule table td:nth-child(4), 
+	#schedule table th:nth-child(4) {display: none;}
+}
+ 
+@media only screen and (max-width: 640px) {
+	#schedule table td:nth-child(5),
+	#schedule table th:nth-child(5){display: none;}
+}

@@ -1,16 +1,24 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:admin]
   
+  def require_login
+    unless user_signed_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to about_index # halts request cycle
+    end
+  end
+  
   def index
    # Stop.near([43.7956938500000004,-79.3368321],3, :order => "distance").limit(4)
-   @latitude = request.location.latitude
-   @longitude = request.location.longitude
+   #@latitude = request.location.latitude
+   #@longitude = request.location.longitude
   end
 
   def admin
     @users_count = UserLocation.count
     @users_today = UserLocation.where("created_at >= ?", Time.zone.now.beginning_of_day).count
     @users = UserLocation.all
+    authorize! :admin, User
   end
 
   # Default distance set to 10 km, nearest 4 stops
@@ -19,6 +27,7 @@ class HomeController < ApplicationController
     google_results = UserLocation.search(params[:latitude],params[:longitude])
     geocoder_ca_results = UserLocation.geocoder_ca(params[:latitude],params[:longitude]).intersection
     user_location=UserLocation.new(
+      :user_id => current_user.id,
       :longitude => params[:longitude],
       :latitude => params[:latitude],
       :address => google_results.address,
