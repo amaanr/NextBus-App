@@ -4,13 +4,13 @@ function geolocation() {
     navigator.geolocation.getCurrentPosition(showTransit),
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+ 
       var infowindow = new google.maps.InfoWindow({
         map: map,
         position: pos,
         content: 'You are here.'
       });
-
+      
       map.setCenter(pos);
     }, function() {
       handleNoGeolocation(true);
@@ -39,3 +39,5 @@ function handleNoGeolocation(errorFlag) {
   var infowindow = new google.maps.InfoWindow(options);
   map.setCenter(new google.maps.LatLng(43.6525,79.3836));
 }
+
+
