@@ -26,119 +26,56 @@ function showTransit(position) {
         // stopName only needed if NextBus stopTitle fails
         var stopName = response[i].stop_name;
 
-        // Gets NextBus arrivalTimes
-        $.ajax ({
+        $.ajax({
           async: false,
           cache: false,
           type: "GET",
-          url: "http://webservices.nextbus.com/service/publicJSONFeed?command=predictions&a=ttc&stopId="+response[i].stop_code,
+          url: "http://webservices.nextbus.com/service/publicJSONFeed?command=predictions&a=ttc&stopId=" + response[i].stop_code,
           dataType: "JSON",
-          success:
-            function nextbusData(response) {
-              var obj = response;
-
-              var timeInSeconds;
-              var routeTag;
-              var stopTitle;
-              var directionTitle;
-              var branchCode;
-              var directionCode;
-              var heading;
-
-              $.each([obj], function(i, val) {
-                if ($.isArray(obj.predictions) == true) {
-                  for (var i = 0; i < obj.predictions.length; i++) {
-                    var obj1 = obj.predictions[i];
-                    $.each([obj1], function(i, val) {
-                      if (obj1.direction != undefined) { // get our data for all arrays
-                        $.each([obj1.direction], function(i, val){
-                          if ($.isArray(obj1.direction.prediction) == true) {
-                            for (var i = 0; i < obj1.direction.prediction.length; i++) {
-                              var obj2 = obj1.direction.prediction[i];
-
-                              timeInSeconds = obj2.seconds;
-                              routeTag = obj1.routeTag;
-                              stopTitle = obj1.stopTitle;
-                              directionTitle = obj1.direction.title;
-                              branchCode = obj2.branch;
-                              directionCode = directionTitle.substring(0,1);
-
-                              $(function () {
-                                var n = directionTitle.indexOf("towards");
-                                var directionLength = directionTitle.length;
-                                heading = directionTitle.substring(n,directionLength);
-                              });
-
-                              $("#schedules_table").find('tbody').append("<tr><td><a href='https://www.ttc.ca/Routes/" + routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
-                            
-                            };
-                          } else if ($.isArray(obj1.direction.prediction) != true) {
-                            for (var i = 0; i < obj1.direction.length; i++) {
-                              var obj3 = obj1.direction[i]
-                              $.each([obj3], function(i, val) {
-                                if (obj3.prediction != undefined) {
-                                  for (var i = 0; i < obj3.prediction.length; i++) {
-                                    var obj4 = obj3.prediction[i];
-
-                                    timeInSeconds = obj4.seconds;
-                                    routeTag = obj1.routeTag;
-                                    stopTitle = obj1.stopTitle;
-                                    directionTitle = obj3.title;
-                                    branchCode = obj4.branch;
-                                    directionCode = directionTitle.substring(0,1);
-
-                                    $(function () {
-                                      var n = directionTitle.indexOf("towards");
-                                      var directionLength = directionTitle.length;
-                                      heading = directionTitle.substring(n,directionLength);
-                                    });
-
-                                    $("#schedules_table").find('tbody').append("<tr><td><a href='https://www.ttc.ca/Routes/" + routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
-                            
-                                  }
-                                }  
-                              });
-                            }
+          success: function (data) {
+              var array = []
+              var prediction_object = {}
+              var predictions = data["predictions"]
+              for (var x in predictions) {
+                  if (!predictions[x].hasOwnProperty("dirTitleBecauseNoPredictions")) {
+                      var routeTag = data["predictions"][x]["routeTag"]
+                      var stopTitle = data["predictions"][x]["stopTitle"]
+                  }
+                  if (predictions[x].hasOwnProperty("direction")) {
+                      var direction = predictions[x]["direction"]
+                      var directionTitle = direction.title
+                      var prediction = direction["prediction"]
+                      for (var y in prediction) {
+                          var directionCode = directionTitle.substring(0,1);
+                          
+                          var n = directionTitle.indexOf("towards");
+                          var directionLength = directionTitle.length;
+                          var heading = directionTitle.substring(n,directionLength);
+                        
+                              var timeInSeconds = prediction[y]["seconds"]
+                              var branchCode = prediction[y]["branch"]
+                              prediction_object = {
+                                  "routeTag": routeTag,
+                                  "stopTitle": stopTitle,
+                                  "directionTitle": directionTitle,
+                                  "timeInSeconds": timeInSeconds,
+                                  "branchCode": branchCode,
+                                  "heading": heading,
+                                  "directionCode": directionCode
+                              }
+                              array.push(prediction_object)
                           }
-                        });
-                      };
-                    });
-                  };
-                } else {
-                  $.each([obj.predictions], function(i, val) {
-                    if (obj.predictions.direction != undefined) {
-                      if ($.isArray(obj.predictions.direction.prediction) == true) {
-                        $.each([obj.predictions.direction], function(i, val) {
-                          if (obj.predictions.direction.prediction != undefined) {
-                            for (var i = 0; i < obj.predictions.direction.prediction.length; i++) {
-                              var obj5 = obj.predictions.direction.prediction[i];
-
-                              timeInSeconds = obj5.seconds;
-                              routeTag = obj.predictions.routeTag;
-                              stopTitle = obj.predictions.stopTitle;
-                              directionTitle = obj.predictions.direction.title;
-                              branchCode = obj5.branch;
-                              directionCode = directionTitle.substring(0,1);
-
-                              $(function () {
-                                var n = directionTitle.indexOf("towards");
-                                var directionLength = directionTitle.length;
-                                heading = directionTitle.substring(n,directionLength);
-                              });
-
-                              $("#schedules_table").find('tbody').append("<tr><td><a href='https://www.ttc.ca/Routes/" + routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + directionCode + "</span> <small class='label bg-light'>" + branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+timeInSeconds+"></td><td>" + stopTitle + "</td><td>" + heading + "</td></tr>");
-                            
-                            };
-                          }; 
-                        });
-                      };
-                    };
-                  });
-                  
-                };
-              });
-
-		            // var image = "http://i.imgur.com/aMW2NfO.png";
+                      }
+                  }
+            var html_string = ""
+            
+            for(var i=0;i<array.length;i++) {
+              html_string += "<tr><td><a href='https://www.ttc.ca/Routes/" + array[i].routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + array[i].directionCode + "</span> <small class='label bg-light'>" + array[i].branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+array[i].timeInSeconds+"></td><td>" + array[i].stopTitle + "</td><td>" + array[i].heading + "</td></tr>";
+              }
+            
+            $("#schedules_table").find('tbody').append($(html_string))
+            
+            // var image = "http://i.imgur.com/aMW2NfO.png";
                 // Make and place nearby stops on map as markers
                 var marker = new google.maps.Marker({
                   map: map,
@@ -157,9 +94,8 @@ function showTransit(position) {
 
               // Binds stop markers on map with nextbusContent for each nearby stop 
               bindInfoWindow(marker, map, infowindow, infoWindowContent);
-
-            } // ends xmlParser function
-        }); // ends nextbus ajax request
+          }
+      });
 
       } // ends for loop
     } // ends main success handler
