@@ -49,8 +49,8 @@ gem 'unicorn'
 # Use Capistrano for deployment
 gem 'capistrano', '~> 2.15'
 
-# Use debugger
-gem 'debugger', group: [:development, :test]
+# Use byebug instead of debugger
+gem 'byebug', group: [:development, :test]
 
 # Use RubyGeocoder
 gem 'geocoder'
