@@ -46,9 +46,6 @@ end
 # Use unicorn as the app server
 gem 'unicorn'
 
-# Use Capistrano for deployment
-gem 'capistrano', '~> 2.15'
-
 # Use byebug instead of debugger
 gem 'byebug', group: [:development, :test]
 
