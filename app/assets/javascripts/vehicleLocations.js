@@ -1,3 +1,13 @@
+var map;
+function initialize() {
+  var mapOptions = {
+    zoom: 13,
+    center: new google.maps.LatLng(43.7567094,-79.3364596)
+  };
+  map = new google.maps.Map(document.getElementById('locations-map'),
+      mapOptions);
+}
+
 var mvLastTime = 0;
 var mvMarkerArray = [];  // remember vehicle markers, so we can remove/refresh them
 var mvRoutes;
@@ -76,3 +86,7 @@ function setMarkers(marker) {
 	}
 	
 }
+
+moveVehicles(['95'],'95_1_95');
+
+google.maps.event.addDomListener(window, 'load', initialize);

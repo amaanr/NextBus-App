@@ -1,6 +1,8 @@
 Sameboat::Application.routes.draw do
 
   
+  get 'locations/index'
+
   get '/about' => "about#index"
 
   devise_for :users, :path => '', :path_names => {:sign_in => 'signin', :sign_out => 'signout'}, :controllers => { :omniauth_callbacks => "omniauth_callbacks"}

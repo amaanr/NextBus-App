@@ -48,8 +48,13 @@
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
     <ul class="nav" data-spy="affix" data-offset-top="50">
       <li>
-        <%= link_to root_path, 'data-no-turbolink' => true do %>
-          <i class="fa fa-location-arrow icon-xlarge"></i><span>Nearby</span>
+        <%= link_to home_index_path, 'data-no-turbolink' => true do %>
+          <i class="fa fa-location-arrow icon-xlarge"></i><span>Schedules</span>
+        <% end -%>
+      </li>
+      <li>
+        <%= link_to locations_index_path, 'data-no-turbolink' => true do %>
+          <i class="fa fa-map-marker icon-xlarge"></i><span>Locations</span>
         <% end -%>
       </li>
       <li>
