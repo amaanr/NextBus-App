@@ -27,7 +27,9 @@
 //= require schedulesCountdown
 //= require js/jquery.tablesorter.min
 //= require sameboat
+//= require vehicleLocations
 //= require uservoice
+//= require googleAnalytics
 
 //= require turbolinks
 //= require_tree .
