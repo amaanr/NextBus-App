@@ -39,9 +39,11 @@ function mapVehicles(routeList) {
 	        url: "http://webservices.nextbus.com/service/publicXMLFeed?command=vehicleLocations&a=ttc&t=" + mvLastTime + "&r=" + route,
 	        dataType: "xml",
 	        success: xmlParser
-	    })   
+	    })
 	});
 };
+
+console.log(mvLastTime);
 
 function xmlParser(xml) {
 	var vehList = $.xml2json(xml);
@@ -65,27 +67,27 @@ function xmlParser(xml) {
 	
 }
 
-function setMarkers(marker) {
-	var added = 0; // variable to check whether it's been dealt with or not
+// function setMarkers(marker) {
+// 	var added = 0; // variable to check whether it's been dealt with or not
 	
-	// See if the marker for same vehicle is in markerArray and replaces it
-	$.each(mvMarkerArray, function(i, storedMarker) {
-		if (marker.id == storedMarker.id) {
-    		storedMarker.setMap(null);
-    		marker.setMap(map);
-			mvMarkerArray.splice(i, 1);
-			mvMarkerArray.push(marker);
-			added = 1;
-		}
-	});
+// 	// See if the marker for same vehicle is in markerArray and replaces it
+// 	$.each(mvMarkerArray, function(i, storedMarker) {
+// 		if (marker.id == storedMarker.id) {
+//     		storedMarker.setMap(null);
+//     		marker.setMap(map);
+// 			mvMarkerArray.splice(i, 1);
+// 			mvMarkerArray.push(marker);
+// 			added = 1;
+// 		}
+// 	});
 	
-	// If it hasn't been replaced, marker is added to markerArray and set in map
-	if (added == 0){
-    	marker.setMap(map);
-    	mvMarkerArray.push(marker);	
-	}
+// 	// If it hasn't been replaced, marker is added to markerArray and set in map
+// 	if (added == 0){
+//     	marker.setMap(map);
+//     	mvMarkerArray.push(marker);	
+// 	}
 	
-}
+// }
 
 moveVehicles(['95'],'95_1_95');
 
