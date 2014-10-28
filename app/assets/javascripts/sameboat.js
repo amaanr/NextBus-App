@@ -33,46 +33,94 @@ function showTransit(position) {
           url: "http://webservices.nextbus.com/service/publicJSONFeed?command=predictions&a=ttc&stopId=" + response[i].stop_code,
           dataType: "JSON",
           success: function (data) {
-              var array = []
-              var prediction_object = {}
-              var predictions = data["predictions"]
-              for (var x in predictions) {
-                  if (!predictions[x].hasOwnProperty("dirTitleBecauseNoPredictions")) {
-                      var routeTag = data["predictions"][x]["routeTag"]
-                      var stopTitle = data["predictions"][x]["stopTitle"]
-                  }
-                  if (predictions[x].hasOwnProperty("direction")) {
-                      var direction = predictions[x]["direction"]
-                      var directionTitle = direction.title
-                      var prediction = direction["prediction"]
-                      for (var y in prediction) {
-                          var directionCode = directionTitle.substring(0,1);
-                          
-                          var n = directionTitle.indexOf("towards");
-                          var directionLength = directionTitle.length;
-                          var heading = directionTitle.substring(n,directionLength);
-                        
-                              var timeInSeconds = prediction[y]["seconds"]
-                              var branchCode = prediction[y]["branch"]
-                              prediction_object = {
-                                  "routeTag": routeTag,
-                                  "stopTitle": stopTitle,
-                                  "directionTitle": directionTitle,
-                                  "timeInSeconds": timeInSeconds,
-                                  "branchCode": branchCode,
-                                  "heading": heading,
-                                  "directionCode": directionCode
-                              }
-                              array.push(prediction_object)
-                          }
+            var array = []
+            var prediction_object = {}
+            var predictions = data["predictions"]
+            $.each([predictions], function(i, val) {
+              if ($.isArray(predictions) == true) {
+                for (var i = 0; i < predictions.length; i++) {
+                  if (!predictions[i].hasOwnProperty("dirTitleBecauseNoPredictions")) {
+                    var routeTag = predictions[i]["routeTag"];
+                    var stopTitle = predictions[i]["stopTitle"];
+                  };
+                  if (predictions[i].hasOwnProperty("direction")) {
+                    var direction = predictions[i]["direction"];
+
+                    var directionTitle = direction.title;
+                    var prediction = direction["prediction"];
+
+                    for (var j = 0; j < prediction.length; j++) {
+                      var directionCode = directionTitle.substring(0,1);
+
+                      var n = directionTitle.indexOf("towards");
+                      var directionLength = directionTitle.length;
+                      var heading = directionTitle.substring(n, directionLength);
+
+                      var timeInSeconds = prediction[j]["seconds"]
+                      var branchCode = prediction[j]["branch"]
+                      var dirTag = prediction[j]["dirTag"]
+
+                      prediction_object = {
+                          "routeTag": routeTag,
+                          "stopTitle": stopTitle,
+                          "directionTitle": directionTitle,
+                          "timeInSeconds": timeInSeconds,
+                          "branchCode": branchCode,
+                          "heading": heading,
+                          "directionCode": directionCode,
+                          "dirTag": dirTag
                       }
-                  }
+                      array.push(prediction_object)
+
+                    };
+                  };
+                }
+              } // end if array
+              if ($.isArray(predictions) == false) {
+                if (!predictions.hasOwnProperty("dirTitleBecauseNoPredictions")) {
+                  var routeTag = predictions["routeTag"];
+                  var stopTitle = predictions["stopTitle"];
+
+                  if (predictions.hasOwnProperty("direction")) {
+                    var direction = predictions["direction"];
+
+                    var directionTitle = direction.title;
+                    var prediction = direction["prediction"];
+
+                    for (var j = 0; j < prediction.length; j++) {
+                      var directionCode = directionTitle.substring(0,1);
+
+                      var n = directionTitle.indexOf("towards");
+                      var directionLength = directionTitle.length;
+                      var heading = directionTitle.substring(n, directionLength);
+
+                      var timeInSeconds = prediction[j]["seconds"]
+                      var branchCode = prediction[j]["branch"]
+                      var dirTag = prediction[j]["dirTag"]
+
+                      prediction_object = {
+                        "routeTag": routeTag,
+                        "stopTitle": stopTitle,
+                        "directionTitle": directionTitle,
+                        "timeInSeconds": timeInSeconds,
+                        "branchCode": branchCode,
+                        "heading": heading,
+                        "directionCode": directionCode,
+                        "dirTag": dirTag
+                      }
+                      array.push(prediction_object)
+                    };
+                  };
+                };
+              }; // end if not array
+            }); // end each method
             var html_string = ""
             
-            for(var i=0;i<array.length;i++) {
+            for(var i = 0; i < array.length; i++) {
               html_string += "<tr><td><a href='https://www.ttc.ca/Routes/" + array[i].routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + array[i].directionCode + "</span> <small class='label bg-light'>" + array[i].branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+array[i].timeInSeconds+"></td><td>" + array[i].stopTitle + "</td><td>" + array[i].heading + "</td></tr>";
-              }
-            
+              console.log(array[i].dirTag);
+            }
+
             $("#schedules_table").find('tbody').append($(html_string))
             
             // var image = "http://i.imgur.com/aMW2NfO.png";
