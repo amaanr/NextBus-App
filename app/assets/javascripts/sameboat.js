@@ -46,32 +46,67 @@ function showTransit(position) {
                   if (predictions[i].hasOwnProperty("direction")) {
                     var direction = predictions[i]["direction"];
 
+                    if ($.isArray(direction) == true) {
+                      for (var k = 0; k < direction.length; k++) { // need to check if direction is array
+                        var directionTitle = direction[k].title;
+                        var prediction = direction[k]["prediction"];
+
+                        for (var l = 0; l < prediction.length; l++) {
+                          var directionCode = directionTitle.substring(0,1);
+
+                          var n = directionTitle.indexOf("towards");
+                          var directionLength = directionTitle.length;
+                          var heading = directionTitle.substring(n, directionLength);
+
+                          var timeInSeconds = prediction[l]["seconds"]
+                          var branchCode = prediction[l]["branch"]
+                          var dirTag = prediction[l]["dirTag"]
+
+                          prediction_object = {
+                              "routeTag": routeTag,
+                              "stopTitle": stopTitle,
+                              "directionTitle": directionTitle,
+                              "timeInSeconds": timeInSeconds,
+                              "branchCode": branchCode,
+                              "heading": heading,
+                              "directionCode": directionCode,
+                              "dirTag": dirTag
+                          }
+                          array.push(prediction_object)
+
+                        };
+                      };
+                    }; // end check if direction is array
+
                     var directionTitle = direction.title;
                     var prediction = direction["prediction"];
 
-                    for (var j = 0; j < prediction.length; j++) {
-                      var directionCode = directionTitle.substring(0,1);
+                    if ($.isArray(prediction) == true) {
 
-                      var n = directionTitle.indexOf("towards");
-                      var directionLength = directionTitle.length;
-                      var heading = directionTitle.substring(n, directionLength);
+                      for (var j = 0; j < prediction.length; j++) {
+                        var directionCode = directionTitle.substring(0,1);
 
-                      var timeInSeconds = prediction[j]["seconds"]
-                      var branchCode = prediction[j]["branch"]
-                      var dirTag = prediction[j]["dirTag"]
+                        var n = directionTitle.indexOf("towards");
+                        var directionLength = directionTitle.length;
+                        var heading = directionTitle.substring(n, directionLength);
 
-                      prediction_object = {
-                          "routeTag": routeTag,
-                          "stopTitle": stopTitle,
-                          "directionTitle": directionTitle,
-                          "timeInSeconds": timeInSeconds,
-                          "branchCode": branchCode,
-                          "heading": heading,
-                          "directionCode": directionCode,
-                          "dirTag": dirTag
-                      }
-                      array.push(prediction_object)
+                        var timeInSeconds = prediction[j]["seconds"]
+                        var branchCode = prediction[j]["branch"]
+                        var dirTag = prediction[j]["dirTag"]
 
+                        prediction_object = {
+                            "routeTag": routeTag,
+                            "stopTitle": stopTitle,
+                            "directionTitle": directionTitle,
+                            "timeInSeconds": timeInSeconds,
+                            "branchCode": branchCode,
+                            "heading": heading,
+                            "directionCode": directionCode,
+                            "dirTag": dirTag
+                        }
+                        array.push(prediction_object)
+
+                      };
                     };
                   };
                 }
@@ -118,7 +153,6 @@ function showTransit(position) {
             
             for(var i = 0; i < array.length; i++) {
               html_string += "<tr><td><a href='https://www.ttc.ca/Routes/" + array[i].routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + array[i].directionCode + "</span> <small class='label bg-light'>" + array[i].branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+array[i].timeInSeconds+"></td><td>" + array[i].stopTitle + "</td><td>" + array[i].heading + "</td></tr>";
-              console.log(array[i].dirTag);
             }
 
             $("#schedules_table").find('tbody').append($(html_string))
