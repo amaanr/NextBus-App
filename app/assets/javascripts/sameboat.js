@@ -56,7 +56,7 @@ function showTransit(position) {
 
                           var n = directionTitle.indexOf("towards");
                           var directionLength = directionTitle.length;
-                          var heading = directionTitle.substring(n, directionLength);
+                          var headingDesc = directionTitle.substring(n, directionLength);
 
                           var timeInSeconds = prediction[l]["seconds"]
                           var branchCode = prediction[l]["branch"]
@@ -68,7 +68,7 @@ function showTransit(position) {
                               "directionTitle": directionTitle,
                               "timeInSeconds": timeInSeconds,
                               "branchCode": branchCode,
-                              "heading": heading,
+                              "headingDesc": headingDesc,
                               "directionCode": directionCode,
                               "dirTag": dirTag
                           }
@@ -88,7 +88,7 @@ function showTransit(position) {
 
                         var n = directionTitle.indexOf("towards");
                         var directionLength = directionTitle.length;
-                        var heading = directionTitle.substring(n, directionLength);
+                        var headingDesc = directionTitle.substring(n, directionLength);
 
                         var timeInSeconds = prediction[j]["seconds"]
                         var branchCode = prediction[j]["branch"]
@@ -100,7 +100,7 @@ function showTransit(position) {
                             "directionTitle": directionTitle,
                             "timeInSeconds": timeInSeconds,
                             "branchCode": branchCode,
-                            "heading": heading,
+                            "headingDesc": headingDesc,
                             "directionCode": directionCode,
                             "dirTag": dirTag
                         }
@@ -127,7 +127,7 @@ function showTransit(position) {
 
                       var n = directionTitle.indexOf("towards");
                       var directionLength = directionTitle.length;
-                      var heading = directionTitle.substring(n, directionLength);
+                      var headingDesc = directionTitle.substring(n, directionLength);
 
                       var timeInSeconds = prediction[j]["seconds"]
                       var branchCode = prediction[j]["branch"]
@@ -139,7 +139,7 @@ function showTransit(position) {
                         "directionTitle": directionTitle,
                         "timeInSeconds": timeInSeconds,
                         "branchCode": branchCode,
-                        "heading": heading,
+                        "headingDesc": headingDesc,
                         "directionCode": directionCode,
                         "dirTag": dirTag
                       }
@@ -150,9 +150,9 @@ function showTransit(position) {
               }; // end if not array
             }); // end each method
             var html_string = ""
-            
+
             for(var i = 0; i < array.length; i++) {
-              html_string += "<tr><td><a href='https://www.ttc.ca/Routes/" + array[i].routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + array[i].directionCode + "</span> <small class='label bg-light'>" + array[i].branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+array[i].timeInSeconds+"></td><td>" + array[i].stopTitle + "</td><td>" + array[i].heading + "</td></tr>";
+              html_string += "<tr><td><a href='https://www.ttc.ca/Routes/" + array[i].routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + array[i].directionCode + "</span> <small class='label bg-light'>" + array[i].branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+array[i].timeInSeconds+"></td><td>" + array[i].stopTitle + "</td><td>" + array[i].headingDesc + "</td></tr>";
             }
 
             $("#schedules_table").find('tbody').append($(html_string))
