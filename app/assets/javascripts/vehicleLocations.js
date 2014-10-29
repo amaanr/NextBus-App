@@ -43,8 +43,6 @@ function mapVehicles(routeList) {
 	});
 };
 
-console.log(mvLastTime);
-
 function xmlParser(xml) {
 	var vehList = $.xml2json(xml);
 	// create a marker for each vehicle 
@@ -89,6 +87,6 @@ function xmlParser(xml) {
 	
 // }
 
-moveVehicles(['95'],'95_1_95');
+// moveVehicles(['95'],'95_1_95');
 
 google.maps.event.addDomListener(window, 'load', initialize);

@@ -149,13 +149,16 @@ function showTransit(position) {
                 };
               }; // end if not array
             }); // end each method
-            var html_string = ""
+            var html_string = "";
+            var html_locations_string = ""; 
 
             for(var i = 0; i < array.length; i++) {
               html_string += "<tr><td><a href='https://www.ttc.ca/Routes/" + array[i].routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + array[i].directionCode + "</span> <small class='label bg-light'>" + array[i].branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+array[i].timeInSeconds+"></td><td>" + array[i].stopTitle + "</td><td>" + array[i].headingDesc + "</td></tr>";
+              html_locations_string += "<li data-value='' data-selected=''><a href='#'>" + array[i].branchCode + array[i].headingDesc + array[i].directionCode + "</a></li>"
             }
 
-            $("#schedules_table").find('tbody').append($(html_string))
+            $("#schedules_table").find('tbody').append($(html_string));
+            $("#vehicleLocSel").find('ul').append($(html_locations_string));
             
             // var image = "http://i.imgur.com/aMW2NfO.png";
                 // Make and place nearby stops on map as markers
