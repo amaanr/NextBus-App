@@ -154,7 +154,17 @@ function showTransit(position) {
 
             for(var i = 0; i < array.length; i++) {
               html_string += "<tr><td><a href='https://www.ttc.ca/Routes/" + array[i].routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + array[i].directionCode + "</span> <small class='label bg-light'>" + array[i].branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+array[i].timeInSeconds+"></td><td>" + array[i].stopTitle + "</td><td>" + array[i].headingDesc + "</td></tr>";
+
               html_locations_string += "<li data-value='' data-selected=''><a href='#'>" + array[i].branchCode + array[i].headingDesc + array[i].directionCode + "</a></li>"
+
+              $.each(data, function(i, stop){
+                if($.inArray(stop.dirTag, array) === -1){
+                  array.push(stop.dirTag);
+                }
+              });
+
+              console.log(array);
+
             }
 
             $("#schedules_table").find('tbody').append($(html_string));
