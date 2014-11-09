@@ -33,8 +33,10 @@ function showTransit(position) {
           url: "http://webservices.nextbus.com/service/publicJSONFeed?command=predictions&a=ttc&stopId=" + response[i].stop_code,
           dataType: "JSON",
           success: function (data) {
-            var array = []
-            var prediction_object = {}
+            var array = [];
+            var locationsArray = [];
+            var prediction_object = {};
+            var locations_object = {};
             var predictions = data["predictions"]
             $.each([predictions], function(i, val) {
               if ($.isArray(predictions) == true) {
@@ -72,7 +74,17 @@ function showTransit(position) {
                               "directionCode": directionCode,
                               "dirTag": dirTag
                           }
-                          array.push(prediction_object)
+                          
+                          locations_object = {
+                            "routeTag": routeTag,
+                            "stopTitle": stopTitle,
+                            "directionCode": directionCode,
+                            "branchCode": branchCode,
+                            "headingDesc": headingDesc,
+                            "dirTag": dirTag
+                          }
+                          array.push(prediction_object);
+                          locationsArray.push(locations_object);
 
                         };
                       };
@@ -104,7 +116,16 @@ function showTransit(position) {
                             "directionCode": directionCode,
                             "dirTag": dirTag
                         }
-                        array.push(prediction_object)
+                        locations_object = {
+                            "routeTag": routeTag,
+                            "stopTitle": stopTitle,
+                            "directionCode": directionCode,
+                            "branchCode": branchCode,
+                            "headingDesc": headingDesc,
+                            "dirTag": dirTag
+                          }
+                          array.push(prediction_object);
+                          locationsArray.push(locations_object);
 
                       };
                     };
@@ -143,7 +164,16 @@ function showTransit(position) {
                         "directionCode": directionCode,
                         "dirTag": dirTag
                       }
-                      array.push(prediction_object)
+                      locations_object = {
+                            "routeTag": routeTag,
+                            "stopTitle": stopTitle,
+                            "directionCode": directionCode,
+                            "branchCode": branchCode,
+                            "headingDesc": headingDesc,
+                            "dirTag": dirTag
+                          }
+                      array.push(prediction_object);
+                      locationsArray.push(locations_object);
                     };
                   };
                 };
@@ -157,14 +187,17 @@ function showTransit(position) {
 
               html_locations_string += "<li data-value='' data-selected=''><a href='#'>" + array[i].branchCode + array[i].headingDesc + array[i].directionCode + "</a></li>"
 
-              $.each(data, function(i, stop){
-                if($.inArray(stop.dirTag, array) === -1){
-                  array.push(stop.dirTag);
+            }
+            
+            // locations array
+            for (j = 0; j < locationsArray.length; j++) {
+//               console.log($.unique(locationsArray));
+//               $.each(data, function(i, stop){
+                if($.inArray(locationsArray[j].dirTag, locationsArray) === -1){
+                  locationsArray.push(locationsArray[j].dirTag);
+                  console.log(stop.dirTag);
                 }
-              });
-
-              console.log(array);
-
+//               });
             }
 
             $("#schedules_table").find('tbody').append($(html_string));
