@@ -182,22 +182,23 @@ function showTransit(position) {
             var html_string = "";
             var html_locations_string = ""; 
 
+            // locations array
+            var uniqueLocations = $.unique(locationsArray);
+            var uniqLocObject = {
+              "routeTag":uniqueLocations[0].routeTag,
+              "stopTitle":uniqueLocations[0].stopTitle,
+              "directionCode":uniqueLocations[0].directionCode,
+              "branchCode":uniqueLocations[0].branchCode,
+              "headingDesc":uniqueLocations[0].headingDesc,
+              "dirTag":uniqueLocations[0].dirTag
+            }
+            console.log(uniqLocObject);
+
             for(var i = 0; i < array.length; i++) {
               html_string += "<tr><td><a href='https://www.ttc.ca/Routes/" + array[i].routeTag + "/RouteDescription.jsp?tabName=map' target='_blank'><span class='badge bg-success'>" + array[i].directionCode + "</span> <small class='label bg-light'>" + array[i].branchCode + "</small></a></td><td class='cellDepartsIn' data-seconds="+array[i].timeInSeconds+"></td><td>" + array[i].stopTitle + "</td><td>" + array[i].headingDesc + "</td></tr>";
 
               html_locations_string += "<li data-value='' data-selected=''><a href='#'>" + array[i].branchCode + array[i].headingDesc + array[i].directionCode + "</a></li>"
 
-            }
-            
-            // locations array
-            for (j = 0; j < locationsArray.length; j++) {
-//               console.log($.unique(locationsArray));
-//               $.each(data, function(i, stop){
-                if($.inArray(locationsArray[j].dirTag, locationsArray) === -1){
-                  locationsArray.push(locationsArray[j].dirTag);
-                  console.log(stop.dirTag);
-                }
-//               });
             }
 
             $("#schedules_table").find('tbody').append($(html_string));
