@@ -4,7 +4,7 @@ function initialize() {
     zoom: 13,
     center: new google.maps.LatLng(43.7567094,-79.3364596)
   };
-  map = new google.maps.Map(document.getElementById('locations-map'),
+  map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 }
 
