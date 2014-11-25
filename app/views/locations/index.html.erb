@@ -37,9 +37,8 @@
   $('#vehicleLocSel ul').on('click', 'li', function() {
     var route = $(this).data('value-route');
     var dirTag = $(this).data('value-dirtag');
-
-    moveVeh = "['" + route + "'],'" + dirTag + "'";
-    alert(moveVeh);
+    
+    moveVehicles([route],dirTag);
   });
 
 </script>
