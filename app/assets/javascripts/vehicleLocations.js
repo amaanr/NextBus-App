@@ -107,6 +107,6 @@ function mapVehicles(routeList) {
 	});
 }
 
-moveVehicles(['122'],'122_0_122');
+// moveVehicles(['122'],'122_0_122');
 
 google.maps.event.addDomListener(window, 'load', initialize);

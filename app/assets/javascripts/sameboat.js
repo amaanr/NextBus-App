@@ -192,7 +192,7 @@ function showTransit(position) {
               "headingDesc":uniqueLocations[0].headingDesc,
               "dirTag":uniqueLocations[0].dirTag
             }
-            html_locations_string += "<li data-value='' data-selected=''><a href='#'><span class='badge bg-success'>" + uniqLocObject.directionCode + "</span>&nbsp;<small class='label bg-light'>" + uniqLocObject.branchCode + "</small>&nbsp;" + uniqLocObject.headingDesc + "</a></li>"
+            html_locations_string += "<li data-selected='' data-value-route='" + uniqLocObject.routeTag + "' data-value-dirtag='" + uniqLocObject.dirTag + "'><a href='#'><span class='badge bg-success'>" + uniqLocObject.directionCode + "</span>&nbsp;<small class='label bg-light'>" + uniqLocObject.branchCode + "</small>&nbsp;" + uniqLocObject.headingDesc + "</a></li>"
 
 
             for(var i = 0; i < array.length; i++) {

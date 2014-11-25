@@ -3,17 +3,18 @@
 	  <div class="padder m-t">
 	    <div class="row">
 	      <div class="col-md-12">
-			   <div id="vehicleLocSel" class="select btn-group m-b" data-resize="auto">
-          <button type="button" data-toggle="dropdown" class="btn btn-white btn-sm dropdown-toggle">
-            <span class="dropdown-label"></span> <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <!-- <li data-value="1" data-selected="true"><a href="#">Item One</a></li> -->
-            <!-- <li data-value="2"><a href="#">Item Two</a></li> -->
-            <!-- <li data-value="3" data-fizz="buzz"><a href="#">Item Three</a></li> -->
-            <!-- <li data-value="4"><a href="#">Item Four</a></li> -->
-          </ul>
-         </div>
+          
+          <div id="vehicleLocSel" class="input-group dropdown combobox m-b">
+            <input class="input-sm form-control" name="combobox" type="text" placeholder="Select a route...">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-white dropdown-toggle" data-toggle="dropdown">
+                <i class="caret"></i>
+              </button>
+              <ul class="dropdown-menu pull-right">
+              </ul>
+            </div>
+          </div>
+          
       	 <section class="panel">
           <header class="panel-heading">Vehicle Locations</header>
           	<div class="panel-body">
@@ -30,6 +31,15 @@
 
   $( document ).ready(function() {
     $(geolocation);
+  });
+  
+  var moveVeh = "";
+  $('#vehicleLocSel ul').on('click', 'li', function() {
+    var route = $(this).data('value-route');
+    var dirTag = $(this).data('value-dirtag');
+
+    moveVeh = "['" + route + "'],'" + dirTag + "'";
+    alert(moveVeh);
   });
 
 </script>
