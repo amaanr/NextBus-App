@@ -10,7 +10,7 @@ var directionsService = new google.maps.DirectionsService();
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
   var mapOptions = {
-    zoom: 16,
+    zoom: 12,
     styles: [{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#bbd5c5"}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#808080"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#fcf9a2"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#bbd5c5"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#808080"}]}],
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };

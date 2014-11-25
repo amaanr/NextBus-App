@@ -202,13 +202,13 @@ function showTransit(position) {
             $("#schedules_table").find('tbody').append($(html_string));
             $("#vehicleLocSel").find('ul').append($(html_locations_string));
             
-            // var image = "http://i.imgur.com/aMW2NfO.png";
+                var image = "<%= asset_path 'stop_22x50.png' %>";
                 // Make and place nearby stops on map as markers
                 var marker = new google.maps.Marker({
                   map: map,
                   position: tmpLatLng,
-                  title: stopName
-		              // icon: image
+                  title: stopName,
+		              icon: image
                 });
 
                 var infoWindowContent = '<div id="content">'+

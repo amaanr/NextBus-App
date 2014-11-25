@@ -1,7 +1,7 @@
 var map;
 function initialize() {
   var mapOptions = {
-    zoom: 13,
+    zoom: 16,
     center: new google.maps.LatLng(43.7567094,-79.3364596)
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -67,11 +67,13 @@ function mapVehicles(routeList) {
             $.each(array, function(index, vehicle) {
               var marker;
               //if (vehicle.dirTag == mvDirectionTag) {
-	              text = 'Route (Bus Number): ' + vehicle.routeTag + ', vehicle id: ' + vehicle.id;
+	            var image = "<%= asset_path 'sb-logo_32x32.png' %>";  
+              text = 'Route (Bus Number): ' + vehicle.routeTag + ', vehicle id: ' + vehicle.id;
 	              marker = new google.maps.Marker({
                   position: new google.maps.LatLng(vehicle.lat, vehicle.lon),
                   title: text,
-                  id: vehicle.id
+                  id: vehicle.id,
+                  icon: image
 			          });
 			
 			          // Set markers on the map
